@@ -511,7 +511,9 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 .vx-starfield { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
 /* ---------- Posters (game box art, 3:4) ---------- */
-.vx-posters { display: inline-flex; align-items: flex-end; flex: none; }
+/* isolate: the posters' own z-order (front poster on top) stays inside the group, so it never paints over sticky
+   headers or other overlays around it. */
+.vx-posters { display: inline-flex; align-items: flex-end; flex: none; isolation: isolate; }
 .vx-poster {
   position: relative;
   width: var(--vx-pw);
