@@ -511,6 +511,7 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 /* ---------- Posters (game box art, 3:4) ---------- */
 .vx-posters { display: inline-flex; align-items: flex-end; flex: none; }
 .vx-poster {
+  position: relative;
   width: var(--vx-pw);
   aspect-ratio: 3 / 4;
   border-radius: 3px;
@@ -520,6 +521,11 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
   transition: margin 0.2s, transform 0.2s, filter 0.2s;
 }
 .vx-poster > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* The game's colour along the bottom, so a poster reads as the same game as its chapter-bar/timeline segments. */
+.vx-poster-band {
+  position: absolute; left: 0; right: 0; bottom: 0; height: max(4px, 16%);
+  background: var(--vx-c); box-shadow: 0 -1px 0 rgb(0 0 0 / 0.6);
+}
 .vx-poster > .vx-ph { height: 100%; border-radius: 3px; font-size: 9px; color: var(--vx-ink); border-color: color-mix(in srgb, var(--vx-c) 60%, transparent); }
 .vx-posters.is-stack .vx-poster + .vx-poster { margin-left: calc(var(--vx-pw) * -0.62); filter: brightness(calc(1 - var(--vx-i) * 0.22)); }
 .vx-posters.is-stack .vx-poster { transform: translateY(calc(var(--vx-i) * -3px)); }

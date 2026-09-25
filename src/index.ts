@@ -66,6 +66,8 @@ export { useDismiss } from './composables/useClickOutside'
 export {
   dominantHue,
   gameColor,
+  gameHue,
+  gamePalette,
   hasGameHue,
   initials,
   setGameHue,

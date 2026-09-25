@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { nextTick, effect } from 'vue'
-import { dominantHue, gameColor, hasGameHue, setGameHue } from '../src/utils/color'
+import { dominantHue, gameColor, gamePalette, hasGameHue, setGameHue } from '../src/utils/color'
 
 /** RGBA bytes for n pixels of one colour. */
 const fill = (n: number, [r, g, b]: [number, number, number], a = 255) => Array.from({ length: n }, () => [r, g, b, a]).flat()
@@ -46,5 +46,24 @@ describe('game hues from art', () => {
     setGameHue(name, -30)
     await nextTick()
     expect(seen).toBe('hsl(330 38% 62%)')
+  })
+})
+
+describe('gamePalette', () => {
+  it('keeps hues and separates similar neighbours by shade', () => {
+    setGameHue('P1', 100)
+    setGameHue('P2', 110)
+    setGameHue('P3', 250)
+    setGameHue('P4', 95)
+    const p = gamePalette(['P1', 'P2', 'P1', 'P3', 'P4'])
+    expect([...p.keys()]).toEqual(['P1', 'P2', 'P3', 'P4'])
+    expect(p.get('P1')).toBe('hsl(100 38% 62%)')
+    expect(p.get('P2')).toBe('hsl(110 38% 46%)')
+    expect(p.get('P3')).toBe('hsl(250 38% 62%)')
+    expect(p.get('P4')).toBe('hsl(95 38% 76%)')
+  })
+
+  it('matches gameColor when nothing collides', () => {
+    expect(gamePalette(['P3']).get('P3')).toBe(gameColor('P3'))
   })
 })

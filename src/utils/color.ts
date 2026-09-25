@@ -22,7 +22,34 @@ export const hasGameHue = (name: string): boolean => artHues.has(name)
  * The hue comes from the game's box art once known, else from a hash of its name, so it's stable either way.
  */
 export function gameColor(name: string): string {
-  return `hsl(${artHues.get(name) ?? hash31(name) % 360} 38% 62%)`
+  return `hsl(${gameHue(name)} 38% 62%)`
+}
+
+/** The hue gameColor() uses: from the box art once learned, else from the name. */
+export function gameHue(name: string): number {
+  return artHues.get(name) ?? hash31(name) % 360
+}
+
+const hueGap = (a: number, b: number) => Math.min(Math.abs(a - b), 360 - Math.abs(a - b))
+/** Lightness steps tried in turn when a game's hue is too close to one already in the palette. */
+const SHADES = [62, 46, 76] as const
+
+/**
+ * Colours for the games of one VOD, in the order given (chapter order). Each keeps its hue, but a game whose hue
+ * is within `minGap`° of an earlier game in the same shade moves to a darker (then lighter) shade, so two similar
+ * games side by side stay tellable apart. Use the same palette for a VOD's posters, chapter bar and timeline.
+ */
+export function gamePalette(names: Iterable<string>, minGap = 28): Map<string, string> {
+  const used: { hue: number; shade: number }[] = []
+  const out = new Map<string, string>()
+  for (const name of names) {
+    if (out.has(name)) continue
+    const hue = gameHue(name)
+    const shade = SHADES.find((l) => !used.some((u) => u.shade === l && hueGap(u.hue, hue) < minGap)) ?? SHADES[0]
+    used.push({ hue, shade })
+    out.set(name, `hsl(${hue} 38% ${shade}%)`)
+  }
+  return out
 }
 
 /**
