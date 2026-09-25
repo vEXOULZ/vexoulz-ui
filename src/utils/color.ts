@@ -1,12 +1,76 @@
+import { reactive } from 'vue'
+
 function hash31(name: string): number {
   let x = 0
   for (const c of name) x = (x * 31 + c.charCodeAt(0)) >>> 0
   return x
 }
 
-/** Stable muted colour per game name, used behind poster placeholders. */
+// Hues learned from box art (see artColor.ts). Reactive, so anything rendering gameColor() updates when a hue arrives.
+const artHues = reactive(new Map<string, number>())
+
+/** Use `hue` (from the game's box art) for this game from now on; null goes back to the name-based hue. */
+export function setGameHue(name: string, hue: number | null): void {
+  if (hue === null) artHues.delete(name)
+  else artHues.set(name, ((Math.round(hue) % 360) + 360) % 360)
+}
+
+export const hasGameHue = (name: string): boolean => artHues.has(name)
+
+/**
+ * Colour per game: one muted pastel family (same saturation and lightness for every game, readable on black).
+ * The hue comes from the game's box art once known, else from a hash of its name, so it's stable either way.
+ */
 export function gameColor(name: string): string {
-  return `hsl(${hash31(name) % 360} 38% 62%)`
+  return `hsl(${artHues.get(name) ?? hash31(name) % 360} 38% 62%)`
+}
+
+/**
+ * The dominant hue of an image's pixels (RGBA bytes), weighting each pixel by how colourful it is. Greys, near-black
+ * and near-white pixels don't count; returns null when too little of the image is colourful to call a hue.
+ */
+export function dominantHue(rgba: ArrayLike<number>, minShare = 0.04): number | null {
+  const BUCKETS = 36
+  const weight = new Array<number>(BUCKETS).fill(0)
+  const sx = new Array<number>(BUCKETS).fill(0)
+  const sy = new Array<number>(BUCKETS).fill(0)
+  let pixels = 0
+  let total = 0
+  for (let i = 0; i + 3 < rgba.length; i += 4) {
+    if (rgba[i + 3]! < 128) continue
+    pixels++
+    const r = rgba[i]! / 255
+    const g = rgba[i + 1]! / 255
+    const b = rgba[i + 2]! / 255
+    const max = Math.max(r, g, b)
+    const chroma = max - Math.min(r, g, b)
+    if (chroma < 0.15 || max < 0.15) continue
+    let h = max === r ? ((g - b) / chroma) % 6 : max === g ? (b - r) / chroma + 2 : (r - g) / chroma + 4
+    h = (h * 60 + 360) % 360
+    const k = Math.floor(h / (360 / BUCKETS)) % BUCKETS
+    const rad = (h * Math.PI) / 180
+    weight[k]! += chroma
+    sx[k]! += Math.cos(rad) * chroma
+    sy[k]! += Math.sin(rad) * chroma
+    total += chroma
+  }
+  if (!pixels || total / pixels < minShare) return null
+  let best = 0
+  let bestW = -1
+  for (let k = 0; k < BUCKETS; k++) {
+    const w = weight[(k + BUCKETS - 1) % BUCKETS]! + weight[k]! + weight[(k + 1) % BUCKETS]!
+    if (w > bestW) {
+      bestW = w
+      best = k
+    }
+  }
+  let x = 0
+  let y = 0
+  for (const k of [(best + BUCKETS - 1) % BUCKETS, best, (best + 1) % BUCKETS]) {
+    x += sx[k]!
+    y += sy[k]!
+  }
+  return Math.round(((Math.atan2(y, x) * 180) / Math.PI + 360) % 360)
 }
 
 /** Letters shown on a poster placeholder: "Hollow Knight" → "HK". */
