@@ -1,7 +1,7 @@
 # Implementation plan: *.vexoulz.net on the Deep Field design
 
 ## Context
-The three sites don't share a look or a stack: root is Vue 3 and JS, vods is React CRA + MUI, and dtp is FastAPI + Jinja with inline CSS. We designed a shared look ("Deep Field") in the lab, and it now lives in `X:\Users\vex\3D Objects\vexoulz-ui` (lab v4 plus UI kit). This plan turns the lab into real code: one shared design package, a headless vods engine, and three Vue + TypeScript sites that deploy separately. Your answers: **TypeScript**; **accounts in a later phase**, so watch progress lives in the browser until then; **a separate `dtp-web` repo**; **packages installed from git tags**.
+The three sites don't share a look or a stack: root is Vue 3 and JS, vods is React CRA + MUI, and dtp is FastAPI + Jinja with inline CSS. We designed a shared look ("Deep Field") in the lab, and it now lives in this repo (`vexoulz-ui`) (lab v4 plus UI kit). This plan turns the lab into real code: one shared design package, a headless vods engine, and three Vue + TypeScript sites that deploy separately. Your answers: **TypeScript**; **accounts in a later phase**, so watch progress lives in the browser until then; **a separate `dtp-web` repo**; **packages installed from git tags**.
 
 What the codebase surveys found:
 - **Hosting:** private, documented only in `homelab-docs` (see the boundary rule below). What matters for the repos: sites are static builds behind a reverse proxy, vods reaches its API at `/backend/*`, and the existing SSH `deploy_main.yml` workflows in root and Archive point at a host that no longer exists, so **those deploys are dead**.
