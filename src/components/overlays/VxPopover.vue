@@ -1,9 +1,10 @@
 <script setup lang="ts">
 // Popover / dropdown used for every menu. Opens towards whichever side of its page has room and caps its height
-// to that room (bounded by <main>, so it never slides under the sticky header), so long lists scroll.
+// to that room (bounded by <main>, so it never slides under the sticky header), so long lists scroll. It also
+// slides sideways to stay on screen when its alignment would push it past the edge (narrow phones).
 import { nextTick, ref } from 'vue'
 import { useDismiss } from '../../composables/useClickOutside'
-import { place } from '../../utils/place'
+import { clampX, place } from '../../utils/place'
 
 const props = withDefaults(
   defineProps<{
@@ -24,6 +25,7 @@ const root = ref<HTMLElement | null>(null)
 const panel = ref<HTMLElement | null>(null)
 const dir = ref(props.prefer)
 const maxH = ref(props.cap)
+const shiftX = ref(0)
 
 function reposition() {
   if (!root.value) return
@@ -38,6 +40,10 @@ function reposition() {
   })
   dir.value = r.dir
   maxH.value = r.maxHeight
+  if (panel.value) {
+    const box = panel.value.getBoundingClientRect()
+    shiftX.value = clampX(box.left - shiftX.value, box.right - shiftX.value, document.documentElement.clientWidth)
+  }
 }
 
 async function show() {
@@ -66,7 +72,7 @@ defineExpose({ open: show, close, toggle, reposition })
       ref="panel"
       class="vx-popover-panel vx-pop"
       :class="[`is-${dir}`, `is-${align}`]"
-      :style="{ width, maxHeight: `${maxH}px` }"
+      :style="{ width, maxHeight: `${maxH}px`, translate: shiftX ? `${shiftX}px 0` : undefined }"
       :role="role"
     >
       <slot :close="close"></slot>

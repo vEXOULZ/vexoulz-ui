@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.1.1
+
+### Patch Changes
+
+- 7f58ae1: VxPopover slides sideways to stay on screen when its alignment would push it past the viewport edge (narrow
+  phones). New `clampX` helper in the placement utils.
+
 ## 0.1.0
 
 ### Minor Changes

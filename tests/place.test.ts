@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { place } from '../src/utils/place'
+import { clampX, place } from '../src/utils/place'
 
 const bounds = { top: 48, bottom: 900 } // main starts under the 48px header
 const base = { bounds, viewport: 900, cap: 420 }
@@ -44,5 +44,20 @@ describe('place', () => {
     // below: 358 < cap 420, above: 442, so it flips
     const r = place({ ...base, anchor: { top: 500, bottom: 532 }, prefer: 'down' })
     expect(r.dir).toBe('up')
+  })
+})
+
+describe('clampX', () => {
+  it('leaves a panel that fits alone', () => {
+    expect(clampX(20, 300, 390)).toBe(0)
+  })
+  it('pushes a panel off the left edge back in', () => {
+    expect(clampX(-56, 264, 390)).toBe(64)
+  })
+  it('pulls a panel off the right edge back in', () => {
+    expect(clampX(200, 420, 390)).toBe(-38)
+  })
+  it('pins a panel wider than the viewport to the left', () => {
+    expect(clampX(-10, 500, 390)).toBe(18)
   })
 })
