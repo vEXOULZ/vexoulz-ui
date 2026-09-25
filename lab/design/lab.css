@@ -1,0 +1,281 @@
+/* ---------- Direction tokens ----------
+   Every mock reads only these variables, so switching data-dir reskins all three sites. */
+
+.lab-theme {
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --head-case: none;
+  --head-track: 0;
+  --head-weight: 600;
+  --bw: 1px;
+  --shadow: none;
+  --backdrop: none;
+  --backdrop-size: auto;
+}
+
+/* Deep Field: the current root, cleaned up */
+.lab-theme[data-dir='deepfield'] {
+  --bg: #000;
+  --surface: #0a0a0c;
+  --surface-2: #141418;
+  --ink: #f2f2f2;
+  --muted: #8b8b93;
+  --line: #26262c;
+  --ok: #8fd694;
+  --bad: #ff8a7a;
+  --accent-root: #d5e0ff;
+  --accent-vods: #ffb56c;
+  --accent-dtp: #c9b27c;
+  --font-body: var(--font-mono);
+  --font-display: var(--font-mono);
+  --head-weight: 500;
+  --head-fill: linear-gradient(90deg, #5a5a5a, #fff 70%);
+  --radius: 8px;
+  --radius-sm: 5px;
+  --backdrop:
+    radial-gradient(1px 1px at 23px 41px, #ffdab5, transparent),
+    radial-gradient(1px 1px at 97px 13px, #d5e0ff, transparent),
+    radial-gradient(1.5px 1.5px at 151px 118px, #f9f5ff, transparent),
+    radial-gradient(1px 1px at 61px 160px, #ffb56c, transparent),
+    radial-gradient(1px 1px at 190px 77px, #a2c0ff, transparent),
+    radial-gradient(1px 1px at 37px 211px, #ffede3, transparent),
+    radial-gradient(2px 2px at 233px 181px, #92b5ff, transparent);
+  --backdrop-size: 173px 173px, 173px 173px, 173px 173px, 251px 251px, 251px 251px, 251px 251px, 389px 389px;
+}
+
+/* Dune: grown from doomtp-bot's palette */
+.lab-theme[data-dir='dune'] {
+  --bg: #12100e;
+  --surface: #1b1815;
+  --surface-2: #241f1b;
+  --ink: #efe7dd;
+  --muted: #a99d8f;
+  --line: #342d27;
+  --ok: #8fbf7f;
+  --bad: #d4796b;
+  --accent-root: #e0a458;
+  --accent-vods: #e07a5f;
+  --accent-dtp: #a8c686;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --head-fill: linear-gradient(var(--ink), var(--ink));
+  --radius: 6px;
+  --radius-sm: 4px;
+  --backdrop: radial-gradient(ellipse 80% 50% at 50% -10%, #2d2319, transparent 70%);
+  --backdrop-size: 100% 100%;
+}
+.lab-theme[data-dir='dune'][data-mode='light'] {
+  --bg: #faf6ef;
+  --surface: #fff;
+  --surface-2: #f3ece1;
+  --ink: #23201c;
+  --muted: #6d6459;
+  --line: #e2d9cc;
+  --ok: #4f7d3f;
+  --bad: #b0503f;
+  --accent-root: #a4621b;
+  --accent-vods: #b24a2f;
+  --accent-dtp: #557a35;
+  --backdrop: radial-gradient(ellipse 80% 50% at 50% -10%, #f1e2c8, transparent 70%);
+}
+
+/* Broadcast: Twitch-adjacent app look, Archive's #0e0e10 base */
+.lab-theme[data-dir='broadcast'] {
+  --bg: #0e0e10;
+  --surface: #18181b;
+  --surface-2: #232328;
+  --ink: #efeff1;
+  --muted: #adadb8;
+  --line: #2f2f35;
+  --ok: #34d399;
+  --bad: #f87171;
+  --accent-root: #a970ff;
+  --accent-vods: #2dd4bf;
+  --accent-dtp: #f5a524;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --head-weight: 700;
+  --head-track: -0.02em;
+  --head-fill: linear-gradient(var(--ink), var(--ink));
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+}
+.lab-theme[data-dir='broadcast'][data-mode='light'] {
+  --bg: #f7f7f8;
+  --surface: #fff;
+  --surface-2: #efeff2;
+  --ink: #0e0e10;
+  --muted: #53535f;
+  --line: #e2e2e8;
+  --ok: #059669;
+  --bad: #dc2626;
+  --accent-root: #7c3aed;
+  --accent-vods: #0d9488;
+  --accent-dtp: #b45309;
+  --shadow: 0 6px 20px rgb(0 0 0 / 0.07);
+}
+
+/* Zine: brutalist */
+.lab-theme[data-dir='zine'] {
+  --bg: #0b0b0b;
+  --surface: #0b0b0b;
+  --surface-2: #1a1a1a;
+  --ink: #f5f5ef;
+  --muted: #9a9a90;
+  --line: #f5f5ef;
+  --ok: #3dffa2;
+  --bad: #ff4d4d;
+  --accent-root: #ffe600;
+  --accent-vods: #ff5a1f;
+  --accent-dtp: #3dffa2;
+  --font-body: var(--font-mono);
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --head-case: uppercase;
+  --head-track: -0.01em;
+  --head-weight: 700;
+  --head-fill: linear-gradient(var(--ink), var(--ink));
+  --radius: 0;
+  --radius-sm: 0;
+  --bw: 2px;
+}
+.lab-theme[data-dir='zine'] .panel { box-shadow: 5px 5px 0 var(--accent); }
+.lab-theme[data-dir='zine'] .btn:hover { box-shadow: 3px 3px 0 var(--ink); transform: translate(-1px, -1px); }
+
+/* Per-site accent: set on each mock's root */
+.site[data-site='root'] { --accent: var(--accent-root); }
+.site[data-site='vods'] { --accent: var(--accent-vods); }
+.site[data-site='dtp'] { --accent: var(--accent-dtp); }
+.accent-root { color: var(--accent-root); }
+.accent-vods { color: var(--accent-vods); }
+.accent-dtp { color: var(--accent-dtp); }
+
+/* ---------- Shared components ----------
+   The same markup in all three sites: this is the part that becomes a shared tokens + components package. */
+
+.site {
+  background-color: var(--bg);
+  background-image: var(--backdrop);
+  background-size: var(--backdrop-size);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+}
+.site * { box-sizing: border-box; }
+.site a { color: inherit; padding: 0; text-decoration: none; transition: color 0.15s; }
+.site a:hover { color: var(--accent); }
+.site code, .site pre { font-family: var(--font-mono); }
+
+.h-display {
+  font-family: var(--font-display);
+  font-weight: var(--head-weight);
+  letter-spacing: var(--head-track);
+  text-transform: var(--head-case);
+  line-height: 1.15;
+  background-image: var(--head-fill);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.muted { color: var(--muted); }
+
+.site-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 20px;
+  border-bottom: var(--bw) solid var(--line);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: var(--head-weight); text-transform: var(--head-case); }
+.brand .slash { color: var(--muted); font-weight: 400; }
+.brand .sub { color: var(--accent); }
+.site-nav { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.site-nav a.on { color: var(--ink); box-shadow: 0 2px 0 var(--accent); }
+.site-head .spacer { flex: 1; }
+.site-main { padding: 28px 20px 36px; max-width: 1080px; margin: 0 auto; }
+.site-foot {
+  border-top: var(--bw) solid var(--line);
+  padding: 14px 20px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.panel {
+  background: var(--surface);
+  border: var(--bw) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: var(--bw) solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s, box-shadow 0.1s;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+
+.input {
+  font: inherit;
+  font-size: 14px;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  border: var(--bw) solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  min-width: 0;
+}
+.input::placeholder { color: var(--muted); }
+.input:focus { outline: 1px solid var(--accent); outline-offset: 1px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.lab-theme[data-dir='zine'] .chip { border-radius: 0; }
+.chip.on { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, transparent); }
+.chip.off { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+.chip.accent { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.chip.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+.code {
+  background: var(--surface-2);
+  border: var(--bw) solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre;
+}
+.tok-prefix, .tok-cmd { color: var(--accent); font-weight: 600; }
+.tok-op { color: var(--bad); font-weight: 600; }
+.tok-ph { color: var(--accent-root); }
+.tok-str { color: var(--ok); }

@@ -1,0 +1,225 @@
+/* Deep Field variations. Everything keys off data-* attributes on .df, set from the lab's options. */
+
+.df {
+  --bg: #000;
+  --surface: #0a0a0c;
+  --surface-2: #141418;
+  --ink: #f2f2f2;
+  --muted: #8b8b93;
+  --line: #26262c;
+  --ok: #8fd694;
+  --bad: #ff6b5e;
+  --accent-root: #d5e0ff;
+  --accent-vods: #ffb56c;
+  --accent-dtp: #c9b27c;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --font-sans: var(--font-mono);
+  --radius: 8px;
+  --radius-sm: 5px;
+  --ring: #fff;
+}
+
+/* Accent sets: pastel = star colours, hot = the colours root's links use today, pushed a bit */
+.df[data-accent='hot'] {
+  --accent-root: #92b5ff;
+  --accent-vods: #ff8a1f;
+  --accent-dtp: #e8c35a;
+}
+
+/* Type pairings: mono stays for labels, handles, numbers and code; sans takes names, titles and prose */
+.df[data-type='inter'] { --font-sans: 'Inter', system-ui, sans-serif; }
+.df[data-type='geist'] {
+  --font-mono: 'Geist Mono', ui-monospace, Consolas, monospace;
+  --font-sans: 'Geist', system-ui, sans-serif;
+}
+.df[data-type='plex'] {
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.df-site[data-site='root'] { --accent: var(--accent-root); }
+.df-site[data-site='vods'] { --accent: var(--accent-vods); }
+.df-site[data-site='dtp'] { --accent: var(--accent-dtp); }
+.accent-root { color: var(--accent-root); }
+.accent-vods { color: var(--accent-vods); }
+.accent-dtp { color: var(--accent-dtp); }
+
+/* ---------- Site shell ---------- */
+
+.df-site {
+  position: relative;
+  isolation: isolate;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+}
+.df-site > :not(.starfield) { position: relative; z-index: 1; }
+.df-site * { box-sizing: border-box; }
+.df-site a { color: inherit; padding: 0; text-decoration: none; transition: color 0.15s; }
+.df-site a:hover { color: var(--accent); }
+.df-site button { font-family: inherit; }
+
+.df-site.tile {
+  background-image:
+    radial-gradient(1px 1px at 23px 41px, #ffdab5, transparent),
+    radial-gradient(1px 1px at 97px 13px, #d5e0ff, transparent),
+    radial-gradient(1.5px 1.5px at 151px 118px, #f9f5ff, transparent),
+    radial-gradient(1px 1px at 61px 160px, #ffb56c, transparent),
+    radial-gradient(1px 1px at 190px 77px, #a2c0ff, transparent),
+    radial-gradient(1px 1px at 37px 211px, #ffede3, transparent),
+    radial-gradient(2px 2px at 233px 181px, #92b5ff, transparent);
+  background-size: 173px 173px, 173px 173px, 173px 173px, 251px 251px, 251px 251px, 251px 251px, 389px 389px;
+}
+
+.df-site.fill { height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+
+.df-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.df-head.compact { padding: 6px 14px; gap: 16px; flex-wrap: nowrap; }
+.df-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 500; }
+.df-brand .slash { color: var(--muted); }
+.df-brand .sub { color: var(--accent); }
+.df-nav { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.df-nav a.on { color: var(--ink); box-shadow: 0 2px 0 var(--accent); }
+.df-head .spacer { flex: 1; }
+.df-main { padding: 28px 20px 36px; max-width: 1080px; margin: 0 auto; }
+.df-main-fill { flex: 1; min-height: 0; }
+.df-foot {
+  border-top: 1px solid var(--line);
+  padding: 14px 20px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+/* ---------- Type roles ---------- */
+
+.h-display {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  line-height: 1.15;
+  background-image: linear-gradient(90deg, #5a5a5a, #fff 70%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.df[data-head='sans'] .h-display { font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.015em; }
+.df[data-fill='accent'] .h-display { background-image: linear-gradient(90deg, #fff 35%, var(--accent)); }
+.df[data-fill='plain'] .h-display { background-image: linear-gradient(var(--ink), var(--ink)); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--muted); }
+.df-site code, .df-site pre { font-family: var(--font-mono); }
+
+/* ---------- Components ---------- */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.df[data-panel='glass'] .panel {
+  background: rgb(16 16 24 / 0.5);
+  border-color: rgb(255 255 255 / 0.09);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.df[data-panel='outline'] .panel { background: transparent; }
+
+.btn {
+  font: inherit;
+  font-size: 14px;
+  padding: 5px 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+.btn.icon { padding: 5px 9px; font-family: var(--font-mono); }
+
+.input {
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  min-width: 0;
+}
+.input::placeholder { color: var(--muted); }
+.input:focus { outline: 1px solid var(--accent); outline-offset: 1px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.chip.on { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, transparent); }
+.chip.off { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+.chip.accent { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.chip.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.chip.live { background: var(--bad); color: #fff; border-color: var(--bad); font-weight: 700; }
+
+/* Root's signature hover: a dark gap then a thin white ring, lifted from ItemLink.vue */
+.df[data-ring='on'] .ring:hover,
+.df[data-ring='on'] a:hover .ring,
+.df[data-ring='on'] .ring:focus-visible {
+  box-shadow: 0 0 0 4px rgb(0 0 0 / 0.55), 0 0 0 5px var(--ring);
+}
+.ring { transition: box-shadow 0.15s; }
+
+.code {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre;
+}
+.tok-prefix, .tok-cmd { color: var(--accent); font-weight: 600; }
+.tok-op { color: var(--bad); font-weight: 600; }
+.tok-ph { color: var(--accent-root); }
+.tok-str { color: var(--ok); }
+
+/* Popover menus stay readable even with glass panels */
+.df .panel.pop { background: rgb(12 12 16 / 0.94); }
+
+/* Compact (watch page) header on phones: the site switcher replaces the nav */
+@container frame (max-width: 700px) {
+  .df-head.compact .df-nav { display: none; }
+}

@@ -1,0 +1,143 @@
+/* v4 control system: everything interactive sits on a fixed height scale so headers, rows and
+   toolbars never change size when a label, icon or login state changes. Scoped to .df.v4 so the older
+   labs keep their look. */
+
+.df.v4 {
+  --ctl: 32px; /* default control height, also avatar + icon-button size */
+  --ctl-sm: 26px;
+  --head-h: 48px; /* one header height on every page, watch page included */
+  --head-h-compact: var(--head-h);
+  --glass: rgb(16 16 24 / 0.5);
+  --glass-line: rgb(255 255 255 / 0.09);
+  --hover: rgb(255 255 255 / 0.06);
+}
+
+/* ---------- Header: fixed height, never wraps ---------- */
+.df.v4 .df-head { height: var(--head-h); padding: 0 16px; flex-wrap: nowrap; gap: 18px; }
+.df.v4 .df-head.compact { height: var(--head-h-compact); padding: 0 16px; gap: 18px; }
+.df.v4 .df-nav { flex-wrap: nowrap; white-space: nowrap; }
+.df.v4 .df-subnav {
+  display: none; height: 38px; align-items: center; gap: 18px; padding: 0 16px; overflow-x: auto;
+  border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); scrollbar-width: none; white-space: nowrap;
+}
+.df.v4 .df-subnav a.on { color: var(--ink); box-shadow: 0 2px 0 var(--accent); }
+.df.v4 .show-sm { display: none !important; }
+@container frame (max-width: 700px) {
+  .df.v4 .df-head .df-nav { display: none; }
+  .df.v4 .df-subnav { display: flex; }
+  .df.v4 .hide-sm { display: none !important; }
+  .df.v4 .show-sm { display: inline-flex !important; }
+}
+
+/* ---------- Buttons ---------- */
+.df.v4 .btn {
+  height: var(--ctl); padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  font-size: 13px; line-height: 1; flex: none; font-variant-numeric: tabular-nums;
+}
+.df.v4[data-panel='glass'] .btn:not(.primary):not(.ghost):not(.solid) {
+  background: var(--glass); border-color: var(--glass-line); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.df.v4 .btn:not(.primary):hover { background: var(--hover); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.df.v4 .btn.sm { height: var(--ctl-sm); padding: 0 9px; font-size: 12px; gap: 5px; }
+.df.v4 .btn.icon { width: var(--ctl); padding: 0; }
+.df.v4 .btn.sm.icon { width: var(--ctl-sm); }
+.df.v4 .btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+.df.v4 .btn.ghost:hover { color: var(--ink); }
+.df.v4 .btn.danger { color: var(--bad); }
+.df.v4 .btn.danger:hover { border-color: color-mix(in srgb, var(--bad) 60%, transparent); }
+.df.v4 .btn.danger.solid { background: var(--bad); border-color: var(--bad); color: #fff; }
+.df.v4 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.df.v4 .btn.on { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.df.v4 .btn .caret { color: var(--muted); font-size: 10px; margin-left: 2px; }
+.df.v4 .spinner {
+  width: 13px; height: 13px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent;
+  animation: df-spin 0.7s linear infinite;
+}
+@keyframes df-spin { to { transform: rotate(360deg); } }
+
+/* ---------- Inputs ---------- */
+.df.v4 .input { height: var(--ctl); padding: 0 10px; font-size: 13px; }
+.df.v4 textarea.input { height: auto; padding: 8px 10px; resize: vertical; }
+.df.v4[data-panel='glass'] .input { background: var(--glass); border-color: var(--glass-line); }
+
+/* ---------- Popovers (menus, dropdowns, settings) ---------- */
+.df.v4 .dpop { position: relative; display: inline-flex; }
+.df.v4 .dpop-panel {
+  position: absolute; z-index: 20; padding: 6px; display: flex; flex-direction: column; gap: 1px; text-align: left;
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.6);
+}
+.df.v4 .dpop-panel.down { top: calc(100% + 6px); }
+.df.v4 .dpop-panel.up { bottom: calc(100% + 6px); }
+.df.v4 .dpop-panel.left { left: 0; }
+.df.v4 .dpop-panel.right { right: 0; }
+.df.v4 .menu-head { padding: 4px 8px 6px; position: sticky; top: -6px; background: inherit; z-index: 1; }
+.df.v4 .menu-item {
+  display: flex; align-items: center; gap: 10px; min-height: var(--ctl); padding: 4px 8px; border: none; background: none;
+  color: var(--ink); font: inherit; font-size: 13px; text-align: left; border-radius: var(--radius-sm); cursor: pointer; width: 100%;
+}
+.df.v4 .menu-item:hover:not(:disabled) { background: var(--hover); }
+.df.v4 .menu-item.cur { background: rgb(255 255 255 / 0.04); }
+.df.v4 .menu-item.cur .mi-main { color: var(--accent); }
+.df.v4 .menu-item:disabled { cursor: not-allowed; opacity: 0.55; }
+.df.v4 .mi-main { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.df.v4 .mi-sub { font-family: var(--font-mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+.df.v4 .menu-sep { height: 1px; background: var(--line); margin: 4px 0; }
+
+/* ---------- Toast ---------- */
+.df.v4 .toast {
+  position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 30;
+  display: inline-flex; align-items: center; gap: 8px; height: var(--ctl); padding: 0 14px; border-radius: 999px;
+  background: rgb(12 12 16 / 0.94); border: 1px solid var(--line); font-size: 13px; white-space: nowrap;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.5); animation: df-toast 0.18s ease-out;
+}
+.df.v4 .toast .ok { color: var(--ok); }
+@keyframes df-toast { from { opacity: 0; transform: translate(-50%, 6px); } }
+
+/* ---------- Toggle switch ---------- */
+.df.v4 .switch {
+  --w: 34px; position: relative; width: var(--w); height: 20px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface-2); cursor: pointer; flex: none; padding: 0; transition: background 0.15s, border-color 0.15s;
+}
+.df.v4 .switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--muted); transition: transform 0.15s, background 0.15s;
+}
+.df.v4 .switch.on { background: color-mix(in srgb, var(--accent) 30%, transparent); border-color: var(--accent); }
+.df.v4 .switch.on::after { transform: translateX(14px); background: var(--accent); }
+
+/* ---------- Callouts ---------- */
+.df.v4 .callout {
+  display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; border-radius: var(--radius);
+  border: 1px solid var(--line); border-left: 3px solid var(--muted); background: rgb(255 255 255 / 0.02); font-size: 14px;
+}
+.df.v4 .callout.info { border-left-color: var(--accent-root); }
+.df.v4 .callout.warn { border-left-color: #e8c35a; }
+.df.v4 .callout.error { border-left-color: var(--bad); }
+.df.v4 .callout.ok { border-left-color: var(--ok); }
+.df.v4 .callout .c-body { flex: 1; min-width: 0; } /* lets code/pre inside scroll instead of overflowing */
+.df.v4 .callout b { font-weight: 600; }
+
+/* ---------- Tables ---------- */
+.df.v4 .dtable { width: 100%; border-collapse: collapse; font-size: 13px; }
+.df.v4 .dtable th {
+  text-align: left; font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.df.v4 .dtable td { padding: 0 12px; height: 44px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.df.v4 .dtable tr:last-child td { border-bottom: none; }
+.df.v4 .dtable tbody tr:hover { background: rgb(255 255 255 / 0.03); }
+.df.v4 .dtable th.sort { cursor: pointer; }
+.df.v4 .dtable th.sort::after { content: ' ↕'; opacity: 0.4; }
+.df.v4 .dtable th.sort.asc::after { content: ' ↑'; opacity: 1; color: var(--accent); }
+.df.v4 .table-wrap { overflow-x: auto; }
+/* Narrow screens keep every column; the table scrolls sideways instead */
+@container frame (max-width: 700px) { .df.v4 .table-wrap .dtable td, .df.v4 .table-wrap .dtable th { white-space: nowrap; } }
+
+/* ---------- Loading ---------- */
+.df.v4 .skel {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.04));
+  background-size: 200% 100%; animation: df-shimmer 1.4s linear infinite;
+}
+@keyframes df-shimmer { to { background-position: -200% 0; } }

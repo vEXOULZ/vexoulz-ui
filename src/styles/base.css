@@ -1,0 +1,102 @@
+/* Site shell, type roles and shared utility classes. Every class is prefixed vx- so sites can mix in
+   their own CSS without collisions. */
+
+.vx-site {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--vx-bg);
+  color: var(--vx-ink);
+  font-family: var(--vx-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+  /* Components adapt to the site's width (not the window's), so the same page works inside previews too.
+     Note: this makes .vx-site the containing block for position:fixed, so overlays teleport to <body>. */
+  container: vx-site / inline-size;
+}
+.vx-site *, .vx-site *::before, .vx-site *::after { box-sizing: border-box; }
+.vx-site > :not(.vx-starfield) { position: relative; z-index: 1; }
+.vx-site a { color: inherit; text-decoration: none; transition: color 0.15s; }
+.vx-site a:hover { color: var(--vx-accent); }
+.vx-site button, .vx-site input, .vx-site select, .vx-site textarea { font-family: inherit; }
+.vx-site.is-fill { height: 100%; overflow: hidden; }
+
+.vx-main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 28px 20px 36px; }
+.vx-main.is-fill { max-width: none; padding: 0; min-height: 0; display: flex; flex-direction: column; }
+@container vx-site (max-width: 700px) {
+  .vx-main:not(.is-fill) { padding: 20px var(--vx-gutter) 28px; }
+}
+
+/* ---------- Type roles ---------- */
+.vx-display {
+  font-family: var(--vx-font-mono);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+  background-image: linear-gradient(90deg, #5a5a5a, #fff 70%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.vx-eyebrow {
+  font-family: var(--vx-font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--vx-muted);
+}
+.vx-mono { font-family: var(--vx-font-mono); }
+.vx-muted { color: var(--vx-muted); }
+.vx-tabular { font-variant-numeric: tabular-nums; }
+
+/* ---------- Surfaces ---------- */
+.vx-panel {
+  background: var(--vx-glass);
+  border: 1px solid var(--vx-glass-line);
+  border-radius: var(--vx-radius);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.vx-panel.is-pop, .vx-pop {
+  background: var(--vx-pop);
+  border: 1px solid var(--vx-line);
+  border-radius: var(--vx-radius);
+  box-shadow: var(--vx-shadow);
+}
+
+/* Root's signature hover: a dark gap, then a thin white ring */
+.vx-ring { transition: box-shadow 0.15s; }
+.vx-ring:hover, a:hover > .vx-ring, .vx-ring:focus-visible {
+  box-shadow: 0 0 0 4px rgb(0 0 0 / 0.55), 0 0 0 5px var(--vx-ring);
+}
+
+/* ---------- Code ---------- */
+.vx-code {
+  display: block;
+  margin: 0;
+  padding: 12px 14px;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  font-family: var(--vx-font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  background: var(--vx-surface-2);
+  border: 1px solid var(--vx-line);
+  border-radius: var(--vx-radius-sm);
+}
+.vx-tok-prefix, .vx-tok-cmd { color: var(--vx-accent); font-weight: 600; }
+.vx-tok-op { color: var(--vx-bad); font-weight: 600; }
+.vx-tok-ph { color: var(--vx-accent-root); }
+.vx-tok-str { color: var(--vx-ok); }
+
+/* ---------- Focus, scrollbars, motion ---------- */
+.vx-site :focus-visible { outline: 2px solid var(--vx-accent); outline-offset: 2px; }
+.vx-scroll { scrollbar-width: thin; scrollbar-color: var(--vx-line) transparent; overscroll-behavior: contain; }
+@media (prefers-reduced-motion: reduce) {
+  .vx-site *, .vx-site *::before, .vx-site *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}

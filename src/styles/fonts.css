@@ -1,0 +1,4 @@
+/* Self-hosted Geist + Geist Mono. Imported by the site (not bundled into style.css) so the site's bundler
+   emits the woff2 files as cached assets instead of inlining them. */
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';

@@ -1,0 +1,7 @@
+/* Story sandbox only: black page, and a padded site frame around each variant. */
+html, body { background: #000; margin: 0; }
+.story-frame { padding: 20px; min-height: 100%; }
+.story-frame.is-flush { padding: 0; }
+.story-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.story-col { display: flex; flex-direction: column; gap: 14px; max-width: 520px; }
+.story-note { font-size: 12px; color: var(--vx-muted); font-family: var(--vx-font-mono); }

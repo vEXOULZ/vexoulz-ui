@@ -1,0 +1,48 @@
+/* Deep Field tokens. Chosen in the lab (v4): Geist + Geist Mono, mono headings, grey→white display fill,
+   star-pastel accents, glass panels, ring hover, one 32px control height, one 48px header. */
+
+:root {
+  /* Colour */
+  --vx-bg: #000;
+  --vx-surface: #0a0a0c;
+  --vx-surface-2: #141418;
+  --vx-ink: #f2f2f2;
+  --vx-muted: #8b8b93;
+  --vx-line: #26262c;
+  --vx-ok: #8fd694;
+  --vx-warn: #e8c35a;
+  --vx-bad: #ff6b5e;
+  --vx-ring: #fff;
+
+  /* One accent per site, taken from star colours */
+  --vx-accent-root: #d5e0ff;
+  --vx-accent-vods: #ffb56c;
+  --vx-accent-dtp: #c9b27c;
+  --vx-accent: var(--vx-accent-root);
+
+  /* Glass panels and overlays */
+  --vx-glass: rgb(16 16 24 / 0.5);
+  --vx-glass-line: rgb(255 255 255 / 0.09);
+  --vx-hover: rgb(255 255 255 / 0.06);
+  --vx-pop: rgb(12 12 16 / 0.94);
+  --vx-shadow: 0 16px 40px rgb(0 0 0 / 0.6);
+
+  /* Type: mono for labels, handles, numbers and code; sans for names, titles and prose */
+  --vx-font-sans: 'Geist Variable', 'Geist', system-ui, sans-serif;
+  --vx-font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, Consolas, monospace;
+
+  /* Shape and size. Everything interactive is --vx-ctl tall so rows and headers never change height. */
+  --vx-radius: 8px;
+  --vx-radius-sm: 5px;
+  --vx-ctl: 32px;
+  --vx-ctl-sm: 26px;
+  --vx-head-h: 48px;
+  --vx-subnav-h: 38px;
+  --vx-gutter: 16px;
+
+  color-scheme: dark;
+}
+
+[data-site='root'] { --vx-accent: var(--vx-accent-root); }
+[data-site='vods'] { --vx-accent: var(--vx-accent-vods); }
+[data-site='dtp'] { --vx-accent: var(--vx-accent-dtp); }

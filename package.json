@@ -1,0 +1,59 @@
+{
+  "name": "@vexoulz/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared design for *.vexoulz.net: tokens, Vue components and the design lab",
+  "repository": "github:vEXOULZ/vexoulz-ui",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "src/styles/fonts.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./fonts.css": "./src/styles/fonts.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc -p tsconfig.build.json",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "prepare": "npm run build",
+    "changeset": "changeset",
+    "release": "changeset version"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/geist-mono": "^5.3.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3",
+    "@histoire/plugin-vue": "^1.0.0-beta.1",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^20.0.0",
+    "histoire": "^1.0.0-beta.1",
+    "noisejs": "^2.1.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.0",
+    "vitest": "^4.1.0",
+    "vue": "^3.5.26",
+    "vue-router": "^4.5.1",
+    "vue-tsc": "^3.3.0"
+  }
+}

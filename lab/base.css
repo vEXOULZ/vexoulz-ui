@@ -1,0 +1,4 @@
+/* Bare page for the lab; each lab styles its own body via body.lab-body */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: #151517; color: #e8e8ea; font-family: system-ui, sans-serif; }

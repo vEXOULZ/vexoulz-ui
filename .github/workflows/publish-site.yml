@@ -1,0 +1,61 @@
+# Reusable "build and publish a static site" workflow for the *.vexoulz.net site repos.
+# It knows nothing about where the site is served: it only pushes the build output to an orphan branch
+# (default `deploy`). Whatever serves the site pulls that branch; that setup is private and lives outside
+# these repos.
+#
+# In a site repo:
+#   jobs:
+#     publish:
+#       uses: vEXOULZ/vexoulz-ui/.github/workflows/publish-site.yml@v0.1.0
+#       permissions:
+#         contents: write
+name: Publish site
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        type: string
+        default: '22'
+      build-command:
+        type: string
+        default: npm run build
+      output-dir:
+        type: string
+        default: dist
+      branch:
+        type: string
+        default: deploy
+      checks:
+        description: Commands run before the build (typecheck, tests); empty to skip
+        type: string
+        default: npm run typecheck --if-present && npm test --if-present
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+      - run: npm ci
+      - if: ${{ inputs.checks != '' }}
+        run: ${{ inputs.checks }}
+      - run: ${{ inputs.build-command }}
+      - name: Push build to the ${{ inputs.branch }} branch
+        env:
+          OUT: ${{ inputs.output-dir }}
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          cd "$OUT"
+          git init -q -b "$BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "${GITHUB_SHA}" > .source-commit
+          git add -A
+          git commit -q -m "Build ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" "$BRANCH"

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "rangeStrategy": "bump",
+  "packageRules": [
+    { "matchUpdateTypes": ["minor", "patch"], "matchDepTypes": ["devDependencies"], "groupName": "dev dependencies (non-major)" },
+    { "matchPackageNames": ["histoire", "@histoire/plugin-vue", "vite"], "groupName": "histoire + vite", "description": "Histoire pins a Vite range; update them together." }
+  ]
+}
