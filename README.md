@@ -14,7 +14,11 @@ npm run dev         # http://localhost:5174  design lab (opens /design/deepfield
 npm test            # vitest
 npm run typecheck   # vue-tsc
 npm run build       # library → dist/ (index.js, style.css, types/)
+git config core.hooksPath .githooks   # once per clone: branch-name rules, see CONTRIBUTING.md
 ```
+
+`main` is merge-only and branches follow [Conventional Branch](https://conventional-branch.github.io/)
+(`feature/…`, `bugfix/…`, `hotfix/…`, `release/…`, `chore/…`). See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Using it in a site
 
@@ -66,8 +70,8 @@ Helpers are exported as well: `gameColor`, `twitchColor`, `pageRange`, `place` (
 ## Releasing
 
 1. Any PR that changes `src/` adds a changeset (`npm run changeset`).
-2. `npm run release` bumps the version and writes `CHANGELOG.md`. Commit that.
-3. Tag and push: `git tag v0.1.0 && git push --tags`.
+2. On a `release/x-y-z` branch, `npm run release` bumps the version and writes `CHANGELOG.md`. Merge it.
+3. Tag the merge on `main` and push: `git tag vX.Y.Z && git push --tags`.
 4. Sites bump `github:vEXOULZ/vexoulz-ui#vX.Y.Z` (Renovate opens those PRs).
 
 `.github/workflows/publish-site.yml` is a reusable workflow for the site repos: checks, build, then push the

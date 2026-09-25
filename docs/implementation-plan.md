@@ -58,6 +58,7 @@ What the codebase surveys found:
 **Shared CI/CD pattern:**
 - **In each site repo (generic):** a GitHub Action runs typecheck, vitest and build, then publishes `dist/` to an orphan `deploy` branch. The repo knows nothing about where the build is served.
 - Delete the dead SSH `deploy_main.yml` workflows.
+- **Branch rules in every repo** (same as doomtp-bot): `main` is merge-only, branches follow Conventional Branch (`feature|bugfix|hotfix|release|chore/<lowercase-words>`). Each repo carries the same `.githooks/` (`pre-commit` + `check-branch-name.sh`), a `branch-name` CI job running that script on pull requests, and a `CONTRIBUTING.md` with the rules. New repos start with them.
 - Renovate config in every repo: it watches the vexoulz-ui and vods-core tags.
 - **In homelab-docs (private):** a pull-based deploy that fetches each site's `deploy` branch and switches releases atomically with rollback, following the pull model already used for the backends. Plus the proxy vhosts and runbooks.
 
