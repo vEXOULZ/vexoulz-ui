@@ -37,7 +37,7 @@ Concluding a merge that hit conflicts is a commit on `main`, and the hook lets t
 rule is about where work starts, not where it lands. `git commit --no-verify` skips the hook entirely.
 It exists for the day you need it, not for the day you are in a hurry.
 
-The same rule is used in every vexoulz repo; `.githooks/` is identical in all of them.
+Every vexoulz repo uses the same rule and the same hook script; only its example branch names differ.
 
 ## Changes to the library
 
