@@ -1,6 +1,7 @@
 ## What changed
 
 ## Checklist
+- [ ] The branch is named per [Conventional Branch](../CONTRIBUTING.md#branches) (`feature/`, `bugfix/`, `hotfix/`, `release/`, `chore/`).
 - [ ] **Mobile has the same functions as desktop.** Checked at ~390px: controls reflow or scroll, tables scroll sideways, nothing is hidden.
 - [ ] Controls use the fixed heights (`--vx-ctl` 32px / `--vx-ctl-sm` 26px); the header stays 48px.
 - [ ] Images, logos and icons are placeholders (`VxPlaceholder`) until real assets exist.
