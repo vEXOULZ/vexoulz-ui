@@ -80,6 +80,8 @@ textarea.vx-input { height: auto; padding: 8px 10px; resize: vertical; line-heig
 input[type='date'].vx-input { color-scheme: dark; font-family: var(--vx-font-mono); }
 input[type='number'].vx-input { -moz-appearance: textfield; appearance: textfield; }
 input[type='number'].vx-input::-webkit-inner-spin-button, input[type='number'].vx-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+/* VxInput has its own clear button (`clearable`); the browser's one would double it. */
+input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'].vx-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
 
 .vx-input-wrap { position: relative; display: flex; width: 100%; min-width: 0; }
 .vx-input-wrap .vx-input-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--vx-muted); pointer-events: none; font-size: 13px; }
