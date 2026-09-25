@@ -80,6 +80,8 @@ textarea.vx-input { height: auto; padding: 8px 10px; resize: vertical; line-heig
 input[type='date'].vx-input { color-scheme: dark; font-family: var(--vx-font-mono); }
 input[type='number'].vx-input { -moz-appearance: textfield; appearance: textfield; }
 input[type='number'].vx-input::-webkit-inner-spin-button, input[type='number'].vx-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+/* VxInput has its own clear button (`clearable`); the browser's one would double it. */
+input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'].vx-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
 
 .vx-input-wrap { position: relative; display: flex; width: 100%; min-width: 0; }
 .vx-input-wrap .vx-input-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--vx-muted); pointer-events: none; font-size: 13px; }
@@ -509,8 +511,11 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 .vx-starfield { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
 /* ---------- Posters (game box art, 3:4) ---------- */
-.vx-posters { display: inline-flex; align-items: flex-end; flex: none; }
+/* isolate: the posters' own z-order (front poster on top) stays inside the group, so it never paints over sticky
+   headers or other overlays around it. */
+.vx-posters { display: inline-flex; align-items: flex-end; flex: none; isolation: isolate; }
 .vx-poster {
+  position: relative;
   width: var(--vx-pw);
   aspect-ratio: 3 / 4;
   border-radius: 3px;
@@ -520,6 +525,11 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
   transition: margin 0.2s, transform 0.2s, filter 0.2s;
 }
 .vx-poster > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* The game's colour along the bottom, so a poster reads as the same game as its chapter-bar/timeline segments. */
+.vx-poster-band {
+  position: absolute; left: 0; right: 0; bottom: 0; height: max(4px, 16%);
+  background: var(--vx-c); box-shadow: 0 -1px 0 rgb(0 0 0 / 0.6);
+}
 .vx-poster > .vx-ph { height: 100%; border-radius: 3px; font-size: 9px; color: var(--vx-ink); border-color: color-mix(in srgb, var(--vx-c) 60%, transparent); }
 .vx-posters.is-stack .vx-poster + .vx-poster { margin-left: calc(var(--vx-pw) * -0.62); filter: brightness(calc(1 - var(--vx-i) * 0.22)); }
 .vx-posters.is-stack .vx-poster { transform: translateY(calc(var(--vx-i) * -3px)); }

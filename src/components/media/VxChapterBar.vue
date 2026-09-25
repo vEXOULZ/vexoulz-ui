@@ -3,9 +3,18 @@
 // Used along the bottom edge of VOD thumbnails; the full watch-page timeline lives in the vods site.
 import { computed } from 'vue'
 import type { Chapter } from '../../types'
-import { gameColor } from '../../utils/color'
+import { gamePalette } from '../../utils/color'
 
-const props = withDefaults(defineProps<{ chapters: Chapter[]; height?: number }>(), { height: 3 })
+const props = withDefaults(
+  defineProps<{
+    chapters: Chapter[]
+    height?: number
+    /** Colours per game; defaults to gamePalette() of the chapters, which VxPosters also builds for the same games. */
+    palette?: Map<string, string>
+  }>(),
+  { height: 3 },
+)
+const colors = computed(() => props.palette ?? gamePalette(props.chapters.map((c) => c.name)))
 const segments = computed(() => props.chapters.map((c) => ({ ...c, len: Math.max(0, c.end - c.start) })))
 </script>
 
@@ -15,7 +24,7 @@ const segments = computed(() => props.chapters.map((c) => ({ ...c, len: Math.max
       v-for="(c, i) in segments"
       :key="i"
       :class="{ 'is-restricted': c.restricted }"
-      :style="{ flexGrow: c.len, background: gameColor(c.name) }"
+      :style="{ flexGrow: c.len, background: colors.get(c.name) }"
     ></span>
   </div>
 </template>

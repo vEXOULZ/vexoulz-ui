@@ -63,7 +63,20 @@ export { useSite, provideSite, SITE_KEY } from './composables/useSite'
 export { useDismiss } from './composables/useClickOutside'
 
 // Utils
-export { gameColor, initials, twitchColor, readableOnBlack, contrastOnBlack, TWITCH_DEFAULT_COLORS } from './utils/color'
+export {
+  dominantHue,
+  gameColor,
+  gameHue,
+  gamePalette,
+  hasGameHue,
+  initials,
+  setGameHue,
+  twitchColor,
+  readableOnBlack,
+  contrastOnBlack,
+  TWITCH_DEFAULT_COLORS,
+} from './utils/color'
+export { learnGameColors, sampleHue } from './utils/artColor'
 export { clamp, decimalsOf, stepValue, type StepOptions } from './utils/number'
 export { pageRange, type PageItem } from './utils/pagination'
 export { clampX, place, type PlaceInput, type Placement, type Rect } from './utils/place'

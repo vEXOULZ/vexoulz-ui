@@ -70,5 +70,5 @@ export interface SortState {
   dir: 'asc' | 'desc'
 }
 
-/** A game for VxPosters: a name, or a name plus its box-art URL. */
-export type PosterGame = string | { name: string; image?: string }
+/** A game for VxPosters: a name, or a name plus its box-art URL and colour (e.g. from gamePalette). */
+export type PosterGame = string | { name: string; image?: string; color?: string }
