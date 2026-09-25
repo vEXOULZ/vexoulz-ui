@@ -44,3 +44,13 @@ export function place(i: PlaceInput): Placement {
   const maxHeight = Math.max(min, Math.min(i.cap, dir === 'up' ? up : down))
   return { dir, maxHeight }
 }
+
+/**
+ * Sideways shift (px) that keeps a panel spanning `left`..`right` inside `0`..`viewport` with `margin` to spare.
+ * A panel wider than the room is pinned to the left edge.
+ */
+export function clampX(left: number, right: number, viewport: number, margin = 8): number {
+  if (left < margin) return margin - left
+  if (right > viewport - margin) return Math.max(margin - left, viewport - margin - right)
+  return 0
+}
