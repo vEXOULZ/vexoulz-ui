@@ -18,7 +18,8 @@
   container: vx-site / inline-size;
 }
 .vx-site *, .vx-site *::before, .vx-site *::after { box-sizing: border-box; }
-.vx-site > :not(.vx-starfield) { position: relative; z-index: 1; }
+/* :where() keeps this at .vx-site's specificity, so a component's own z-index (the header's) wins without !important. */
+.vx-site > :where(:not(.vx-starfield)) { position: relative; z-index: 1; }
 .vx-site a { color: inherit; text-decoration: none; transition: color 0.15s; }
 .vx-site a:hover { color: var(--vx-accent); }
 .vx-site button, .vx-site input, .vx-site select, .vx-site textarea { font-family: inherit; }
@@ -26,6 +27,10 @@
    glyph font it puts in front) applies there too. */
 .vx-site :is(code, kbd, samp, pre) { font-family: var(--vx-font-mono); }
 .vx-site.is-fill { height: 100%; overflow: hidden; }
+/* The page's own shell (global, i.e. not a preview): fills the window, on the site's background edge to edge. */
+html[data-site], html[data-site] > body { margin: 0; background: var(--vx-bg); }
+.vx-site.is-page { min-height: 100dvh; }
+.vx-site.is-page.is-fill { height: 100dvh; }
 
 .vx-main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 28px 20px 36px; }
 .vx-main.is-fill { max-width: none; padding: 0; min-height: 0; display: flex; flex-direction: column; }
@@ -64,7 +69,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
-.vx-panel.is-pop, .vx-pop {
+.vx-pop {
   background: var(--vx-pop);
   border: 1px solid var(--vx-line);
   border-radius: var(--vx-radius);

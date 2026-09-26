@@ -132,13 +132,20 @@ export function contrastOnBlack(hex: string): number {
   return (luminance(hexToRgb(hex)) + 0.05) / 0.05
 }
 
+const readable = new Map<string, string>()
+
 /** Blend towards white until the colour has at least 4.5:1 contrast on black (roughly what Twitch's dark mode does). */
 export function readableOnBlack(hex: string): string {
+  // Chat renders the same few colours on every line: cached per colour.
+  const known = readable.get(hex)
+  if (known) return known
   let rgb: number[] = hexToRgb(hex)
   for (let i = 0; i < 20 && (luminance(rgb) + 0.05) / 0.05 < 4.5; i++) {
     rgb = rgb.map((c) => Math.round(c + (255 - c) * 0.12))
   }
-  return `rgb(${rgb.join(' ')})`
+  const out = `rgb(${rgb.join(' ')})`
+  readable.set(hex, out)
+  return out
 }
 
 /**

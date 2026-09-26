@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Popover / dropdown used for every menu. Opens towards whichever side of its page has room and caps its height
 // to that room (bounded by <main>, so it never slides under the sticky header), so long lists scroll. It also
-// slides sideways to stay on screen when its alignment would push it past the edge (narrow phones).
+// slides sideways to stay on screen when its alignment would push it past the edge (narrow phones). On open it
+// focuses the panel's [autofocus] element, if any (e.g. a search field).
 import { nextTick, ref } from 'vue'
 import { useDismiss } from '../../composables/useClickOutside'
 import { clampX, place } from '../../utils/place'
@@ -52,6 +53,7 @@ async function show() {
   emit('open')
   await nextTick()
   reposition()
+  panel.value?.querySelector<HTMLElement>('[autofocus]')?.focus()
 }
 function close() {
   if (!open.value) return

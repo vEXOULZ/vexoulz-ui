@@ -24,7 +24,7 @@ const segments = computed(() => props.chapters.map((c) => ({ ...c, len: Math.max
       v-for="(c, i) in segments"
       :key="i"
       :class="{ 'is-restricted': c.restricted }"
-      :style="{ flexGrow: c.len, background: colors.get(c.name) }"
+      :style="{ flexGrow: c.len, '--vx-c': colors.get(c.name) }"
     ></span>
   </div>
 </template>

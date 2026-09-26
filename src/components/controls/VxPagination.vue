@@ -1,12 +1,13 @@
 <script setup lang="ts">
 // Page buttons that keep the same width while paging (see pageRange). Small square buttons.
 import { computed } from 'vue'
+import { clamp } from '../../utils/number'
 import { pageRange } from '../../utils/pagination'
 
 const props = withDefaults(defineProps<{ total: number; siblings?: number }>(), { siblings: 1 })
 const page = defineModel<number>({ default: 1 })
 const items = computed(() => pageRange(page.value, props.total, props.siblings))
-const go = (p: number) => (page.value = Math.min(Math.max(1, p), props.total))
+const go = (p: number) => (page.value = clamp(p, 1, props.total))
 </script>
 
 <template>

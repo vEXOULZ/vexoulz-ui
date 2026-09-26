@@ -84,7 +84,7 @@ export { clampX, place, type PlaceInput, type Placement, type Rect } from './uti
 export { mulberry32, hashString } from './utils/random'
 export { createNoise, type Noise2 } from './utils/perlin'
 export { generateStars, STARFIELD_DEFAULTS, SPECTRA, METEOR_GAPS, type StarfieldOptions, type Star, type Spectrum, type MeteorRate } from './utils/starfield'
-export { formatDuration } from './utils/time'
+export { formatDuration, timeAgo } from './utils/time'
 
 // Types
 export * from './types'

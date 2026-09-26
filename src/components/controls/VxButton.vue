@@ -12,6 +12,8 @@ const props = withDefaults(
     /** Accessible name (and tooltip) for icon buttons. */
     label?: string
     loading?: boolean
+    /** Full width of its container. */
+    block?: boolean
     /** Toggle state, shown in the accent colour. */
     pressed?: boolean
     disabled?: boolean
@@ -21,7 +23,7 @@ const props = withDefaults(
     href?: string
     external?: boolean
   }>(),
-  { variant: 'default', size: 'md', icon: false, loading: false, pressed: undefined, disabled: false, type: 'button' },
+  { variant: 'default', size: 'md', icon: false, block: false, loading: false, pressed: undefined, disabled: false, type: 'button' },
 )
 defineEmits<{ click: [e: MouseEvent] }>()
 
@@ -30,6 +32,7 @@ const classes = () => [
   props.variant !== 'default' && `is-${props.variant}`,
   props.size === 'sm' && 'is-sm',
   props.icon && 'is-icon',
+  props.block && 'is-block',
   props.pressed && 'is-pressed',
 ]
 </script>

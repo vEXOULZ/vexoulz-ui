@@ -1,3 +1,5 @@
+import { clamp } from './number'
+
 export type PageItem = number | 'gap'
 
 /**
@@ -6,7 +8,7 @@ export type PageItem = number | 'gap'
  */
 export function pageRange(current: number, total: number, siblings = 1): PageItem[] {
   if (total <= 0) return []
-  const cur = Math.min(Math.max(1, current), total)
+  const cur = clamp(current, 1, total)
   // first + last + current + 2*siblings + 2 gaps
   if (total <= 5 + siblings * 2) return Array.from({ length: total }, (_, i) => i + 1)
   let lo = Math.max(2, cur - siblings)
