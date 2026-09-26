@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.2.1
+
+### Patch Changes
+
+- de75a58: vods' accent is green (`#74e39a`) instead of orange. It's brighter and more saturated than `--vx-ok`, so an ok status
+  still reads apart from the accent.
+
 ## 0.2.0
 
 ### Minor Changes
