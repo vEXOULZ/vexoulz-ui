@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.4.1
+
+### Patch Changes
+
+- 5390581: Footer: "report an issue" gets a red ❗ (Twemoji) and sits on the switcher's row on phones, with the credit and build
+  on their own row below.
+
 ## 0.4.0
 
 ### Minor Changes
