@@ -10,7 +10,7 @@ import { useSite } from '../../composables/useSite'
 import VxSiteSwitcher from './VxSiteSwitcher.vue'
 
 const props = withDefaults(defineProps<{ site?: SiteId; credit?: string }>(), {
-  credit: 'made by vEXOULZ with 🧻',
+  credit: `made by vEXOULZ with 🧻 · ${new Date().getFullYear()}`,
 })
 const injected = useSite()
 const current = computed(() => props.site ?? injected.value)

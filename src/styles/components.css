@@ -469,7 +469,10 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 .vx-foot-build:hover, .vx-foot-build:focus-visible, .vx-foot-report:hover, .vx-foot-report:focus-visible {
   color: var(--vx-accent); text-decoration: underline; text-underline-offset: 3px;
 }
-.vx-foot-report span { font-size: 13px; }
+/* Every item on one line height, emoji at text size, so the footer's words line up across a row. */
+.vx-foot > * { line-height: 20px; }
+/* The switcher's label starts where the rest of the footer does (its button padding and border hang outside). */
+.vx-foot > :first-child { margin-left: -9px; }
 .vx-foot-break { display: none; }
 @container vx-site (max-width: 700px) {
   /* Two rows: switcher | report, then build | credit. */
