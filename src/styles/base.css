@@ -94,7 +94,7 @@
 }
 .vx-tok-prefix, .vx-tok-cmd { color: var(--vx-accent); font-weight: 600; }
 .vx-tok-op { color: var(--vx-bad); font-weight: 600; }
-.vx-tok-ph { color: var(--vx-accent-root); }
+.vx-tok-ph { color: var(--vx-info); }
 .vx-tok-str { color: var(--vx-ok); }
 
 /* ---------- Focus, scrollbars, motion ---------- */

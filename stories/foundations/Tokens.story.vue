@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { SITES } from '../../src/sites'
 import StoryFrame from '../StoryFrame.vue'
 
-const colours = ['bg', 'surface', 'surface-2', 'ink', 'muted', 'line', 'ok', 'warn', 'bad']
-const accents = ['root', 'vods', 'dtp']
+const colours = ['bg', 'surface', 'surface-2', 'ink', 'muted', 'line', 'ok', 'warn', 'bad', 'info']
+const accents = SITES.filter((s) => 'accent' in s).map((s) => s.id)
 const sizes = [
   ['--vx-ctl-sm', '26 · small controls'],
   ['--vx-ctl', '32 · every control, avatar, icon button'],
@@ -21,7 +22,7 @@ const sizes = [
             <code class="story-note">--vx-{{ c }}</code>
           </div>
         </div>
-        <div class="vx-eyebrow" style="margin-top: 24px">Accent per site (data-site)</div>
+        <div class="vx-eyebrow" style="margin-top: 24px">Accent per site (from src/sites.ts, switched by data-site)</div>
         <div class="story-row" style="margin-top: 10px">
           <div v-for="a in accents" :key="a" style="width: 160px">
             <div :style="{ height: '44px', background: `var(--vx-accent-${a})`, borderRadius: 'var(--vx-radius-sm)' }"></div>

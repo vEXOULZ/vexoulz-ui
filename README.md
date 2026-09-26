@@ -51,6 +51,10 @@ const { show } = useToast()
 
 - `VxSiteShell` draws the starfield (seeded by the site's hostname), the 48px header, the footer and the toast host.
   It also sets `data-site` on `<html>`, so dialogs and toasts teleported to `<body>` keep the site's accent.
+- The sites themselves are one list, `SITES` in [`src/sites.ts`](src/sites.ts): host, one line for the switcher,
+  link, accent colour, and `hidden` for a site that isn't live yet (left out of the switchers, except on itself).
+  The switchers, the sky seed and the accent CSS (`--vx-accent-<id>`, `[data-site=<id>]`, `.vx-accent-<id>`) all
+  come from it, so adding or removing a site is one entry there, then a release that the sites pick up.
 - Links use `RouterLink` when vue-router is installed and a plain `<a>` otherwise. The library doesn't depend on
   vue-router.
 - Every class and token is prefixed `vx-` / `--vx-`, so site CSS won't collide with it.

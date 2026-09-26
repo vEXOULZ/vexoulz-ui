@@ -14,12 +14,10 @@
   --vx-bad: #ff6b5e;
   --vx-ring: #fff;
 
-  /* One accent per site: root and dtp from star colours, vods green (kept apart from --vx-ok by being brighter
-     and more saturated) */
-  --vx-accent-root: #d5e0ff;
-  --vx-accent-vods: #74e39a;
-  --vx-accent-dtp: #c9b27c;
-  --vx-accent: var(--vx-accent-root);
+  /* Each site's accent comes from its entry in src/sites.ts (--vx-accent-<id>, switched by data-site); this is the
+     accent outside any site shell. --vx-info is the pale star blue for neutral highlights. */
+  --vx-info: #d5e0ff;
+  --vx-accent: var(--vx-info);
 
   /* Glass panels and overlays */
   --vx-glass: rgb(16 16 24 / 0.5);
@@ -44,6 +42,3 @@
   color-scheme: dark;
 }
 
-[data-site='root'] { --vx-accent: var(--vx-accent-root); }
-[data-site='vods'] { --vx-accent: var(--vx-accent-vods); }
-[data-site='dtp'] { --vx-accent: var(--vx-accent-dtp); }

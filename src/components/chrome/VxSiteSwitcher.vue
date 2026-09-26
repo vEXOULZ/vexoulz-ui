@@ -3,7 +3,8 @@
 // As the header brand, away from the home page the name is a link home and only the caret opens the menu; on the
 // home page (where "home" goes nowhere) the whole button opens it.
 import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref } from 'vue'
-import { SITES, type SiteId } from '../../types'
+import { switcherSites } from '../../sites'
+import type { SiteId } from '../../types'
 import VxPlaceholder from '../media/VxPlaceholder.vue'
 import VxPopover from '../overlays/VxPopover.vue'
 import VxMenuItem from '../overlays/VxMenuItem.vue'
@@ -75,7 +76,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
     <template #default="{ close }">
       <VxMenuLabel>vexoulz network</VxMenuLabel>
       <VxMenuItem
-        v-for="s in SITES"
+        v-for="s in switcherSites(current)"
         :key="s.id"
         class="vx-site-item"
         :href="s.href"
@@ -84,7 +85,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
         @click="close"
       >
         <template #lead
-          ><span class="vx-dotmark" :class="s.id === 'shop' ? 'vx-accent-muted' : `vx-accent-${s.id}`"></span
+          ><span class="vx-dotmark" :class="s.accent ? `vx-accent-${s.id}` : 'vx-accent-muted'"></span
         ></template>
         <span class="vx-site-item-text">
           <span><VxLockup :site="s.id" net /><span v-if="s.external" class="vx-muted"> ↗</span></span>
