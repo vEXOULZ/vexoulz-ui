@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Site switcher on the left; on the right the credit, which build is running (linked to its commit) and a link to
-// report an issue on the site's GitHub repo. The build comes from VxBuild (app.use), the repo from the site list.
+// report an issue on the site's GitHub repo. On phones the credit and build take a row of their own, under the
+// switcher and the report link. The build comes from VxBuild (app.use), the repo from the site list.
 import { computed } from 'vue'
 import type { SiteId } from '../../types'
 import { siteInfo } from '../../sites'
@@ -41,10 +42,14 @@ const buildLabel = computed(() => [release.value, commit.value].filter(Boolean).
         <a v-if="buildHref" :href="buildHref" rel="noopener" :title="`This build: ${build.commit ?? release}`">{{ buildLabel }}</a>
         <span v-else>{{ buildLabel }}</span>
       </template>
-      <template v-if="repo">
-        <span class="vx-foot-sep" aria-hidden="true">·</span>
-        <a :href="`${repo}/issues`" rel="noopener">report an issue</a>
-      </template>
     </span>
+    <a v-if="repo" class="vx-foot-report" :href="`${repo}/issues`" rel="noopener">
+      <!-- ❗ from Twemoji (© Twitter, Inc. and contributors, CC-BY 4.0): https://github.com/jdecked/twemoji -->
+      <svg viewBox="0 0 36 36" width="14" height="14" aria-hidden="true">
+        <circle fill="#BE1931" cx="18" cy="32" r="3" />
+        <path fill="#BE1931" d="M21 24c0 1.657-1.344 3-3 3-1.657 0-3-1.343-3-3V5c0-1.657 1.343-3 3-3 1.656 0 3 1.343 3 3v19z" />
+      </svg>
+      report an issue
+    </a>
   </footer>
 </template>
