@@ -14,13 +14,15 @@ export interface SiteInfo {
   external?: boolean
   /** Left out of the switchers (not live yet). A page on that site still shows itself as "here". */
   hidden?: boolean
+  /** The site's GitHub repo (`owner/name`): the footer links its build and "report an issue" there. */
+  repo?: string
 }
 
 export const SITES = [
-  { id: 'root', host: 'vexoulz.net', what: 'links, socials, stream status', href: 'https://vexoulz.net', accent: '#d5e0ff' },
+  { id: 'root', host: 'vexoulz.net', what: 'links, socials, stream status', href: 'https://vexoulz.net', accent: '#d5e0ff', repo: 'vEXOULZ/rootvexoulznet' },
   // Vods green is kept apart from --vx-ok by being brighter and more saturated.
-  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net', accent: '#74e39a' },
-  { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoulz.net', accent: '#c9b27c', hidden: true },
+  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net', accent: '#74e39a', repo: 'vEXOULZ/vexoulz-vods' },
+  { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoulz.net', accent: '#c9b27c', hidden: true, repo: 'vEXOULZ/doomtp-web' },
   { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', external: true },
 ] as const satisfies readonly SiteInfo[]
 
