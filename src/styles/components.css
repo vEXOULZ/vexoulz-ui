@@ -492,6 +492,13 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 .vx-switcher-trigger.is-brand { font-size: 15px; padding: 0 10px 0 6px; }
 .vx-switcher-trigger:hover, .vx-switcher-trigger[aria-expanded='true'] { border-color: var(--vx-line); background: var(--vx-hover); }
 .vx-switcher-trigger .vx-caret { color: var(--vx-muted); font-size: 10px; }
+/* Away from home: the name links home and the caret is its own button, joined into one control. */
+.vx-switcher-split { display: inline-flex; }
+.vx-switcher-split .vx-switcher-home { padding-right: 6px; border-top-right-radius: 0; border-bottom-right-radius: 0; text-decoration: none; }
+.vx-switcher-split .vx-switcher-caret { padding: 0 8px; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.vx-switcher-split:hover .vx-switcher-trigger, .vx-switcher-split.is-open .vx-switcher-trigger { border-color: var(--vx-line); }
+.vx-switcher-split .vx-switcher-caret { border-left-color: var(--vx-line); }
+.vx-switcher-trigger:focus-visible { outline: 2px solid var(--vx-ring); outline-offset: -2px; }
 .vx-site-item { align-items: center; padding-block: 7px; }
 .vx-site-item.is-current .vx-menu-main { color: inherit; } /* the lockup already colours the subdomain */
 .vx-site-item-text { display: flex; flex-direction: column; line-height: 1.3; flex: 1; min-width: 0; }
