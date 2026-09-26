@@ -55,6 +55,10 @@ const { show } = useToast()
   link, accent colour, and `hidden` for a site that isn't live yet (left out of the switchers, except on itself).
   The switchers, the sky seed and the accent CSS (`--vx-accent-<id>`, `[data-site=<id>]`, `.vx-accent-<id>`) all
   come from it, so adding or removing a site is one entry there, then a release that the sites pick up.
+- The footer shows which build is running, linked to its commit, and a "report an issue" link to the site's `repo`
+  from that list. Each site passes its commit at build time: `define: { __COMMIT__: … }` in `vite.config.ts` (the
+  output of `git rev-parse HEAD`), then `app.use(VxBuild, { commit: __COMMIT__ })` in `main.ts`. A site that tags
+  releases can add `version` too.
 - Links use `RouterLink` when vue-router is installed and a plain `<a>` otherwise. The library doesn't depend on
   vue-router.
 - Every class and token is prefixed `vx-` / `--vx-`, so site CSS won't collide with it.

@@ -60,6 +60,7 @@ export { default as VxChapterBar } from './components/media/VxChapterBar.vue'
 // Composables
 export { useToast, type Toast, type ToastKind } from './composables/useToast'
 export { useSite, provideSite, SITE_KEY } from './composables/useSite'
+export { useBuild, VxBuild, BUILD_KEY, type BuildInfo } from './composables/useBuild'
 export { useDismiss } from './composables/useClickOutside'
 
 // Utils
