@@ -383,7 +383,13 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 .vx-table th.is-sortable::after { content: ' ↕'; opacity: 0.4; }
 .vx-table th[aria-sort='ascending']::after { content: ' ↑'; opacity: 1; color: var(--vx-accent); }
 .vx-table th[aria-sort='descending']::after { content: ' ↓'; opacity: 1; color: var(--vx-accent); }
-.vx-table td { padding: 0 12px; height: 44px; border-bottom: 1px solid var(--vx-line); vertical-align: middle; }
+/* Rows hug their text. A table holding controls keeps 44px rows (a 32px control plus room), so rows with and
+   without a button in them line up in one table. */
+.vx-table td { padding: 7px 12px; border-bottom: 1px solid var(--vx-line); vertical-align: middle; }
+.vx-table:has(td :is(.vx-btn, .vx-input-wrap, .vx-input, .vx-switch, .vx-stepper, .vx-segmented)) td {
+  height: 44px;
+  padding-block: 0;
+}
 .vx-table tr:last-child td { border-bottom: none; }
 .vx-table tbody tr:hover { background: rgb(255 255 255 / 0.03); }
 .vx-table .is-right { text-align: right; }
