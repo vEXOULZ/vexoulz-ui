@@ -125,3 +125,8 @@ hosted (machines, addresses, proxy or tunnel config, server paths, deploy script
 `homelab-docs` repo and must never be committed here. `.gitignore` blocks `.env*` (except `.env.example`),
 `*.local.*` and `/deploy.local/` so local host files can't slip in. The implementation plan is in
 [docs/implementation-plan.md](docs/implementation-plan.md).
+
+## Credits
+
+The footer's ❗ is from [Twemoji](https://github.com/jdecked/twemoji), © Twitter, Inc. and other contributors,
+licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).

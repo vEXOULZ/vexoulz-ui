@@ -466,9 +466,15 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 }
 .vx-foot-spacer { flex: 1; }
 .vx-foot-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
-.vx-foot-meta a { color: inherit; text-decoration: none; }
-.vx-foot-meta a:hover, .vx-foot-meta a:focus-visible { color: var(--vx-accent); text-decoration: underline; text-underline-offset: 3px; }
+.vx-foot-meta a, .vx-foot-report { color: inherit; text-decoration: none; }
+.vx-foot-report { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.vx-foot-report svg { flex: none; }
+.vx-foot-meta a:hover, .vx-foot-meta a:focus-visible, .vx-foot-report:hover, .vx-foot-report:focus-visible { color: var(--vx-accent); text-decoration: underline; text-underline-offset: 3px; }
 .vx-foot-sep { opacity: 0.5; }
+@container vx-site (max-width: 700px) {
+  /* Switcher and report link on the first row; the credit and build on their own row below. */
+  .vx-foot-meta { order: 1; flex-basis: 100%; }
+}
 
 /* ---------- Lockup and site switcher ---------- */
 .vx-lockup { font-family: var(--vx-font-mono); font-weight: 500; white-space: nowrap; }

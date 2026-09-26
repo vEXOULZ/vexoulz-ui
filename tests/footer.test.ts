@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import VxSiteFooter from '../src/components/chrome/VxSiteFooter.vue'
 import { VxBuild } from '../src/composables/useBuild'
 
-const links = (w: ReturnType<typeof mount>) => w.findAll('.vx-foot-meta a').map((a) => [a.text(), a.attributes('href')])
+const links = (w: ReturnType<typeof mount>) => w.findAll('.vx-foot-meta a, .vx-foot-report').map((a) => [a.text(), a.attributes('href')])
 
 describe('VxSiteFooter', () => {
   it('links the build to its commit and issues to the site repo', () => {
