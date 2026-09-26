@@ -1,5 +1,21 @@
 # @vexoulz/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- bd60aae: The header brand (`VxSiteSwitcher brand`) links to the site's home page from every other page, so there's always a
+  way back. Its caret is a separate button that still opens the site menu. On the home page, the whole brand opens the
+  menu as before. The new `home` prop (default `/`) says where home is.
+
+### Patch Changes
+
+- 6201a58: Bare `code`, `kbd`, `samp` and `pre` inside a site use `--vx-font-mono` instead of the browser's default monospace,
+  so they match the rest of the site (and a site's own font stack, like dtp's Twemoji sign, reaches them too).
+- f4b3bc1: `.vx-table` rows hug their text (7px above and below) instead of always being 44px tall, so a table of one-line
+  rows no longer floats its words in empty space. A table with controls in its cells (buttons, inputs, switches,
+  steppers, segmented controls) keeps 44px rows, so rows with and without a button still line up.
+
 ## 0.1.2
 
 ### Patch Changes
