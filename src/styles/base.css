@@ -22,6 +22,9 @@
 .vx-site a { color: inherit; text-decoration: none; transition: color 0.15s; }
 .vx-site a:hover { color: var(--vx-accent); }
 .vx-site button, .vx-site input, .vx-site select, .vx-site textarea { font-family: inherit; }
+/* Bare code/kbd/samp/pre would get the browser's own monospace; use the site's, so a site's font stack (and any
+   glyph font it puts in front) applies there too. */
+.vx-site :is(code, kbd, samp, pre) { font-family: var(--vx-font-mono); }
 .vx-site.is-fill { height: 100%; overflow: hidden; }
 
 .vx-main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 28px 20px 36px; }
