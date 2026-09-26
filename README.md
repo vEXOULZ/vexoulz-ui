@@ -31,7 +31,7 @@ npm install github:vEXOULZ/vexoulz-ui#v0.1.0
 
 ```ts
 // main.ts
-import '@vexoulz/ui/fonts.css' // self-hosted Geist + Geist Mono (your bundler emits the font files)
+import '@vexoulz/ui/fonts.css' // self-hosted Geist, Geist Mono and Twemoji for emoji (your bundler emits the font files)
 import '@vexoulz/ui/style.css' // tokens, base shell, component styles
 ```
 
@@ -128,5 +128,6 @@ hosted (machines, addresses, proxy or tunnel config, server paths, deploy script
 
 ## Credits
 
-The footer's ❗ is from [Twemoji](https://github.com/jdecked/twemoji), © Twitter, Inc. and other contributors,
-licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Emoji are drawn with [Twemoji](https://github.com/twitter/twemoji) (© Twitter, Inc. and other contributors,
+[CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)), from Mozilla's font build (Apache 2.0). See
+[src/fonts/ATTRIBUTION.md](src/fonts/ATTRIBUTION.md).
