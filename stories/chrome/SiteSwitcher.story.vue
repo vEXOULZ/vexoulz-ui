@@ -13,6 +13,12 @@ import StoryFrame from '../StoryFrame.vue'
         </div>
       </StoryFrame>
     </Variant>
+    <Variant title="Brand away from home">
+      <!-- home points elsewhere so the story page counts as a subpage: the name links home, the caret opens the menu. -->
+      <StoryFrame site="dtp" height="420px">
+        <VxSiteSwitcher current="dtp" brand home="/somewhere-else" />
+      </StoryFrame>
+    </Variant>
     <Variant title="Lockups">
       <StoryFrame>
         <div class="story-col" style="font-size: 18px">
