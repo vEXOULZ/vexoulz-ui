@@ -27,8 +27,8 @@
   --vx-shadow: 0 16px 40px rgb(0 0 0 / 0.6);
 
   /* Type: mono for labels, handles, numbers and code; sans for names, titles and prose */
-  --vx-font-sans: 'Geist Variable', 'Geist', system-ui, sans-serif;
-  --vx-font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, Consolas, monospace;
+  --vx-font-sans: 'Geist Variable', 'Geist', 'Vx Twemoji', system-ui, sans-serif;
+  --vx-font-mono: 'Geist Mono Variable', 'Geist Mono', 'Vx Twemoji', ui-monospace, Consolas, monospace;
 
   /* Shape and size. Everything interactive is --vx-ctl tall so rows and headers never change height. */
   --vx-radius: 8px;
