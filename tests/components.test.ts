@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
 import VxButton from '../src/components/controls/VxButton.vue'
+import VxInput from '../src/components/controls/VxInput.vue'
 import VxPagination from '../src/components/controls/VxPagination.vue'
 import VxStepper from '../src/components/controls/VxStepper.vue'
 import VxTable from '../src/components/data/VxTable.vue'
@@ -21,6 +22,22 @@ describe('VxButton', () => {
     expect(w.get('button').attributes('disabled')).toBeDefined()
     expect(w.get('button').attributes('aria-busy')).toBe('true')
     expect(w.find('.vx-spinner').exists()).toBe(true)
+  })
+})
+
+describe('VxInput', () => {
+  it('puts attributes and listeners on the <input>, class and style on the wrapper', async () => {
+    let blurred = 0
+    const w = mount(VxInput, { attrs: { 'aria-label': 'Title', min: '1', class: 'extra', style: 'max-width: 10px', onBlur: () => blurred++ } })
+    const input = w.get('input')
+    expect(input.attributes('aria-label')).toBe('Title')
+    expect(input.attributes('min')).toBe('1')
+    expect(input.attributes('class')).toBe('vx-input')
+    expect(w.classes()).toEqual(expect.arrayContaining(['vx-input-wrap', 'extra']))
+    expect(w.attributes('style')).toContain('max-width: 10px')
+    expect(w.attributes('aria-label')).toBeUndefined()
+    await input.trigger('blur')
+    expect(blurred).toBe(1)
   })
 })
 

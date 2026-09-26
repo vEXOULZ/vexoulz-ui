@@ -2,7 +2,7 @@
 // Label + control + help or error text. The slot gets the id to put on the control.
 import { useId } from 'vue'
 
-withDefaults(defineProps<{ label: string; help?: string; error?: string }>(), {})
+defineProps<{ label: string; help?: string; error?: string }>()
 const id = useId()
 </script>
 

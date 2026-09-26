@@ -39,14 +39,11 @@
 /* Icon buttons are always square; changing state swaps the icon, never the size */
 .vx-btn.is-icon { width: var(--vx-ctl); padding: 0; }
 .vx-btn.is-icon.is-sm { width: var(--vx-ctl-sm); }
+.vx-btn.is-block { width: 100%; }
 .vx-btn:disabled, .vx-btn[aria-disabled='true'] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 .vx-btn .vx-caret { color: var(--vx-muted); font-size: 10px; margin-left: 2px; }
 .vx-btn.is-primary .vx-caret { color: inherit; }
 
-.vx-btn-group { display: inline-flex; }
-.vx-btn-group > .vx-btn { border-radius: 0; margin-left: -1px; }
-.vx-btn-group > .vx-btn:first-child { border-radius: var(--vx-radius-sm) 0 0 var(--vx-radius-sm); margin-left: 0; }
-.vx-btn-group > .vx-btn:last-child { border-radius: 0 var(--vx-radius-sm) var(--vx-radius-sm) 0; }
 
 .vx-spinner {
   display: inline-block;
@@ -178,14 +175,14 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
 }
 .vx-segmented button[aria-checked='true'] { background: rgb(255 255 255 / 0.1); color: var(--vx-ink); }
 
-.vx-breadcrumbs { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--vx-font-mono); font-size: 12px; color: var(--vx-muted); }
-.vx-breadcrumbs [aria-current='page'] { color: var(--vx-ink); }
 
 .vx-pagination { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .vx-pagination .vx-gap { color: var(--vx-muted); width: var(--vx-ctl-sm); text-align: center; }
 
 /* ---------- Popover & menus ---------- */
 .vx-popover { position: relative; display: inline-flex; }
+/* An open popover sits above later siblings (the next card in a grid) that would otherwise cover its panel. */
+.vx-popover:has(> .vx-popover-panel) { z-index: 30; }
 .vx-popover-panel {
   position: absolute;
   z-index: 20;
@@ -359,7 +356,6 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 
 .vx-avatar { position: relative; display: inline-grid; place-items: center; flex: none; border-radius: 50%; overflow: visible; background: var(--vx-surface-2); }
 .vx-avatar > img, .vx-avatar > .vx-ph { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.vx-avatar-initials { font-family: var(--vx-font-mono); font-size: 0.4em; color: var(--vx-muted); }
 .vx-avatar.is-live { box-shadow: 0 0 0 2px var(--vx-bg), 0 0 0 4px var(--vx-bad); }
 .vx-avatar-live { position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%); background: var(--vx-bad); color: #fff; font-size: 9px; font-weight: 700; padding: 0 4px; border-radius: 3px; line-height: 1.5; }
 
@@ -429,7 +425,7 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
   padding: 0 var(--vx-gutter);
   border-bottom: 1px solid var(--vx-line);
   white-space: nowrap;
-  z-index: 3 !important;
+  z-index: 3;
 }
 .vx-head-spacer { flex: 1; }
 .vx-head-actions { display: flex; align-items: center; gap: 8px; flex: none; }
@@ -571,5 +567,5 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 
 /* ---------- Chapter bar (thin strip of game colours, e.g. along a thumbnail's bottom edge) ---------- */
 .vx-chapterbar { display: flex; gap: 2px; height: 3px; overflow: hidden; }
-.vx-chapterbar > span { flex-basis: 0; min-width: 1px; }
-.vx-chapterbar > span.is-restricted { background: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.35) 0 3px, transparent 3px 6px) !important; }
+.vx-chapterbar > span { flex-basis: 0; min-width: 1px; background: var(--vx-c); }
+.vx-chapterbar > span.is-restricted { background: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.35) 0 3px, transparent 3px 6px); }

@@ -1,6 +1,9 @@
 <script setup lang="ts">
-// Text input at control height, with an optional leading icon and a clear button.
-import { ref } from 'vue'
+// Text input at control height, with an optional leading icon and a clear button. Attributes and listeners go to the
+// <input> (aria-*, min, @blur, ...); class and style stay on the wrapper.
+import { computed, ref, useAttrs, type StyleValue } from 'vue'
+
+defineOptions({ inheritAttrs: false })
 
 withDefaults(
   defineProps<{
@@ -15,6 +18,11 @@ withDefaults(
   { type: 'text', invalid: false, clearable: false, disabled: false, mono: false },
 )
 const model = defineModel<string | number>({ default: '' })
+const attrs = useAttrs()
+const inputAttrs = computed(() => {
+  const { class: _class, style: _style, ...rest } = attrs
+  return rest
+})
 const el = ref<HTMLInputElement | null>(null)
 defineExpose({ focus: () => el.value?.focus() })
 
@@ -25,9 +33,14 @@ function clear() {
 </script>
 
 <template>
-  <span class="vx-input-wrap" :class="{ 'has-icon': $slots.icon, 'has-clear': clearable }">
+  <span
+    class="vx-input-wrap"
+    :class="[attrs.class, { 'has-icon': $slots.icon, 'has-clear': clearable }]"
+    :style="attrs.style as StyleValue"
+  >
     <span v-if="$slots.icon" class="vx-input-icon" aria-hidden="true"><slot name="icon"></slot></span>
     <input
+      v-bind="inputAttrs"
       :id="id"
       ref="el"
       v-model="model"

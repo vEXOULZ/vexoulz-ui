@@ -17,6 +17,8 @@ const props = withDefaults(
     nav?: NavItem[]
     /** App-like page (watch page): no footer, main fills the window. */
     fill?: boolean
+    /** Show the header (default on); off for a distraction-free view such as theater mode. */
+    header?: boolean
     /** full | dim | off */
     sky?: 'full' | 'dim' | 'off'
     /** Sky seed; defaults to the site's hostname so each subdomain keeps its own sky. */
@@ -25,7 +27,7 @@ const props = withDefaults(
     /** Set data-site on <html> too (default on). Turn off when several shells share a page (stories). */
     global?: boolean
   }>(),
-  { nav: () => [], fill: false, sky: 'full', global: true },
+  { nav: () => [], fill: false, header: true, sky: 'full', global: true },
 )
 
 ensureSiteAccents()
@@ -43,9 +45,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="vx-site" :class="{ 'is-fill': fill }" :data-site="site">
+  <div class="vx-site" :class="{ 'is-fill': fill, 'is-page': global }" :data-site="site">
     <VxStarfield v-if="sky !== 'off'" :seed="seed" :options="stars" :style="{ opacity: sky === 'dim' ? 0.35 : 1 }" />
-    <slot name="header">
+    <slot v-if="header" name="header">
       <VxSiteHeader :site="site" :nav="nav">
         <template #actions><slot name="actions"></slot></template>
         <template #account><slot name="account"></slot></template>

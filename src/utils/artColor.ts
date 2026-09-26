@@ -34,12 +34,31 @@ export function sampleHue(url: string): Promise<number | null> {
   return p
 }
 
+// Hues learned since the last frame. Applied together, so a grid of posters re-renders once per frame rather than
+// once per image.
+const learned = new Map<string, number>()
+let scheduled = false
+
+function flush() {
+  scheduled = false
+  for (const [name, hue] of learned) if (!hasGameHue(name)) setGameHue(name, hue)
+  learned.clear()
+}
+
+function learn(name: string, hue: number) {
+  learned.set(name, hue)
+  if (scheduled) return
+  scheduled = true
+  if (typeof requestAnimationFrame === 'function') requestAnimationFrame(flush)
+  else setTimeout(flush, 0)
+}
+
 /** Colour these games from their box art (once each). Games without art, or with grey art, keep their name hue. */
 export function learnGameColors(games: Iterable<{ name: string; image?: string | null }>): void {
   for (const g of games) {
     if (!g.image || hasGameHue(g.name)) continue
     void sampleHue(g.image).then((hue) => {
-      if (hue !== null && !hasGameHue(g.name)) setGameHue(g.name, hue)
+      if (hue !== null) learn(g.name, hue)
     })
   }
 }
