@@ -1,20 +1,4 @@
-export type SiteId = 'root' | 'vods' | 'dtp'
-
-export interface SiteInfo {
-  id: SiteId | 'shop'
-  host: string
-  what: string
-  href: string
-  external?: boolean
-}
-
-/** The vexoulz network, as listed in every site switcher. */
-export const SITES: readonly SiteInfo[] = [
-  { id: 'root', host: 'vexoulz.net', what: 'links, socials, stream status', href: 'https://vexoulz.net' },
-  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net' },
-  { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoulz.net' },
-  { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', external: true },
-]
+export { SITES, ensureSiteAccents, siteAccentCss, siteInfo, switcherSites, type NetworkSite, type NetworkSiteId, type SiteId, type SiteInfo } from './sites'
 
 export interface NavItem {
   label: string

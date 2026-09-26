@@ -291,7 +291,7 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
   border-radius: var(--vx-radius);
   background: rgb(255 255 255 / 0.02);
 }
-.vx-callout.is-info { border-left-color: var(--vx-accent-root); }
+.vx-callout.is-info { border-left-color: var(--vx-info); }
 .vx-callout.is-ok { border-left-color: var(--vx-ok); }
 .vx-callout.is-warn { border-left-color: var(--vx-warn); }
 .vx-callout.is-error { border-left-color: var(--vx-bad); }
@@ -469,9 +469,7 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 /* ---------- Lockup and site switcher ---------- */
 .vx-lockup { font-family: var(--vx-font-mono); font-weight: 500; white-space: nowrap; }
 .vx-lockup-dot, .vx-lockup-tld { color: var(--vx-muted); }
-.vx-accent-root { color: var(--vx-accent-root); }
-.vx-accent-vods { color: var(--vx-accent-vods); }
-.vx-accent-dtp { color: var(--vx-accent-dtp); }
+/* .vx-accent-<site> are generated from src/sites.ts. */
 .vx-accent-muted { color: var(--vx-muted); }
 .vx-dotmark { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
 

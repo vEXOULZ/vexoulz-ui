@@ -3,6 +3,7 @@
 // so overlays teleported to <body> (dialogs, toasts) keep the site's accent.
 import { computed, onMounted, onUnmounted, toRef, watch } from 'vue'
 import { provideSite } from '../../composables/useSite'
+import { ensureSiteAccents, siteInfo } from '../../sites'
 import type { NavItem, SiteId } from '../../types'
 import type { StarfieldOptions } from '../../utils/starfield'
 import VxStarfield from '../media/VxStarfield.vue'
@@ -27,9 +28,9 @@ const props = withDefaults(
   { nav: () => [], fill: false, sky: 'full', global: true },
 )
 
-const HOSTS: Record<SiteId, string> = { root: 'vexoulz.net', vods: 'vods.vexoulz.net', dtp: 'dtp.vexoulz.net' }
+ensureSiteAccents()
 provideSite(toRef(props, 'site'))
-const seed = computed(() => props.seed ?? HOSTS[props.site])
+const seed = computed(() => props.seed ?? siteInfo(props.site).host)
 
 function applyGlobal() {
   if (props.global) document.documentElement.dataset.site = props.site
