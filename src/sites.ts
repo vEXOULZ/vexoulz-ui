@@ -21,7 +21,7 @@ export interface SiteInfo {
 export const SITES = [
   { id: 'root', host: 'vexoulz.net', what: 'links, socials, stream status', href: 'https://vexoulz.net', accent: '#d5e0ff', repo: 'vEXOULZ/rootvexoulznet' },
   // Vods green is kept apart from --vx-ok by being brighter and more saturated.
-  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net', accent: '#74e39a', repo: 'vEXOULZ/vexoulz-vods' },
+  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net', accent: '#51ffa8', repo: 'vEXOULZ/vexoulz-vods' },
   { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoulz.net', accent: '#c9b27c', hidden: true, repo: 'vEXOULZ/doomtp-web' },
   { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', external: true },
 ] as const satisfies readonly SiteInfo[]
