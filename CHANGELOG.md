@@ -1,5 +1,11 @@
 # @vexoulz/ui
 
+## 0.6.1
+
+### Patch Changes
+
+- c3e6bce: vods' accent is a brighter mint green (`#51ffa8`, was `#74e39a`).
+
 ## 0.6.0
 
 ### Minor Changes
