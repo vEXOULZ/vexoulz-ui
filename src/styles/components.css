@@ -275,6 +275,7 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
   pointer-events: none;
   white-space: normal;
 }
+.vx-tooltip-bubble.is-below { bottom: auto; top: calc(100% + 8px); }
 
 /* ---------- Feedback ---------- */
 .vx-callout {
