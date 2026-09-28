@@ -1,5 +1,24 @@
 # @vexoulz/ui
 
+## 0.7.0
+
+### Minor Changes
+
+- 1aff2f6: For status.vexoulz.net:
+  
+  - `status` in `SITES` (lavender accent, hidden until the site is live, repo `vEXOULZ/vexoulz-status`).
+  - `VxStatusDot` takes `status="down"`: plain red, where `live` is red with a halo. Its statuses other than `live`
+    are the new `Health` type (`ok | warn | down | off`).
+  - `VxUptimeBar`: a row of ticks, one per check, hour or day, coloured by `Health`, with each tick's label shown on
+    hover or focus. `slots` pads it to a fixed length so stacked bars line up; `selectable` with
+    `v-model:selected` makes the ticks buttons (arrow keys move between them) so a page can show the chosen one in
+    full.
+
+### Patch Changes
+
+- 182e80c: `VxTooltip` keeps its bubble on screen: near a side of the screen it slides sideways, and with no room above it
+  opens below.
+
 ## 0.6.1
 
 ### Patch Changes
