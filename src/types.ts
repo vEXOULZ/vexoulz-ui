@@ -12,6 +12,16 @@ export interface NavItem {
 
 export type Tone = 'info' | 'ok' | 'warn' | 'error'
 
+/** How a service is doing: up, degraded, down, or unknown / no data. */
+export type Health = 'ok' | 'warn' | 'down' | 'off'
+
+/** One tick of VxUptimeBar: a check, or an hour or day of them. */
+export interface UptimeTick {
+  status: Health
+  /** Says what the tick is, e.g. "14:32 · 200 · 21 ms": its tooltip and its screen-reader label. */
+  label?: string
+}
+
 export interface Option<T = string> {
   value: T
   label: string

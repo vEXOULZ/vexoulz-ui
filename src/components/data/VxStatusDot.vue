@@ -1,5 +1,8 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ status?: 'live' | 'ok' | 'warn' | 'off'; label?: string }>(), { status: 'off' })
+// `live` is red with a halo (on air); `down` is plain red (a service not answering).
+import type { Health } from '../../types'
+
+withDefaults(defineProps<{ status?: 'live' | Health; label?: string }>(), { status: 'off' })
 </script>
 
 <template>
