@@ -1,5 +1,11 @@
 # @vexoulz/ui
 
+## 0.8.0
+
+### Minor Changes
+
+- af00cc4: dtp.vexoulz.net and status.vexoulz.net are live: both are listed in the site switchers.
+
 ## 0.7.0
 
 ### Minor Changes
