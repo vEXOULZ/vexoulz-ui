@@ -48,6 +48,7 @@ export { default as VxEmptyState } from './components/feedback/VxEmptyState.vue'
 export { default as VxTable } from './components/data/VxTable.vue'
 export { default as VxChip } from './components/data/VxChip.vue'
 export { default as VxStatusDot } from './components/data/VxStatusDot.vue'
+export { default as VxUptimeBar } from './components/data/VxUptimeBar.vue'
 export { default as VxAvatar } from './components/data/VxAvatar.vue'
 export { default as VxKbd } from './components/data/VxKbd.vue'
 

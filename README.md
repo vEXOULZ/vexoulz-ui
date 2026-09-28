@@ -69,7 +69,7 @@ const { show } = useToast()
 | controls | `VxButton` `VxInput` `VxField` `VxSelect` `VxStepper` `VxSwitch` `VxCheckbox` `VxRadioGroup` `VxSlider` `VxDateRange` `VxTabs` `VxSegmented` `VxPagination` |
 | overlays | `VxPopover` `VxMenuItem` `VxMenuLabel` `VxMenuSeparator` `VxDialog` `VxToastHost` + `useToast()` `VxTooltip` |
 | feedback | `VxCallout` `VxProgress` `VxSpinner` `VxSkeleton` `VxEmptyState` |
-| data | `VxTable` `VxChip` `VxStatusDot` `VxAvatar` `VxKbd` |
+| data | `VxTable` `VxChip` `VxStatusDot` `VxUptimeBar` `VxAvatar` `VxKbd` |
 | media | `VxStarfield` `VxPosters` `VxChapterBar` `VxPlaceholder` |
 
 Helpers are exported as well: `gameColor`, `twitchColor`, `pageRange`, `place` (popover placement), `stepValue`,

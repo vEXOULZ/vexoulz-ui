@@ -23,6 +23,8 @@ export const SITES = [
   // Vods green is kept apart from --vx-ok by being brighter and more saturated.
   { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net', accent: '#51ffa8', repo: 'vEXOULZ/vexoulz-vods' },
   { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoulz.net', accent: '#c9b27c', hidden: true, repo: 'vEXOULZ/doomtp-web' },
+  // Status lavender: clear of the green, yellow and red its pages are full of.
+  { id: 'status', host: 'status.vexoulz.net', what: 'service health, uptime', href: 'https://status.vexoulz.net', accent: '#b9a8ff', hidden: true, repo: 'vEXOULZ/vexoulz-status' },
   { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', external: true },
 ] as const satisfies readonly SiteInfo[]
 

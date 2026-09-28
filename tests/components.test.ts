@@ -6,6 +6,7 @@ import VxInput from '../src/components/controls/VxInput.vue'
 import VxPagination from '../src/components/controls/VxPagination.vue'
 import VxStepper from '../src/components/controls/VxStepper.vue'
 import VxTable from '../src/components/data/VxTable.vue'
+import VxUptimeBar from '../src/components/data/VxUptimeBar.vue'
 import VxPopover from '../src/components/overlays/VxPopover.vue'
 import VxTooltip from '../src/components/overlays/VxTooltip.vue'
 import { useToast } from '../src/composables/useToast'
@@ -152,5 +153,45 @@ describe('VxTooltip', () => {
 
   it('goes below when there is no room above', async () => {
     expect((await hover({ left: 100, right: 200, top: -10 })).classes()).toContain('is-below')
+  })
+})
+
+describe('VxUptimeBar', () => {
+  const ticks = [
+    { status: 'ok' as const, label: '14:30 · up' },
+    { status: 'down' as const, label: '14:31 · down' },
+    { status: 'ok' as const, label: '14:32 · up' },
+  ]
+
+  it('pads to a fixed number of ticks and sums up what is known', () => {
+    const w = mount(VxUptimeBar, { props: { ticks, slots: 5, label: 'dtp' } })
+    expect(w.findAll('.vx-uptime-tick')).toHaveLength(5)
+    expect(w.findAll('.vx-uptime-tick.is-pad')).toHaveLength(2)
+    expect(w.get('.vx-uptime').attributes('aria-label')).toBe('dtp: 2 of 3 up')
+    expect(w.find('button').exists()).toBe(false)
+  })
+
+  it('shows the hovered tick label', async () => {
+    const w = mount(VxUptimeBar, { props: { ticks } })
+    await w.findAll('.vx-uptime-tick')[1]!.trigger('pointerenter')
+    expect(w.get('.vx-tooltip-bubble').text()).toBe('14:31 · down')
+  })
+
+  it('selects a tick on click, again to clear, and moves with the arrow keys', async () => {
+    const w = mount(VxUptimeBar, { props: { ticks, selectable: true, 'onUpdate:selected': (v: number | null) => w.setProps({ selected: v }) } })
+    const buttons = () => w.findAll('button')
+    // Only one tab stop: the newest tick until one is chosen.
+    expect(buttons().map((b) => b.attributes('tabindex'))).toEqual(['-1', '-1', '0'])
+    await buttons()[1]!.trigger('click')
+    expect(w.props('selected')).toBe(1)
+    expect(buttons()[1]!.attributes('aria-pressed')).toBe('true')
+    await buttons()[1]!.trigger('keydown', { key: 'ArrowLeft' })
+    expect(w.props('selected')).toBe(0)
+    await buttons()[0]!.trigger('keydown', { key: 'ArrowLeft' })
+    expect(w.props('selected')).toBe(0)
+    await buttons()[0]!.trigger('keydown', { key: 'End' })
+    expect(w.props('selected')).toBe(2)
+    await buttons()[2]!.trigger('click')
+    expect(w.props('selected')).toBe(null)
   })
 })
