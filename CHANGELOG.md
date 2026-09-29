@@ -1,5 +1,14 @@
 # @vexoulz/ui
 
+## 0.9.0
+
+### Minor Changes
+
+- bc41aa0: `@vexoulz/ui/account`: the shared *.vexoulz.net sign-in from a site's side. `createAccount({ authBase })` (installed
+  with `app.use`) and `useAccount()` give the signed-in user from vexoulz-auth, `signIn()`, `signOut({ everywhere })`,
+  and `request()` for credentialed calls with the CSRF header. Without `authBase` the account is disabled.
+  `VxAccountMenu`'s disabled title now says sign-in isn't available here, not "coming soon".
+
 ## 0.8.0
 
 ### Minor Changes
