@@ -278,6 +278,8 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
   white-space: normal;
 }
 .vx-tooltip-bubble.is-below { bottom: auto; top: calc(100% + 8px); }
+/* VxTooltip's own bubble lives in <body>, placed from its trigger (the uptime bar keeps the one above). */
+.vx-tooltip-bubble.is-fixed { position: fixed; bottom: auto; transform: none; z-index: 70; }
 
 /* ---------- Feedback ---------- */
 .vx-callout {

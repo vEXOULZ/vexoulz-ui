@@ -154,31 +154,46 @@ describe('useToast', () => {
 })
 
 describe('VxTooltip', () => {
-  afterEach(() => vi.restoreAllMocks())
+  afterEach(() => {
+    vi.restoreAllMocks()
+    document.body.innerHTML = ''
+  })
 
-  // happy-dom lays nothing out, so the bubble's box is faked: `left`/`right`/`top` in a 390px-wide screen.
-  async function hover(box: { left: number; right: number; top: number }) {
+  // happy-dom lays nothing out, so boxes are faked in a 390px-wide screen: the trigger's, and a 120×24 bubble.
+  async function hover(trigger: { left: number; right: number; top: number }) {
     vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(390)
-    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({ ...box, bottom: box.top + 24 } as DOMRect)
-    const w = mount(VxTooltip, { props: { text: 'Hint' }, slots: { default: '<button>x</button>' } })
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+      const box = this.classList.contains('vx-tooltip-bubble')
+        ? { left: 0, right: 120, top: 0, bottom: 24 }
+        : { ...trigger, bottom: trigger.top + 24 }
+      return box as DOMRect
+    })
+    const w = mount(VxTooltip, { props: { text: 'Hint' }, slots: { default: '<button>x</button>' }, attachTo: document.body })
     await w.get('.vx-tooltip').trigger('pointerenter')
     await nextTick()
-    return w.get('.vx-tooltip-bubble')
+    await nextTick()
+    const b = document.body.querySelector<HTMLElement>('.vx-tooltip-bubble')!
+    expect(b.parentElement).toBe(document.body)
+    return b
   }
 
-  it('stays centred when it fits', async () => {
+  it('sits centred above its trigger when it fits', async () => {
     const b = await hover({ left: 100, right: 200, top: 300 })
-    expect(b.attributes('style') ?? '').not.toContain('translate')
-    expect(b.classes()).not.toContain('is-below')
+    expect(b.style.left).toBe('90px')
+    expect(b.style.top).toBe('268px')
+    expect(b.classList.contains('is-below')).toBe(false)
   })
 
   it('slides back on screen past the left or right edge', async () => {
-    expect((await hover({ left: -40, right: 120, top: 300 })).attributes('style')).toContain('translate: 48px 0')
-    expect((await hover({ left: 300, right: 420, top: 300 })).attributes('style')).toContain('translate: -38px 0')
+    expect((await hover({ left: -40, right: 20, top: 300 })).style.left).toBe('8px')
+    document.body.innerHTML = ''
+    expect((await hover({ left: 340, right: 400, top: 300 })).style.left).toBe('262px')
   })
 
   it('goes below when there is no room above', async () => {
-    expect((await hover({ left: 100, right: 200, top: -10 })).classes()).toContain('is-below')
+    const b = await hover({ left: 100, right: 200, top: 10 })
+    expect(b.classList.contains('is-below')).toBe(true)
+    expect(b.style.top).toBe('42px')
   })
 })
 
