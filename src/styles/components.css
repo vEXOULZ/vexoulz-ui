@@ -92,8 +92,12 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
    whatever help or error text sits under a field: the other items start one label (20px + the 6px gap) down, and
    are as tall as a control. */
 .vx-form-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 12px; }
-.vx-form-row > :not(.vx-field) { margin-top: 26px; }
+/* Only when a labelled field is in the row: the rest line up with its control, below the label. */
+.vx-form-row:has(> .vx-field) > :not(.vx-field) { margin-top: 26px; }
 .vx-form-row > .vx-check { min-height: var(--vx-ctl); }
+/* A small button sits centred on a control's line. */
+.vx-form-row > .vx-btn.is-sm { margin-top: calc((var(--vx-ctl) - var(--vx-ctl-sm)) / 2); }
+.vx-form-row:has(> .vx-field) > .vx-btn.is-sm { margin-top: calc(26px + (var(--vx-ctl) - var(--vx-ctl-sm)) / 2); }
 .vx-field-help { font-size: 12px; color: var(--vx-muted); }
 .vx-field-error { font-size: 12px; color: var(--vx-bad); }
 
