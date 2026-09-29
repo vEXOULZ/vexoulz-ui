@@ -87,7 +87,17 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
 .vx-input-wrap .vx-input-clear { position: absolute; right: 3px; top: 50%; transform: translateY(-50%); }
 
 .vx-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.vx-field-label { font-size: 13px; font-weight: 600; color: var(--vx-ink); }
+.vx-field-label { font-size: 13px; line-height: 20px; font-weight: 600; color: var(--vx-ink); }
+/* A row of fields and the buttons or checkboxes that go with them. Everything lines up with the fields' controls,
+   whatever help or error text sits under a field: the other items start one label (20px + the 6px gap) down, and
+   are as tall as a control. */
+.vx-form-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 12px; }
+/* Only when a labelled field is in the row: the rest line up with its control, below the label. */
+.vx-form-row:has(> .vx-field) > :not(.vx-field) { margin-top: 26px; }
+.vx-form-row > .vx-check { min-height: var(--vx-ctl); }
+/* A small button sits centred on a control's line. */
+.vx-form-row > .vx-btn.is-sm { margin-top: calc((var(--vx-ctl) - var(--vx-ctl-sm)) / 2); }
+.vx-form-row:has(> .vx-field) > .vx-btn.is-sm { margin-top: calc(26px + (var(--vx-ctl) - var(--vx-ctl-sm)) / 2); }
 .vx-field-help { font-size: 12px; color: var(--vx-muted); }
 .vx-field-error { font-size: 12px; color: var(--vx-bad); }
 
@@ -134,6 +144,7 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
 .vx-date-range-presets { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .vx-select { min-width: 160px; justify-content: space-between; }
+.vx-popover.is-fill, .vx-select.is-fill { width: 100%; }
 
 /* ---------- Navigation ---------- */
 .vx-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--vx-line); overflow-x: auto; scrollbar-width: none; }
@@ -181,11 +192,10 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
 
 /* ---------- Popover & menus ---------- */
 .vx-popover { position: relative; display: inline-flex; }
-/* An open popover sits above later siblings (the next card in a grid) that would otherwise cover its panel. */
-.vx-popover:has(> .vx-popover-panel) { z-index: 30; }
+/* The panel is teleported to <body> and placed by VxPopover (fixed, from its trigger's box), above dialogs too. */
 .vx-popover-panel {
-  position: absolute;
-  z-index: 20;
+  position: fixed;
+  z-index: 65;
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -196,10 +206,6 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
   scrollbar-width: thin;
   scrollbar-color: var(--vx-line) transparent;
 }
-.vx-popover-panel.is-down { top: calc(100% + 6px); }
-.vx-popover-panel.is-up { bottom: calc(100% + 6px); }
-.vx-popover-panel.is-left { left: 0; }
-.vx-popover-panel.is-right { right: 0; }
 
 .vx-menu-label { padding: 4px 8px 6px; position: sticky; top: -6px; background: inherit; z-index: 1; }
 .vx-menu-item {
@@ -276,6 +282,8 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
   white-space: normal;
 }
 .vx-tooltip-bubble.is-below { bottom: auto; top: calc(100% + 8px); }
+/* VxTooltip's own bubble lives in <body>, placed from its trigger (the uptime bar keeps the one above). */
+.vx-tooltip-bubble.is-fixed { position: fixed; bottom: auto; transform: none; z-index: 70; }
 
 /* ---------- Feedback ---------- */
 .vx-callout {

@@ -10,6 +10,7 @@ const props = withDefaults(
     options: Option<T>[]
     placeholder?: string
     size?: 'md' | 'sm'
+    /** The list's width; a percentage makes the select fill its container, and the list that share of it. */
     width?: string
     prefer?: 'up' | 'down'
     align?: 'left' | 'right'
@@ -20,16 +21,17 @@ const props = withDefaults(
 )
 const model = defineModel<T>()
 const current = computed(() => props.options.find((o) => o.value === model.value))
+const fill = computed(() => props.width.endsWith('%'))
 </script>
 
 <template>
-  <VxPopover :prefer="prefer" :align="align" :width="width" role="listbox">
+  <VxPopover :class="{ 'is-fill': fill }" :prefer="prefer" :align="align" :width="width" role="listbox">
     <template #trigger="{ toggle, open }">
       <button
         :id="id"
         type="button"
         class="vx-btn vx-select"
-        :class="{ 'is-sm': size === 'sm' }"
+        :class="{ 'is-sm': size === 'sm', 'is-fill': fill }"
         :disabled="disabled"
         aria-haspopup="listbox"
         :aria-expanded="open"

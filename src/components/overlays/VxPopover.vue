@@ -1,9 +1,10 @@
 <script setup lang="ts">
-// Popover / dropdown used for every menu. Opens towards whichever side of its page has room and caps its height
-// to that room (bounded by <main>, so it never slides under the sticky header), so long lists scroll. It also
-// slides sideways to stay on screen when its alignment would push it past the edge (narrow phones). On open it
-// focuses the panel's [autofocus] element, if any (e.g. a search field).
-import { nextTick, ref } from 'vue'
+// Popover / dropdown used for every menu. The panel is teleported to <body> and placed from the trigger's box, so no
+// scrolling or clipping container (a dialog, a table's scroller, a bar that scrolls sideways) can cut it off. It
+// opens towards whichever side has room and caps its height to that room (bounded by <main>, so it never slides under
+// the sticky header; inside a dialog, by the screen), so long lists scroll. It slides sideways to stay on screen,
+// follows its trigger while the page scrolls, and on open focuses the panel's [autofocus] element, if any.
+import { computed, nextTick, onScopeDispose, ref, watch } from 'vue'
 import { useDismiss } from '../../composables/useClickOutside'
 import { clampX, place } from '../../utils/place'
 
@@ -11,6 +12,7 @@ const props = withDefaults(
   defineProps<{
     prefer?: 'up' | 'down'
     align?: 'left' | 'right'
+    /** The panel's width; a percentage is of the trigger's width. */
     width?: string
     /** Never taller than this (px), even with room. */
     cap?: number
@@ -21,18 +23,29 @@ const props = withDefaults(
 )
 const emit = defineEmits<{ open: []; close: [] }>()
 
+const GAP = 6
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
 const panel = ref<HTMLElement | null>(null)
 const dir = ref(props.prefer)
 const maxH = ref(props.cap)
-const shiftX = ref(0)
+const anchorWidth = ref(0)
+const pos = ref<{ left: number; top?: number; bottom?: number } | null>(null)
+
+const panelWidth = computed(() =>
+  props.width.endsWith('%') ? `${(anchorWidth.value * parseFloat(props.width)) / 100}px` : props.width,
+)
 
 function reposition() {
   if (!root.value) return
-  const bounds = (root.value.closest('main') ?? root.value.closest('.vx-site') ?? document.body).getBoundingClientRect()
+  const anchor = root.value.getBoundingClientRect()
+  anchorWidth.value = anchor.width
+  const inDialog = root.value.closest('.vx-overlay')
+  const bounds = inDialog
+    ? { top: 0, bottom: window.innerHeight }
+    : (root.value.closest('main') ?? root.value.closest('.vx-site') ?? document.body).getBoundingClientRect()
   const r = place({
-    anchor: root.value.getBoundingClientRect(),
+    anchor,
     bounds,
     viewport: window.innerHeight,
     prefer: props.prefer,
@@ -41,16 +54,21 @@ function reposition() {
   })
   dir.value = r.dir
   maxH.value = r.maxHeight
-  if (panel.value) {
-    const box = panel.value.getBoundingClientRect()
-    shiftX.value = clampX(box.left - shiftX.value, box.right - shiftX.value, document.documentElement.clientWidth)
-  }
+  const w = panel.value?.offsetWidth ?? 0
+  let left = props.align === 'right' ? anchor.right - w : anchor.left
+  left += clampX(left, left + w, document.documentElement.clientWidth)
+  pos.value =
+    r.dir === 'down' ? { left, top: anchor.bottom + GAP } : { left, bottom: window.innerHeight - anchor.top + GAP }
 }
 
 async function show() {
   if (open.value) return
+  pos.value = null
   open.value = true
   emit('open')
+  await nextTick()
+  reposition()
+  // Once more: the first pass sized the panel to the room it had, which can move it.
   await nextTick()
   reposition()
   panel.value?.querySelector<HTMLElement>('[autofocus]')?.focus()
@@ -62,22 +80,41 @@ function close() {
 }
 const toggle = () => (open.value ? close() : show())
 
-useDismiss(root, () => open.value, close)
+// Follow the trigger while anything scrolls or the window resizes (only while open).
+const follow = () => reposition()
+function listen(on: boolean) {
+  const method = on ? 'addEventListener' : 'removeEventListener'
+  window[method]('scroll', follow, { capture: true, passive: true } as AddEventListenerOptions)
+  window[method]('resize', follow)
+}
+watch(open, listen)
+onScopeDispose(() => listen(false))
+
+useDismiss([root, panel], () => open.value, close)
 defineExpose({ open: show, close, toggle, reposition })
 </script>
 
 <template>
   <div ref="root" class="vx-popover">
     <slot name="trigger" :open="open" :toggle="toggle" :close="close"></slot>
-    <div
-      v-if="open"
-      ref="panel"
-      class="vx-popover-panel vx-pop"
-      :class="[`is-${dir}`, `is-${align}`]"
-      :style="{ width, maxHeight: `${maxH}px`, translate: shiftX ? `${shiftX}px 0` : undefined }"
-      :role="role"
-    >
-      <slot :close="close"></slot>
-    </div>
+    <Teleport to="body">
+      <div
+        v-if="open"
+        ref="panel"
+        class="vx-popover-panel vx-pop vx-overlay"
+        :class="[`is-${dir}`, `is-${align}`]"
+        :style="{
+          width: panelWidth,
+          maxHeight: `${maxH}px`,
+          left: pos ? `${pos.left}px` : '0px',
+          top: pos?.top !== undefined ? `${pos.top}px` : undefined,
+          bottom: pos?.bottom !== undefined ? `${pos.bottom}px` : undefined,
+          visibility: pos ? undefined : 'hidden',
+        }"
+        :role="role"
+      >
+        <slot :close="close"></slot>
+      </div>
+    </Teleport>
   </div>
 </template>

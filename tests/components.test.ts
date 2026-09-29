@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import VxButton from '../src/components/controls/VxButton.vue'
@@ -93,26 +93,52 @@ describe('VxTable', () => {
 })
 
 describe('VxPopover', () => {
-  it('opens from the trigger and closes on Escape and outside clicks', async () => {
-    const w = mount(VxPopover, {
+  afterEach(() => vi.restoreAllMocks())
+  const inside = () => document.body.querySelector('.inside')
+  const mountPopover = (props: Record<string, unknown> = {}) =>
+    mount(VxPopover, {
       attachTo: document.body,
+      props,
       slots: {
         trigger: '<template #trigger="{ toggle }"><button class="t" @click="toggle">open</button></template>',
         default: '<p class="inside">menu</p>',
       },
     })
-    expect(w.find('.inside').exists()).toBe(false)
+
+  it('opens from the trigger and closes on Escape and outside clicks, but not on clicks in its panel', async () => {
+    const w = mountPopover()
+    expect(inside()).toBeNull()
     await w.get('.t').trigger('click')
-    await nextTick()
-    expect(w.find('.inside').exists()).toBe(true)
+    await flushPromises()
+    expect(inside()).not.toBeNull()
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
     await nextTick()
-    expect(w.find('.inside').exists()).toBe(false)
+    expect(inside()).toBeNull()
     await w.get('.t').trigger('click')
+    await flushPromises()
+    inside()!.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }))
     await nextTick()
+    expect(inside()).not.toBeNull()
     document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }))
     await nextTick()
-    expect(w.find('.inside').exists()).toBe(false)
+    expect(inside()).toBeNull()
+    w.unmount()
+  })
+
+  it('puts its panel on <body>, under the trigger, so no container clips it', async () => {
+    vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(390)
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      left: 40, right: 140, top: 100, bottom: 132, width: 100, height: 32,
+    } as DOMRect)
+    const w = mountPopover({ width: '100%' })
+    await w.get('.t').trigger('click')
+    await flushPromises()
+    const panel = document.body.querySelector<HTMLElement>('.vx-popover-panel')!
+    expect(panel.parentElement).toBe(document.body)
+    expect(w.element.contains(panel)).toBe(false)
+    expect(panel.style.top).toBe('138px')
+    expect(panel.style.left).toBe('40px')
+    expect(panel.style.width).toBe('100px')
     w.unmount()
   })
 })
@@ -128,31 +154,46 @@ describe('useToast', () => {
 })
 
 describe('VxTooltip', () => {
-  afterEach(() => vi.restoreAllMocks())
+  afterEach(() => {
+    vi.restoreAllMocks()
+    document.body.innerHTML = ''
+  })
 
-  // happy-dom lays nothing out, so the bubble's box is faked: `left`/`right`/`top` in a 390px-wide screen.
-  async function hover(box: { left: number; right: number; top: number }) {
+  // happy-dom lays nothing out, so boxes are faked in a 390px-wide screen: the trigger's, and a 120×24 bubble.
+  async function hover(trigger: { left: number; right: number; top: number }) {
     vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(390)
-    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({ ...box, bottom: box.top + 24 } as DOMRect)
-    const w = mount(VxTooltip, { props: { text: 'Hint' }, slots: { default: '<button>x</button>' } })
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+      const box = this.classList.contains('vx-tooltip-bubble')
+        ? { left: 0, right: 120, top: 0, bottom: 24 }
+        : { ...trigger, bottom: trigger.top + 24 }
+      return box as DOMRect
+    })
+    const w = mount(VxTooltip, { props: { text: 'Hint' }, slots: { default: '<button>x</button>' }, attachTo: document.body })
     await w.get('.vx-tooltip').trigger('pointerenter')
     await nextTick()
-    return w.get('.vx-tooltip-bubble')
+    await nextTick()
+    const b = document.body.querySelector<HTMLElement>('.vx-tooltip-bubble')!
+    expect(b.parentElement).toBe(document.body)
+    return b
   }
 
-  it('stays centred when it fits', async () => {
+  it('sits centred above its trigger when it fits', async () => {
     const b = await hover({ left: 100, right: 200, top: 300 })
-    expect(b.attributes('style') ?? '').not.toContain('translate')
-    expect(b.classes()).not.toContain('is-below')
+    expect(b.style.left).toBe('90px')
+    expect(b.style.top).toBe('268px')
+    expect(b.classList.contains('is-below')).toBe(false)
   })
 
   it('slides back on screen past the left or right edge', async () => {
-    expect((await hover({ left: -40, right: 120, top: 300 })).attributes('style')).toContain('translate: 48px 0')
-    expect((await hover({ left: 300, right: 420, top: 300 })).attributes('style')).toContain('translate: -38px 0')
+    expect((await hover({ left: -40, right: 20, top: 300 })).style.left).toBe('8px')
+    document.body.innerHTML = ''
+    expect((await hover({ left: 340, right: 400, top: 300 })).style.left).toBe('262px')
   })
 
   it('goes below when there is no room above', async () => {
-    expect((await hover({ left: 100, right: 200, top: -10 })).classes()).toContain('is-below')
+    const b = await hover({ left: 100, right: 200, top: 10 })
+    expect(b.classList.contains('is-below')).toBe(true)
+    expect(b.style.top).toBe('42px')
   })
 })
 
