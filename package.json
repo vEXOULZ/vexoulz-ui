@@ -21,6 +21,10 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./account": {
+      "types": "./dist/types/account.d.ts",
+      "import": "./dist/account.js"
+    },
     "./style.css": "./dist/style.css",
     "./fonts.css": "./src/styles/fonts.css"
   },

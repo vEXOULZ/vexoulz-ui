@@ -43,7 +43,7 @@ const { show } = useToast()
 
 <template>
   <VxSiteShell site="vods" :nav="[{ label: 'VODs', to: '/vods' }, { label: 'Games', to: '/games' }]">
-    <template #account><VxAccountMenu disabled /></template>
+    <template #account><VxAccountMenu disabled /></template> <!-- or wired to useAccount(), below -->
     <VxButton @click="show('Link copied')">Copy link</VxButton>
   </VxSiteShell>
 </template>
@@ -62,6 +62,39 @@ const { show } = useToast()
 - Links use `RouterLink` when vue-router is installed and a plain `<a>` otherwise. The library doesn't depend on
   vue-router.
 - Every class and token is prefixed `vx-` / `--vx-`, so site CSS won't collide with it.
+
+### Signing in (`@vexoulz/ui/account`)
+
+One sign-in covers every site: [vexoulz-auth](https://github.com/vEXOULZ/vexoulz-auth) keeps the session, and a
+site asks it who is signed in. Each site sets `VITE_AUTH_BASE` to the service's URL; left empty (a friend's
+instance, a dev server without it) the account is disabled and the menu's "Sign in" is greyed out.
+
+```ts
+// main.ts
+import { createAccount } from '@vexoulz/ui/account'
+app.use(createAccount({ authBase: import.meta.env.VITE_AUTH_BASE }))
+```
+
+```vue
+<script setup lang="ts">
+import { useAccount } from '@vexoulz/ui/account'
+const account = useAccount()
+</script>
+
+<template>
+  <VxAccountMenu
+    :user="account.menuUser.value"
+    :disabled="!account.enabled"
+    @sign-in="account.signIn()"
+    @sign-out="account.signOut({ everywhere: true })"
+  />
+</template>
+```
+
+`user` is `{ id, login, displayName, avatar, color }` or `null`, `ready` turns true after the first check, and
+`request(path, init)` makes a credentialed call to the service with the CSRF header on writes (the VOD site's
+watch progress uses it). A tab that comes back into view after a minute checks again, so signing out everywhere
+on another site shows up.
 
 | group | components |
 |---|---|
