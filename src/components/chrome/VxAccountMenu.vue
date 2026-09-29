@@ -13,7 +13,7 @@ import VxMenuSeparator from '../overlays/VxMenuSeparator.vue'
 const props = withDefaults(
   defineProps<{
     user?: AccountUser | null
-    /** Sign-in isn't available yet (accounts ship in a later phase). */
+    /** Sign-in isn't set up on this site (no auth service configured): see `@vexoulz/ui/account`. */
     disabled?: boolean
     note?: string
   }>(),
@@ -29,7 +29,7 @@ const nameColor = computed(() => (props.user ? twitchColor(props.user.name, prop
     type="button"
     class="vx-btn vx-signin"
     :disabled="disabled"
-    :title="disabled ? 'Sign in is coming soon' : 'Sign in with Twitch'"
+    :title="disabled ? 'Sign in isn\'t available here' : 'Sign in with Twitch'"
     @click="emit('signIn')"
   >
     <slot name="signin-icon"><VxPlaceholder label="tw" :w="16" :h="16" /></slot>

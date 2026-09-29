@@ -12,9 +12,12 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+      entry: {
+        index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+        account: fileURLToPath(new URL('./src/account.ts', import.meta.url)),
+      },
       formats: ['es'],
-      fileName: 'index',
+      fileName: (_format, name) => `${name}.js`,
       cssFileName: 'style',
     },
     rollupOptions: { external: ['vue'] },
