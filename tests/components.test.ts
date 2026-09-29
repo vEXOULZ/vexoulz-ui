@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import VxButton from '../src/components/controls/VxButton.vue'
@@ -93,26 +93,52 @@ describe('VxTable', () => {
 })
 
 describe('VxPopover', () => {
-  it('opens from the trigger and closes on Escape and outside clicks', async () => {
-    const w = mount(VxPopover, {
+  afterEach(() => vi.restoreAllMocks())
+  const inside = () => document.body.querySelector('.inside')
+  const mountPopover = (props: Record<string, unknown> = {}) =>
+    mount(VxPopover, {
       attachTo: document.body,
+      props,
       slots: {
         trigger: '<template #trigger="{ toggle }"><button class="t" @click="toggle">open</button></template>',
         default: '<p class="inside">menu</p>',
       },
     })
-    expect(w.find('.inside').exists()).toBe(false)
+
+  it('opens from the trigger and closes on Escape and outside clicks, but not on clicks in its panel', async () => {
+    const w = mountPopover()
+    expect(inside()).toBeNull()
     await w.get('.t').trigger('click')
-    await nextTick()
-    expect(w.find('.inside').exists()).toBe(true)
+    await flushPromises()
+    expect(inside()).not.toBeNull()
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
     await nextTick()
-    expect(w.find('.inside').exists()).toBe(false)
+    expect(inside()).toBeNull()
     await w.get('.t').trigger('click')
+    await flushPromises()
+    inside()!.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }))
     await nextTick()
+    expect(inside()).not.toBeNull()
     document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }))
     await nextTick()
-    expect(w.find('.inside').exists()).toBe(false)
+    expect(inside()).toBeNull()
+    w.unmount()
+  })
+
+  it('puts its panel on <body>, under the trigger, so no container clips it', async () => {
+    vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(390)
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      left: 40, right: 140, top: 100, bottom: 132, width: 100, height: 32,
+    } as DOMRect)
+    const w = mountPopover({ width: '100%' })
+    await w.get('.t').trigger('click')
+    await flushPromises()
+    const panel = document.body.querySelector<HTMLElement>('.vx-popover-panel')!
+    expect(panel.parentElement).toBe(document.body)
+    expect(w.element.contains(panel)).toBe(false)
+    expect(panel.style.top).toBe('138px')
+    expect(panel.style.left).toBe('40px')
+    expect(panel.style.width).toBe('100px')
     w.unmount()
   })
 })

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
-import { VxCheckbox, VxDateRange, VxField, VxInput, VxRadioGroup, VxSelect, VxSlider, VxStepper, VxSwitch } from '../../src'
+import { VxButton, VxCheckbox, VxDateRange, VxField, VxInput, VxRadioGroup, VxSelect, VxSlider, VxStepper, VxSwitch } from '../../src'
 import StoryFrame from '../StoryFrame.vue'
 
 const f = reactive({
@@ -46,6 +46,20 @@ const sorts = [
           <VxSwitch v-model="f.sw" label="7TV emotes" />
           <VxSwitch v-model="f.sw2" label="Disabled" disabled />
           <div class="story-row"><span>Volume</span><VxSlider v-model="f.vol" label="Volume" style="max-width: 200px" /><code class="story-note">{{ f.vol }}</code></div>
+        </div>
+      </StoryFrame>
+    </Variant>
+    <Variant title="Form row">
+      <StoryFrame>
+        <div class="vx-form-row">
+          <VxField v-slot="{ id }" label="Name" :error="nameErr" help="Shown in chat replays.">
+            <VxInput :id="id" v-model="f.name" :invalid="!!nameErr" />
+          </VxField>
+          <VxField v-slot="{ id }" label="Sort">
+            <VxSelect :id="id" v-model="f.sort" :options="sorts" />
+          </VxField>
+          <VxCheckbox v-model="f.check" label="Timestamps" />
+          <VxButton variant="primary">Save</VxButton>
         </div>
       </StoryFrame>
     </Variant>

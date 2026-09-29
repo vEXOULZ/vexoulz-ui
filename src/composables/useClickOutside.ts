@@ -1,12 +1,17 @@
 import { onScopeDispose, watch, type Ref } from 'vue'
 
+type El = Ref<HTMLElement | null | undefined>
+
 /**
- * Calls `handler` on a pointerdown outside `el`, or on Escape, while `active()` is true. The document listeners are
- * only attached while it's active, so a page full of closed popovers costs nothing per click.
+ * Calls `handler` on a pointerdown outside `el` (or outside all of them: a trigger and its teleported panel), or on
+ * Escape, while `active()` is true. The document listeners are only attached while it's active, so a page full of
+ * closed popovers costs nothing per click.
  */
-export function useDismiss(el: Ref<HTMLElement | null | undefined>, active: () => boolean, handler: () => void) {
+export function useDismiss(el: El | El[], active: () => boolean, handler: () => void) {
+  const els = Array.isArray(el) ? el : [el]
   const outside = (e: PointerEvent) => {
-    if (el.value && !el.value.contains(e.target as Node)) handler()
+    const present = els.map((r) => r.value).filter((x): x is HTMLElement => !!x)
+    if (present.length && !present.some((x) => x.contains(e.target as Node))) handler()
   }
   const esc = (e: KeyboardEvent) => {
     if (e.key === 'Escape') handler()
