@@ -212,6 +212,7 @@ input[type='search'].vx-input::-webkit-search-cancel-button, input[type='search'
   white-space: nowrap;
 }
 .vx-segmented button[aria-checked='true'] { background: rgb(255 255 255 / 0.1); color: var(--vx-ink); }
+.vx-segmented button:disabled { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
 
 
 .vx-pagination { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
