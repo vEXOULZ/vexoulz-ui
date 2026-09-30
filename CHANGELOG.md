@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.13.0
+
+### Minor Changes
+
+- 366f65d: VxSegmented: disabled options now look disabled (faded, struck through, not-allowed cursor), and options take a
+  `title` tooltip, e.g. to say why one is off.
+
 ## 0.12.0
 
 ### Minor Changes
