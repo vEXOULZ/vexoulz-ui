@@ -27,6 +27,8 @@ export interface Option<T = string> {
   label: string
   sub?: string
   disabled?: boolean
+  /** A tooltip, e.g. why the option is disabled. */
+  title?: string
 }
 
 export interface Chapter {

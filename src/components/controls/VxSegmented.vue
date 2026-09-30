@@ -15,6 +15,7 @@ const model = defineModel<T>()
       role="radio"
       :aria-checked="o.value === model"
       :disabled="o.disabled"
+      :title="o.title"
       @click="model = o.value"
     ><slot name="option" :option="o">{{ o.label }}</slot></button>
   </div>
