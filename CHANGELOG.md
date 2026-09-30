@@ -1,5 +1,11 @@
 # @vexoulz/ui
 
+## 0.12.0
+
+### Minor Changes
+
+- 8b3190c: `VxSiteSwitcher`: other sites open in a new tab (the current site still opens in place).
+
 ## 0.11.0
 
 ### Minor Changes
