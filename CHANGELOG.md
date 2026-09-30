@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.11.0
+
+### Minor Changes
+
+- d845641: `VxTabs`: when the tabs don't fit, the side with more fades out under an arrow button that scrolls the row, and the
+  chosen tab is kept in view. The component's root is now a `.vx-tabs-wrap` around the `.vx-tabs` tablist.
+
 ## 0.10.0
 
 ### Minor Changes
