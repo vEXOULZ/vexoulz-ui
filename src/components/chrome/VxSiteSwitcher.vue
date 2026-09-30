@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // "Which vexoulz site am I on / take me to another one". Used as the header brand and in the footer.
 // As the header brand, away from the home page the name is a link home and only the caret opens the menu; on the
-// home page (where "home" goes nowhere) the whole button opens it.
+// home page (where "home" goes nowhere) the whole button opens it. Other sites open in a new tab; the ↗ still marks
+// the off-network ones (the shop).
 import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref } from 'vue'
 import { switcherSites } from '../../sites'
 import type { SiteId } from '../../types'
@@ -80,7 +81,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
         :key="s.id"
         class="vx-site-item"
         :href="s.href"
-        :external="s.external"
+        :external="s.id !== current"
         :current="s.id === current"
         @click="close"
       >
