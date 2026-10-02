@@ -55,7 +55,7 @@ onScopeDispose(() => listen(false))
         v-if="shown"
         :id="id"
         :ref="(el) => place(el as HTMLElement | null)"
-        class="vx-tooltip-bubble is-fixed"
+        class="vx-tooltip-bubble vx-overlay is-fixed"
         :class="{ 'is-below': pos?.below }"
         :style="{
           left: `${pos?.left ?? 0}px`,

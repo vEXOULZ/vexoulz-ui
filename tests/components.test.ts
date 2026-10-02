@@ -195,6 +195,10 @@ describe('VxTooltip', () => {
     expect(b.classList.contains('is-below')).toBe(true)
     expect(b.style.top).toBe('42px')
   })
+
+  it('carries the overlay base (font, color) out in <body>', async () => {
+    expect((await hover({ left: 100, right: 200, top: 300 })).classList.contains('vx-overlay')).toBe(true)
+  })
 })
 
 describe('VxUptimeBar', () => {
