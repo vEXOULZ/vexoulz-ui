@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.13.1
+
+### Patch Changes
+
+- 4260085: VxTooltip's bubble takes the overlay base (`vx-overlay`) like the other overlays moved into `<body>`, so it's in
+  the site's font and color instead of the browser default.
+
 ## 0.13.0
 
 ### Minor Changes
