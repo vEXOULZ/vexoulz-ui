@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.14.0
+
+### Minor Changes
+
+- 2e3b73c: `NavItem` takes `external`: the header nav opens that link in a new tab and marks it with ↗, like the site switcher
+  does for sites off the network.
+
 ## 0.13.1
 
 ### Patch Changes
