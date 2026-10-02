@@ -8,6 +8,8 @@ export interface NavItem {
   href?: string
   /** Force the current-page style (RouterLink sets it automatically). */
   current?: boolean
+  /** Leaves the site: opens in a new tab and carries the ↗ offsite mark. */
+  external?: boolean
 }
 
 export type Tone = 'info' | 'ok' | 'warn' | 'error'

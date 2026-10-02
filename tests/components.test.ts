@@ -8,6 +8,7 @@ import VxStepper from '../src/components/controls/VxStepper.vue'
 import VxTable from '../src/components/data/VxTable.vue'
 import VxUptimeBar from '../src/components/data/VxUptimeBar.vue'
 import VxPopover from '../src/components/overlays/VxPopover.vue'
+import VxSiteHeader from '../src/components/chrome/VxSiteHeader.vue'
 import VxTooltip from '../src/components/overlays/VxTooltip.vue'
 import { useToast } from '../src/composables/useToast'
 
@@ -238,5 +239,18 @@ describe('VxUptimeBar', () => {
     expect(w.props('selected')).toBe(2)
     await buttons()[2]!.trigger('click')
     expect(w.props('selected')).toBe(null)
+  })
+})
+
+describe('VxSiteHeader', () => {
+  it('opens an external nav item in a new tab, marked ↗', () => {
+    const w = mount(VxSiteHeader, {
+      props: { site: 'vods', nav: [{ label: 'VODs', href: '/vods' }, { label: 'Live', href: 'https://twitch.tv/x', external: true }] },
+    })
+    const [vods, live] = w.get('.vx-head .vx-nav').findAll('a')
+    expect(vods!.attributes('target')).toBeUndefined()
+    expect(vods!.find('.vx-offsite').exists()).toBe(false)
+    expect(live!.attributes('target')).toBe('_blank')
+    expect(live!.get('.vx-offsite').text()).toBe('↗')
   })
 })

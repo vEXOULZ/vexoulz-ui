@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The one header every page uses: 48px, never wraps. Brand switcher, nav, spacer, page actions, account.
-// On narrow sites the nav moves to a scrollable sub-row (it's never hidden).
+// On narrow sites the nav moves to a scrollable sub-row (it's never hidden). An external item opens in a new tab with ↗.
 import type { NavItem, SiteId } from '../../types'
 import { useSite } from '../../composables/useSite'
 import VxLink from './VxLink.vue'
@@ -22,7 +22,8 @@ const current = () => props.site ?? injected.value
         :href="item.href"
         :class="{ 'is-current': item.current }"
         :aria-current="item.current ? 'page' : undefined"
-      >{{ item.label }}</VxLink>
+        :external="item.external"
+      >{{ item.label }}<span v-if="item.external" class="vx-offsite" aria-hidden="true">↗</span></VxLink>
     </nav>
     <span class="vx-head-spacer"></span>
     <div class="vx-head-actions">
@@ -38,6 +39,7 @@ const current = () => props.site ?? injected.value
       :href="item.href"
       :class="{ 'is-current': item.current }"
       :aria-current="item.current ? 'page' : undefined"
-    >{{ item.label }}</VxLink>
+      :external="item.external"
+    >{{ item.label }}<span v-if="item.external" class="vx-offsite" aria-hidden="true">↗</span></VxLink>
   </nav>
 </template>
