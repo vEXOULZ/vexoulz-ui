@@ -14,7 +14,7 @@ npm run dev         # http://localhost:5174  design lab (opens /design/deepfield
 npm test            # vitest
 npm run typecheck   # vue-tsc
 npm run build       # library → dist/ (index.js, style.css, types/)
-git config core.hooksPath .githooks   # once per clone: branch-name rules, see CONTRIBUTING.md
+git config core.hooksPath .conventions/githooks   # once per clone: branch-name rules, see CONTRIBUTING.md
 ```
 
 `main` is merge-only and branches follow [Conventional Branch](https://conventional-branch.github.io/)
@@ -115,8 +115,8 @@ Helpers are exported as well: `gameColor`, `twitchColor`, `pageRange`, `place` (
 3. Tag the merge on `main` and push: `git tag vX.Y.Z && git push --tags`.
 4. Sites bump `github:vEXOULZ/vexoulz-ui#vX.Y.Z` (Renovate opens those PRs).
 
-`.github/workflows/publish-site.yml` is a reusable workflow for the site repos: checks, build, then push the
-build to a `deploy` branch. It contains no hosting details.
+The sites publish with `publish-site.yml` from [vEXOULZ/conventions](https://github.com/vEXOULZ/conventions). The copy
+that used to live here is still served at the `v0.1.0` tag until every site has switched.
 
 ## Rules
 
