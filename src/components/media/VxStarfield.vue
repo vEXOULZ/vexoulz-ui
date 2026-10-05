@@ -10,7 +10,7 @@ const props = withDefaults(
     seed?: string
     options?: Partial<StarfieldOptions>
   }>(),
-  { seed: 'vexoulz.net', options: () => ({}) },
+  { seed: 'vexoul.net', options: () => ({}) },
 )
 
 const opts = computed<StarfieldOptions>(() => ({ ...STARFIELD_DEFAULTS, ...props.options }))

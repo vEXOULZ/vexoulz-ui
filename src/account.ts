@@ -1,4 +1,4 @@
-// `@vexoulz/ui/account`: the shared *.vexoulz.net sign-in, from a site's side.
+// `@vexoulz/ui/account`: the shared *.vexoul.net sign-in, from a site's side.
 //
 // vexoulz-auth holds one session for all the sites (a cookie on its own host, which the sites' credentialed
 // fetches carry). A site creates one Account with the service's base URL, installs it, and reads it anywhere

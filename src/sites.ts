@@ -19,12 +19,12 @@ export interface SiteInfo {
 }
 
 export const SITES = [
-  { id: 'root', host: 'vexoulz.net', what: 'links, socials, stream status', href: 'https://vexoulz.net', accent: '#d5e0ff', repo: 'vEXOULZ/rootvexoulznet' },
+  { id: 'root', host: 'vexoul.net', what: 'links, socials, stream status', href: 'https://vexoul.net', accent: '#d5e0ff', repo: 'vEXOULZ/rootvexoulznet' },
   // Vods green is kept apart from --vx-ok by being brighter and more saturated.
-  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoulz.net', accent: '#51ffa8', repo: 'vEXOULZ/vexoulz-vods' },
-  { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoulz.net', accent: '#c9b27c', repo: 'vEXOULZ/doomtp-web' },
+  { id: 'vods', host: 'vods.vexoul.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoul.net', accent: '#51ffa8', repo: 'vEXOULZ/vexoulz-vods' },
+  { id: 'dtp', host: 'dtp.vexoul.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoul.net', accent: '#c9b27c', repo: 'vEXOULZ/doomtp-web' },
   // Status lavender: clear of the green, yellow and red its pages are full of.
-  { id: 'status', host: 'status.vexoulz.net', what: 'service health, uptime', href: 'https://status.vexoulz.net', accent: '#b9a8ff', repo: 'vEXOULZ/vexoulz-status' },
+  { id: 'status', host: 'status.vexoul.net', what: 'service health, uptime', href: 'https://status.vexoul.net', accent: '#b9a8ff', repo: 'vEXOULZ/vexoulz-status' },
   { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', external: true },
 ] as const satisfies readonly SiteInfo[]
 

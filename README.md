@@ -1,6 +1,6 @@
 # vexoulz-ui
 
-Shared design for every `*.vexoulz.net` site ("Deep Field"). The repo holds two things:
+Shared design for every `*.vexoul.net` site ("Deep Field"). The repo holds two things:
 
 - **`@vexoulz/ui`** (`src/`): the library the sites use. Tokens, base styles and Vue 3 + TypeScript components,
   documented in Histoire.

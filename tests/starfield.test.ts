@@ -5,15 +5,15 @@ import { generateStars, STARFIELD_DEFAULTS } from '../src/utils/starfield'
 
 describe('starfield', () => {
   it('is deterministic per seed', () => {
-    const a = generateStars('vods.vexoulz.net', 800, 600, STARFIELD_DEFAULTS).stars
-    const b = generateStars('vods.vexoulz.net', 800, 600, STARFIELD_DEFAULTS).stars
-    const c = generateStars('dtp.vexoulz.net', 800, 600, STARFIELD_DEFAULTS).stars
+    const a = generateStars('vods.vexoul.net', 800, 600, STARFIELD_DEFAULTS).stars
+    const b = generateStars('vods.vexoul.net', 800, 600, STARFIELD_DEFAULTS).stars
+    const c = generateStars('dtp.vexoul.net', 800, 600, STARFIELD_DEFAULTS).stars
     expect(a).toEqual(b)
     expect(a).not.toEqual(c)
   })
 
   it('hits the density target inside the area', () => {
-    const { stars } = generateStars('vexoulz.net', 1000, 1000, STARFIELD_DEFAULTS)
+    const { stars } = generateStars('vexoul.net', 1000, 1000, STARFIELD_DEFAULTS)
     expect(stars).toHaveLength(Math.round((STARFIELD_DEFAULTS.density * 1000 * 1000) / 10000))
     for (const s of stars) {
       expect(s.x).toBeGreaterThanOrEqual(0)
