@@ -8,7 +8,7 @@ export interface SiteInfo {
   /** One line for the switcher. */
   what: string
   href: string
-  /** The site's accent colour. Sites built on this library have one; links elsewhere (the shop) don't. */
+  /** The site's accent colour. Every site built on this library has one; an outside link (the shop) may. */
   accent?: string
   /** Hosted somewhere else: opens as an outside link. */
   external?: boolean
@@ -25,12 +25,15 @@ export const SITES = [
   { id: 'dtp', host: 'dtp.vexoul.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoul.net', accent: '#c9b27c', repo: 'vEXOULZ/doomtp-web' },
   // Status lavender: clear of the green, yellow and red its pages are full of.
   { id: 'status', host: 'status.vexoul.net', what: 'service health, uptime', href: 'https://status.vexoul.net', accent: '#b9a8ff', repo: 'vEXOULZ/vexoulz-status' },
-  { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', external: true },
+  // Shop salmon: dtp's tan turned toward red, so the two read as kin without being mistaken for each other.
+  { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', accent: '#cb8c7c', external: true },
 ] as const satisfies readonly SiteInfo[]
 
 type Site = (typeof SITES)[number]
-/** A site built on this library: every entry with an accent. */
-export type SiteId = Extract<Site, { accent: string }>['id']
+/** Every entry with an accent: its `--vx-accent-<id>` and `.vx-accent-<id>` exist. */
+export type AccentSiteId = Extract<Site, { accent: string }>['id']
+/** A site built on this library: every entry with an accent that is not an outside link. */
+export type SiteId = Exclude<Extract<Site, { accent: string }>, { external: true }>['id']
 /** Any entry in the network, including outside links. */
 export type NetworkSiteId = Site['id']
 

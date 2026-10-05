@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { SITES, ensureSiteAccents, siteAccentCss, siteInfo, switcherSites } from '../src/sites'
+import { SITES, ensureSiteAccents, siteAccentCss, siteInfo, switcherSites, type SiteInfo } from '../src/sites'
 
 describe('the site list', () => {
   it('leaves hidden sites out of the switcher, except on themselves', () => {
@@ -10,8 +10,9 @@ describe('the site list', () => {
 
   it('generates every accent rule from the list', () => {
     const css = siteAccentCss()
-    for (const s of SITES) {
-      if ('accent' in s) {
+    // Widened: while every entry has an accent, the narrowed type makes the else branch `never`.
+    for (const s of SITES as readonly SiteInfo[]) {
+      if (s.accent) {
         expect(css).toContain(`--vx-accent-${s.id}: ${s.accent};`)
         expect(css).toContain(`[data-site='${s.id}'] { --vx-accent: var(--vx-accent-${s.id}); }`)
         expect(css).toContain(`.vx-accent-${s.id} {`)

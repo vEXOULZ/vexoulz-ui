@@ -1,4 +1,4 @@
-export { SITES, ensureSiteAccents, siteAccentCss, siteInfo, switcherSites, type NetworkSite, type NetworkSiteId, type SiteId, type SiteInfo } from './sites'
+export { SITES, ensureSiteAccents, siteAccentCss, siteInfo, switcherSites, type AccentSiteId, type NetworkSite, type NetworkSiteId, type SiteId, type SiteInfo } from './sites'
 
 export interface NavItem {
   label: string
