@@ -1,5 +1,11 @@
 # @vexoulz/ui
 
+## 0.16.1
+
+### Patch Changes
+
+- eab3273: The shop moves to `shop.vexoul.net`: its `SITES` host and link now use it.
+
 ## 0.16.0
 
 ### Minor Changes
