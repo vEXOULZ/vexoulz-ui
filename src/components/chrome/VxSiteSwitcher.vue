@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// "Which vexoulz site am I on / take me to another one". Used as the header brand and in the footer.
+// "Which vexoul.net site am I on / take me to another one". Used as the header brand and in the footer.
 // As the header brand, away from the home page the name is a link home and only the caret opens the menu; on the
 // home page (where "home" goes nowhere) the whole button opens it. Other sites open in a new tab; the ↗ still marks
 // the off-network ones (the shop).
@@ -44,7 +44,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
   <VxPopover :prefer="up ? 'up' : 'down'" width="290px">
     <template #trigger="{ toggle, open }">
       <span v-if="linksHome" class="vx-switcher-split" :class="{ 'is-open': open }">
-        <VxLink :to="home" class="vx-switcher-trigger is-brand vx-switcher-home" :aria-label="`${current === 'root' ? 'vexoulz' : current + '.vexoulz'} home`">
+        <VxLink :to="home" class="vx-switcher-trigger is-brand vx-switcher-home" :aria-label="`${current === 'root' ? 'vexoul.net' : current + '.vexoul.net'} home`">
           <slot name="mark"><VxPlaceholder label="mark" :w="22" :h="22" /></slot>
           <VxLockup :site="current" />
         </VxLink>
@@ -53,7 +53,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
           class="vx-switcher-trigger vx-switcher-caret"
           :aria-expanded="open"
           aria-haspopup="menu"
-          aria-label="vexoulz sites"
+          aria-label="vexoul.net sites"
           @click="toggle"
         >
           <span class="vx-caret" aria-hidden="true">{{ up ? '▴' : '▾' }}</span>
@@ -66,7 +66,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
         :class="{ 'is-brand': brand }"
         :aria-expanded="open"
         aria-haspopup="menu"
-        aria-label="vexoulz sites"
+        aria-label="vexoul.net sites"
         @click="toggle"
       >
         <slot name="mark"><VxPlaceholder v-if="brand" label="mark" :w="22" :h="22" /></slot>
@@ -75,7 +75,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
       </button>
     </template>
     <template #default="{ close }">
-      <VxMenuLabel>vexoulz network</VxMenuLabel>
+      <VxMenuLabel>vexoul.net network</VxMenuLabel>
       <VxMenuItem
         v-for="s in switcherSites(current)"
         :key="s.id"

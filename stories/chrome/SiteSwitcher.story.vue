@@ -25,7 +25,7 @@ import StoryFrame from '../StoryFrame.vue'
           <VxLockup site="root" />
           <VxLockup site="vods" />
           <VxLockup site="dtp" />
-          <VxLockup site="vods" net />
+          <VxLockup site="vods" :net="false" />
         </div>
       </StoryFrame>
     </Variant>
