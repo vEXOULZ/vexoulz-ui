@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.15.0
+
+### Minor Changes
+
+- 06f5ef9: The sites move to `vexoul.net`: `SITES` hosts and links, the account menu note and the starfield's default seed now
+  use it. The shop keeps its own domain.
+
 ## 0.14.0
 
 ### Minor Changes
