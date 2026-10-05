@@ -17,7 +17,7 @@ const sites = [
   { id: 'root', host: 'vexoul.net', what: 'links, socials, stream status' },
   { id: 'vods', host: 'vods.vexoul.net', what: 'past broadcasts + chat replay' },
   { id: 'dtp', host: 'dtp.vexoul.net', what: 'chat bot, commands, docs' },
-  { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', external: true },
+  { id: 'shop', host: 'shop.vexoul.net', what: 'merch', external: true },
 ]
 
 const open = ref(false)
