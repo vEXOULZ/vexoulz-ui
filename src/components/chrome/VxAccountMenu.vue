@@ -17,7 +17,7 @@ const props = withDefaults(
     disabled?: boolean
     note?: string
   }>(),
-  { user: null, disabled: false, note: 'signed in on all *.vexoulz.net' },
+  { user: null, disabled: false, note: 'signed in on all *.vexoul.net' },
 )
 const emit = defineEmits<{ signIn: []; signOut: [] }>()
 const nameColor = computed(() => (props.user ? twitchColor(props.user.name, props.user.color) : undefined))

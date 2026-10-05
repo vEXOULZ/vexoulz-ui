@@ -3,7 +3,7 @@
   "version": "0.14.0",
   "private": true,
   "type": "module",
-  "description": "Shared design for *.vexoulz.net: tokens, Vue components and the design lab",
+  "description": "Shared design for *.vexoul.net: tokens, Vue components and the design lab",
   "repository": "github:vEXOULZ/vexoulz-ui",
   "sideEffects": [
     "*.css"

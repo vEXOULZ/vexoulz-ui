@@ -12,7 +12,7 @@ const chapters = [
   { name: 'DOOM Eternal', start: 14400, end: 25200 },
   { name: 'Hollow Knight', start: 25200, end: 33000 },
 ]
-const sky = reactive({ seed: 'vexoulz.net', options: { density: 3.2, meteors: true, pointer: true, band: false } as Partial<StarfieldOptions> })
+const sky = reactive({ seed: 'vexoul.net', options: { density: 3.2, meteors: true, pointer: true, band: false } as Partial<StarfieldOptions> })
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const sky = reactive({ seed: 'vexoulz.net', options: { density: 3.2, meteors: tr
         <VxStarfield :seed="sky.seed" :options="sky.options" />
       </StoryFrame>
       <template #controls>
-        <HstSelect v-model="sky.seed" title="Seed" :options="['vexoulz.net', 'vods.vexoulz.net', 'dtp.vexoulz.net']" />
+        <HstSelect v-model="sky.seed" title="Seed" :options="['vexoul.net', 'vods.vexoul.net', 'dtp.vexoul.net']" />
         <HstSlider v-model="sky.options.density" title="Density" :min="0.4" :max="8" :step="0.2" />
         <HstCheckbox v-model="sky.options.meteors" title="Meteors" />
         <HstCheckbox v-model="sky.options.pointer" title="Pointer parallax" />

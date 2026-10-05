@@ -1,4 +1,4 @@
-// @vexoulz/ui: Deep Field components for the *.vexoulz.net sites.
+// @vexoulz/ui: Deep Field components for the *.vexoul.net sites.
 // Styles are extracted to dist/style.css (the JS doesn't load them). In the site's entry:
 //   import '@vexoulz/ui/fonts.css'
 //   import '@vexoulz/ui/style.css'

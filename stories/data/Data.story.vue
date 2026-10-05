@@ -27,7 +27,7 @@ const checks = (n: number, bad: (i: number) => Health | null): UptimeTick[] =>
     return { status, label: status === 'down' ? `${time} · 502 · timed out` : `${time} · 200 · ${18 + ((i * 7) % 11)} ms` }
   })
 const services = [
-  { name: 'vexoulz.net', ticks: checks(50, () => null) },
+  { name: 'vexoul.net', ticks: checks(50, () => null) },
   { name: 'vods', ticks: checks(50, (i) => (i >= 31 && i <= 34 ? 'down' : i === 40 ? 'warn' : null)) },
   { name: 'dtp', ticks: checks(20, (i) => (i === 19 ? 'down' : null)) },
 ]

@@ -28,6 +28,6 @@ describe('the site list', () => {
   })
 
   it('finds a site by id', () => {
-    expect(siteInfo('vods').host).toBe('vods.vexoulz.net')
+    expect(siteInfo('vods').host).toBe('vods.vexoul.net')
   })
 })
