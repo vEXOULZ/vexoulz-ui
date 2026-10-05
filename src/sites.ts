@@ -26,7 +26,7 @@ export const SITES = [
   // Status lavender: clear of the green, yellow and red its pages are full of.
   { id: 'status', host: 'status.vexoul.net', what: 'service health, uptime', href: 'https://status.vexoul.net', accent: '#b9a8ff', repo: 'vEXOULZ/vexoulz-status' },
   // Shop salmon: dtp's tan turned toward red, so the two read as kin without being mistaken for each other.
-  { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', href: 'https://shop.vexoulz.net', accent: '#cb8c7c', external: true },
+  { id: 'shop', host: 'shop.vexoul.net', what: 'merch', href: 'https://shop.vexoul.net', accent: '#cb8c7c', external: true },
 ] as const satisfies readonly SiteInfo[]
 
 type Site = (typeof SITES)[number]

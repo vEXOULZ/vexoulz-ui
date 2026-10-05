@@ -14,12 +14,12 @@ const groups = [
     { name: 'DTP bot', handle: 'dtp.vexoul.net', site: 'dtp' },
   ] },
   { title: 'Socials', links: [
-    { name: 'Bluesky', handle: '@vexoulz.net' },
+    { name: 'Bluesky', handle: '@luna.vexoul.net' },
     { name: 'Discord', handle: 'vEXcord server' },
     { name: 'Steam', handle: 'steam/vexoulz' },
   ] },
   { title: 'Money', links: [
-    { name: 'Merch shop', handle: 'shop.vexoulz.net' },
+    { name: 'Merch shop', handle: 'shop.vexoul.net' },
     { name: 'Throne', handle: 'throne/vexoulz' },
   ] },
 ]
