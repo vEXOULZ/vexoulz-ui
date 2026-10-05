@@ -14,13 +14,13 @@ import DF4DtpExplain from './DF4DtpExplain.vue'
 import DF4Kit from './DF4Kit.vue'
 
 const pages = [
-  { id: 'root', host: 'vexoulz.net', comp: DFRoot },
-  { id: 'vods', host: 'vods.vexoulz.net', comp: DF4Vods },
-  { id: 'watch', host: 'vods.vexoulz.net/vods/2211', comp: DF4Watch, fill: true },
-  { id: 'dtp', host: 'dtp.vexoulz.net', comp: DFDtp },
-  { id: 'admin', host: 'dtp.vexoulz.net/c/vexoulz/admin', comp: DF4DtpAdmin },
-  { id: 'explain', host: 'dtp.vexoulz.net/explain', comp: DF4DtpExplain },
-  { id: 'kit', host: 'ui.vexoulz.net (Histoire, dev only)', comp: DF4Kit },
+  { id: 'root', host: 'vexoul.net', comp: DFRoot },
+  { id: 'vods', host: 'vods.vexoul.net', comp: DF4Vods },
+  { id: 'watch', host: 'vods.vexoul.net/vods/2211', comp: DF4Watch, fill: true },
+  { id: 'dtp', host: 'dtp.vexoul.net', comp: DFDtp },
+  { id: 'admin', host: 'dtp.vexoul.net/c/vexoulz/admin', comp: DF4DtpAdmin },
+  { id: 'explain', host: 'dtp.vexoul.net/explain', comp: DF4DtpExplain },
+  { id: 'kit', host: 'ui.vexoul.net (Histoire, dev only)', comp: DF4Kit },
 ]
 
 // Your picks
@@ -135,7 +135,7 @@ onUnmounted(() => {
         <label>Chapter bar <Seg v-model="opts.chapterBar" :options="[[true, 'on'], [false, 'off']]" /></label>
         <label>Sky on watch page <Seg v-model="opts.watchSky" :options="['off', 'dim', 'full']" /></label>
         <label>Site switcher <Seg v-model="opts.switcher" :options="[['footer', 'footer'], ['header', 'header'], ['both', 'both']]" /></label>
-        <label><span>Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoulz'], ['dotnet', 'vods.vexoulz.net']]" /></label>
+        <label><span>Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoulz'], ['dotnet', 'vods.vexoul.net']]" /></label>
         <label><span>Watch timeline</span> <Seg v-model="opts.timeline" :options="[['color', 'all parts, coloured'], ['mono', 'all parts, plain'], ['off', 'YouTube only']]" /></label>
         <label><span>Player controls</span> <Seg v-model="opts.ytControls" :options="[['native', 'YouTube native'], ['custom', 'ours (YT hidden)']]" /></label>
         <label><span>Resume on cards</span> <Seg v-model="opts.resume" :options="[[true, 'on'], [false, 'off']]" /></label>

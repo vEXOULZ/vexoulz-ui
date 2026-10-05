@@ -1,5 +1,5 @@
 <script setup>
-// Shared header/footer + sky for every *.vexoulz.net page in the Deep Field lab.
+// Shared header/footer + sky for every *.vexoul.net page in the Deep Field lab.
 import { computed, inject } from 'vue'
 import Ph from '../Ph.vue'
 import Starfield from './Starfield.vue'
@@ -18,9 +18,9 @@ const props = defineProps({
 
 const opts = inject('dfOpts')
 const stars = computed(() => opts.value.stars)
-const hosts = { root: 'vexoulz.net', vods: 'vods.vexoulz.net', dtp: 'dtp.vexoulz.net' }
+const hosts = { root: 'vexoul.net', vods: 'vods.vexoul.net', dtp: 'dtp.vexoul.net' }
 // Seeded by the hostname, so each subdomain always gets the same sky
-const seed = computed(() => (stars.value.perSite ? hosts[props.site] : 'vexoulz.net'))
+const seed = computed(() => (stars.value.perSite ? hosts[props.site] : 'vexoul.net'))
 // v2 lab: opts.switcher = footer | header | both; older labs leave it unset and keep plain footer links
 const switchIn = (where) => opts.value.switcher === where || opts.value.switcher === 'both'
 // v4 lab provides dfV4: fixed-height header, compact sign-in, nav moves to a sub-row on phones
@@ -62,7 +62,7 @@ const skyOpacity = computed(() => (props.sky === 'dim' ? 0.35 : 1))
     <footer v-if="!fill" class="df-foot" style="align-items: center">
       <SiteSwitcher v-if="switchIn('footer')" :current="site" :format="opts.brand" up />
       <template v-else>
-        <a href="#" class="accent-root">vexoulz.net</a>
+        <a href="#" class="accent-root">vexoul.net</a>
         <a href="#" class="accent-vods">vods</a>
         <a href="#" class="accent-dtp">dtp</a>
       </template>

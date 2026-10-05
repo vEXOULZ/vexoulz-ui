@@ -9,13 +9,13 @@ const opts = inject('dfOpts')
 const groups = [
   { title: 'Stream', links: [
     { name: 'Twitch', handle: 'ttv/vexoulz' },
-    { name: 'Vods', handle: 'vods.vexoulz.net', site: 'vods' },
+    { name: 'Vods', handle: 'vods.vexoul.net', site: 'vods' },
     { name: 'TikTok', handle: 'tiktok/@vexoulz' },
     { name: 'YouTube', handle: 'yt/@vexoulz' },
   ] },
   { title: 'Dev', links: [
     { name: 'GitHub', handle: 'github/vEXOULZ' },
-    { name: 'DTP bot', handle: 'dtp.vexoulz.net', site: 'dtp' },
+    { name: 'DTP bot', handle: 'dtp.vexoul.net', site: 'dtp' },
   ] },
   { title: 'Socials', links: [
     { name: 'Bluesky', handle: '@vexoulz.net' },

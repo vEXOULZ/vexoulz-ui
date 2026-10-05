@@ -1,5 +1,5 @@
 <script setup>
-// Local-only design lab: the same three *.vexoulz.net mocks rendered under each design direction.
+// Local-only design lab: the same three *.vexoul.net mocks rendered under each design direction.
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import './lab.css'
 import { directions, sites } from './directions.js'

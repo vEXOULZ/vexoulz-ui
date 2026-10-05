@@ -7,10 +7,10 @@ with no built-in look, so a friend can run their own vods site with their own de
 github.com/vEXOULZ/
 ├─ vexoulz-ui            design system: tokens, fonts, Vue components, Histoire docs     → @vexoulz/ui
 ├─ vods-core             headless VOD engine: API client, time math, chat sync, loaders  → @vexoulz/vods-core
-├─ vexoulz-auth          auth.vexoulz.net (Twitch OAuth → session) + tiny client          → @vexoulz/auth-client
-├─ vexoulz-root          vexoulz.net           (this repo, Vue + Vite)
-├─ vexoulz-vods          vods.vexoulz.net      (Vue, rewrite of Archive-React-Vex)
-├─ dtp-web               dtp.vexoulz.net       (Vue, talks to the doomtp-bot API)
+├─ vexoulz-auth          auth.vexoul.net (Twitch OAuth → session) + tiny client          → @vexoulz/auth-client
+├─ vexoulz-root          vexoul.net           (this repo, Vue + Vite)
+├─ vexoulz-vods          vods.vexoul.net      (Vue, rewrite of Archive-React-Vex)
+├─ dtp-web               dtp.vexoul.net       (Vue, talks to the doomtp-bot API)
 ├─ doomtp-bot            the bot + its HTTP API (FastAPI; Jinja pages go away over time)
 └─ (friend)/their-vods   friend's own repo: vods-core + their own components/theme
 ```
@@ -92,9 +92,9 @@ engine, not the look, which is exactly why the engine can't live inside a site r
 
 ## 4. Auth (`vexoulz-auth`)
 
-- `auth.vexoulz.net` runs the Twitch OAuth dance and knows **who** you are. It never decides what you may do.
+- `auth.vexoul.net` runs the Twitch OAuth dance and knows **who** you are. It never decides what you may do.
 - Each site gets its own host-only session through a redirect: site → auth → back with a one-time code → the
-  site's backend swaps it for its session. There's no shared `.vexoulz.net` cookie, which keeps shop (third-party
+  site's backend swaps it for its session. There's no shared `.vexoul.net` cookie, which keeps shop (third-party
   host) and any friend instance out of it.
 - `@vexoulz/auth-client`: `login()`, `logout({ everywhere })`, `useUser()`, plus the `AccountMenu`
   wiring. CSRF on state-changing requests; CORS with credentials only for the known subdomains.

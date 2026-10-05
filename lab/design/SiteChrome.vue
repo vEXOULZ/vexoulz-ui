@@ -1,5 +1,5 @@
 <script setup>
-// Header + footer shared by every *.vexoulz.net site: same brand lockup, only the accent and nav change.
+// Header + footer shared by every *.vexoul.net site: same brand lockup, only the accent and nav change.
 import Ph from './Ph.vue'
 
 defineProps({
@@ -27,7 +27,7 @@ defineProps({
       <slot></slot>
     </main>
     <footer class="site-foot">
-      <a href="#" class="accent-root">vexoulz.net</a>
+      <a href="#" class="accent-root">vexoul.net</a>
       <a href="#" class="accent-vods">vods</a>
       <a href="#" class="accent-dtp">dtp</a>
       <span class="spacer" style="flex: 1"></span>

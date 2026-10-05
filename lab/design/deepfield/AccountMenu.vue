@@ -1,5 +1,5 @@
 <script setup>
-// One Twitch login shared by every *.vexoulz.net site: same button, same menu, everywhere.
+// One Twitch login shared by every *.vexoul.net site: same button, same menu, everywhere.
 import { inject, onMounted, onUnmounted, ref } from 'vue'
 import Ph from '../Ph.vue'
 import { twitchColor } from './data.js'
@@ -29,7 +29,7 @@ onUnmounted(() => document.removeEventListener('pointerdown', close))
           <Ph label="pfp" :w="36" :h="36" round />
           <div>
             <div class="name" :style="{ color: twitchColor('vexoulz', opts.chatColors || 'readable') }">vexoulz</div>
-            <div class="muted small mono">signed in on all *.vexoulz.net</div>
+            <div class="muted small mono">signed in on all *.vexoul.net</div>
           </div>
         </div>
         <div class="eyebrow sec">vods</div>
