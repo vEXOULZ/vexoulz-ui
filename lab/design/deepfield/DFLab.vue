@@ -10,10 +10,10 @@ import DFWatch from './DFWatch.vue'
 import DFDtp from './DFDtp.vue'
 
 const pages = [
-  { id: 'root', host: 'vexoulz.net', comp: DFRoot },
-  { id: 'vods', host: 'vods.vexoulz.net', comp: DFVods },
-  { id: 'watch', host: 'vods.vexoulz.net/vods/2211', comp: DFWatch, fill: true },
-  { id: 'dtp', host: 'dtp.vexoulz.net', comp: DFDtp },
+  { id: 'root', host: 'vexoul.net', comp: DFRoot },
+  { id: 'vods', host: 'vods.vexoul.net', comp: DFVods },
+  { id: 'watch', host: 'vods.vexoul.net/vods/2211', comp: DFWatch, fill: true },
+  { id: 'dtp', host: 'dtp.vexoul.net', comp: DFDtp },
 ]
 
 const clone = (o) => JSON.parse(JSON.stringify(o))

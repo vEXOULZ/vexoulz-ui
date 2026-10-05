@@ -4,7 +4,7 @@ export const directions = [
   {
     id: 'deepfield',
     name: 'Deep Field',
-    pitch: 'Evolve what vexoulz.net already is: black sky, starfield, monospace, grey-to-white gradient headings. Each subdomain gets one star colour as its accent.',
+    pitch: 'Evolve what vexoul.net already is: black sky, starfield, monospace, grey-to-white gradient headings. Each subdomain gets one star colour as its accent.',
     type: 'JetBrains Mono for everything',
     light: false,
     pros: ['Closest to the current root, least migration', 'Strong, recognisable identity', 'Monospace suits the bot docs and code blocks'],
@@ -40,7 +40,7 @@ export const directions = [
 ]
 
 export const sites = [
-  { id: 'root', host: 'vexoulz.net', label: 'root' },
-  { id: 'vods', host: 'vods.vexoulz.net', label: 'vods' },
-  { id: 'dtp', host: 'dtp.vexoulz.net', label: 'dtp' },
+  { id: 'root', host: 'vexoul.net', label: 'root' },
+  { id: 'vods', host: 'vods.vexoul.net', label: 'vods' },
+  { id: 'dtp', host: 'dtp.vexoul.net', label: 'dtp' },
 ]

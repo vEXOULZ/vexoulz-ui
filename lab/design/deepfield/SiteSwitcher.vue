@@ -9,14 +9,14 @@ const props = defineProps({
   up: { type: Boolean, default: false }, // open above the button (footer)
   brand: { type: Boolean, default: false }, // render as the header brand lockup
   sub: { type: String, default: '' },
-  // v3: 'dot' = vods.vexoulz, 'dotnet' = vods.vexoulz.net, header and footer rendered the same way; unset = v2 look
+  // v3: 'dot' = vods.vexoulz, 'dotnet' = vods.vexoul.net, header and footer rendered the same way; unset = v2 look
   format: { type: String, default: null },
 })
 
 const sites = [
-  { id: 'root', host: 'vexoulz.net', what: 'links, socials, stream status' },
-  { id: 'vods', host: 'vods.vexoulz.net', what: 'past broadcasts + chat replay' },
-  { id: 'dtp', host: 'dtp.vexoulz.net', what: 'chat bot, commands, docs' },
+  { id: 'root', host: 'vexoul.net', what: 'links, socials, stream status' },
+  { id: 'vods', host: 'vods.vexoul.net', what: 'past broadcasts + chat replay' },
+  { id: 'dtp', host: 'dtp.vexoul.net', what: 'chat bot, commands, docs' },
   { id: 'shop', host: 'shop.vexoulz.net', what: 'merch', external: true },
 ]
 

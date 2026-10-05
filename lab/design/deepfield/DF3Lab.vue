@@ -10,10 +10,10 @@ import DF3Watch from './DF3Watch.vue'
 import DFDtp from './DFDtp.vue'
 
 const pages = [
-  { id: 'root', host: 'vexoulz.net', comp: DFRoot },
-  { id: 'vods', host: 'vods.vexoulz.net', comp: DFVods },
-  { id: 'watch', host: 'vods.vexoulz.net/vods/2211', comp: DF3Watch, fill: true },
-  { id: 'dtp', host: 'dtp.vexoulz.net', comp: DFDtp },
+  { id: 'root', host: 'vexoul.net', comp: DFRoot },
+  { id: 'vods', host: 'vods.vexoul.net', comp: DFVods },
+  { id: 'watch', host: 'vods.vexoul.net/vods/2211', comp: DF3Watch, fill: true },
+  { id: 'dtp', host: 'dtp.vexoul.net', comp: DFDtp },
 ]
 
 // Your picks
@@ -119,7 +119,7 @@ onUnmounted(() => {
         <label>Chapter bar <Seg v-model="opts.chapterBar" :options="[[true, 'on'], [false, 'off']]" /></label>
         <label>Sky on watch page <Seg v-model="opts.watchSky" :options="['off', 'dim', 'full']" /></label>
         <label>Site switcher <Seg v-model="opts.switcher" :options="[['footer', 'footer'], ['header', 'header'], ['both', 'both']]" /></label>
-        <label><span><span class="new">new</span> Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoulz'], ['dotnet', 'vods.vexoulz.net']]" /></label>
+        <label><span><span class="new">new</span> Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoulz'], ['dotnet', 'vods.vexoul.net']]" /></label>
         <label><span><span class="new">new</span> Watch timeline</span> <Seg v-model="opts.timeline" :options="[['color', 'all parts, coloured'], ['mono', 'all parts, plain'], ['off', 'YouTube only']]" /></label>
         <label><span><span class="new">new</span> Player controls</span> <Seg v-model="opts.ytControls" :options="[['native', 'YouTube native'], ['custom', 'ours (YT hidden)']]" /></label>
         <label><span><span class="new">new</span> Resume on cards</span> <Seg v-model="opts.resume" :options="[[true, 'on'], [false, 'off']]" /></label>

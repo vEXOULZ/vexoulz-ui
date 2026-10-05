@@ -1,4 +1,4 @@
-# Implementation plan: *.vexoulz.net on the Deep Field design
+# Implementation plan: *.vexoul.net on the Deep Field design
 
 ## Context
 The three sites don't share a look or a stack: root is Vue 3 and JS, vods is React CRA + MUI, and dtp is FastAPI + Jinja with inline CSS. We designed a shared look ("Deep Field") in the lab, and it now lives in this repo (`vexoulz-ui`) (lab v4 plus UI kit). This plan turns the lab into real code: one shared design package, a headless vods engine, and three Vue + TypeScript sites that deploy separately. Your answers: **TypeScript**; **accounts in a later phase**, so watch progress lives in the browser until then; **a separate `dtp-web` repo**; **packages installed from git tags**.
@@ -62,7 +62,7 @@ What the codebase surveys found:
 - Renovate config in every repo: it watches the vexoulz-ui and vods-core tags.
 - **In homelab-docs (private):** a pull-based deploy that fetches each site's `deploy` branch and switches releases atomically with rollback, following the pull model already used for the backends. Plus the proxy vhosts and runbooks.
 
-## Phase 1: vexoulz.net (root) on vexoulz-ui
+## Phase 1: vexoul.net (root) on vexoulz-ui
 **Repo:** `rootvexoulznet`, converted to TypeScript. Pages:
 - **Landing:** link groups from `Landing.vue`, with the same links. Fix the Discord link: the working tree has `http://`, HEAD has `https://`.
 - **Live/offline card:** use archive-api `/streams` if it reflects the live state. Otherwise add a small cached `GET /live` to archive-api (Helix streams).
@@ -93,7 +93,7 @@ New repo `vods-core`. Modules (sources in Archive-React-Vex, with the model from
   - Filter to query-string output, as snapshots against Feathers syntax.
   - Comment paging.
 
-## Phase 3: vods.vexoulz.net (vexoulz-vods)
+## Phase 3: vods.vexoul.net (vexoulz-vods)
 New repo `vexoulz-vods` (Vue 3 + TypeScript + vue-router + vexoulz-ui + vods-core). Replaces Archive-React-Vex.
 - **Routes:**
   - `/` and `/vods`: list with filter chips, date range, title search (the search icon on mobile), `?page=` plus "load more", and resume chips from `LocalProgressStore`.
@@ -111,7 +111,7 @@ New repo `vexoulz-vods` (Vue 3 + TypeScript + vue-router + vexoulz-ui + vods-cor
   - Switching the vods site from the old build to the new one, keeping `/backend/*` unchanged, is a homelab-docs runbook with a rollback step.
   - Archive the Archive-React-Vex repo afterwards.
 
-## Phase 4: dtp.vexoulz.net (dtp-web + doomtp-bot API gaps)
+## Phase 4: dtp.vexoul.net (dtp-web + doomtp-bot API gaps)
 **doomtp-bot changes (backend only):**
 - **New JSON endpoints:**
   - `GET /api/v1/session`: who am I, plus the CSRF token.
@@ -143,10 +143,10 @@ New repo `vexoulz-vods` (Vue 3 + TypeScript + vue-router + vexoulz-ui + vods-cor
   - The actual vhost, tunnel entry and the bot's `PUBLIC_BASE_URL` value go in homelab-docs.
 - **Retire Jinja:** once the pages match, set `PUBLIC_WEB_UI=false` (keep `/auth/*` for the bot-account and channel-connect OAuth), then delete the templates in a later bot release.
 
-## Phase 5: Accounts (auth.vexoulz.net)
+## Phase 5: Accounts (auth.vexoul.net)
 - **New service `vexoulz-auth`** (Python FastAPI, matching the other backends):
   - Twitch OAuth for identity only.
-  - Per-site host-only sessions through a redirect and a one-time code, with no `.vexoulz.net` cookie (keeps shop and friend instances out).
+  - Per-site host-only sessions through a redirect and a one-time code, with no `.vexoul.net` cookie (keeps shop and friend instances out).
   - "Sign out everywhere" and CSRF.
 - **User-data API:** `GET` and `PUT /progress/{vodId}` plus a list, stored in its own Postgres database.
 - **Clients:**
