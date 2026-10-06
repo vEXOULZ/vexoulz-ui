@@ -10,6 +10,7 @@ export { default as VxSiteHeader } from './components/chrome/VxSiteHeader.vue'
 export { default as VxSiteFooter } from './components/chrome/VxSiteFooter.vue'
 export { default as VxSiteSwitcher } from './components/chrome/VxSiteSwitcher.vue'
 export { default as VxLockup } from './components/chrome/VxLockup.vue'
+export { default as VxMark } from './components/chrome/VxMark.vue'
 export { default as VxAccountMenu } from './components/chrome/VxAccountMenu.vue'
 export { default as VxLink } from './components/chrome/VxLink.vue'
 
@@ -54,6 +55,7 @@ export { default as VxKbd } from './components/data/VxKbd.vue'
 
 // Media
 export { default as VxPlaceholder } from './components/media/VxPlaceholder.vue'
+export { default as VxNoThumbnail } from './components/media/VxNoThumbnail.vue'
 export { default as VxStarfield } from './components/media/VxStarfield.vue'
 export { default as VxPosters } from './components/media/VxPosters.vue'
 export { default as VxChapterBar } from './components/media/VxChapterBar.vue'

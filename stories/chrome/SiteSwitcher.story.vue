@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VxLockup, VxSiteSwitcher } from '../../src'
+import { VxLockup, VxMark, VxSiteSwitcher } from '../../src'
 import StoryFrame from '../StoryFrame.vue'
 </script>
 
@@ -17,6 +17,18 @@ import StoryFrame from '../StoryFrame.vue'
       <!-- home points elsewhere so the story page counts as a subpage: the name links home, the caret opens the menu. -->
       <StoryFrame site="dtp" height="420px">
         <VxSiteSwitcher current="dtp" brand home="/somewhere-else" />
+      </StoryFrame>
+    </Variant>
+    <Variant title="Mark">
+      <!-- currentColor: it takes the colour it sits in. -->
+      <StoryFrame>
+        <div class="story-row" style="align-items: end">
+          <VxMark :size="16" />
+          <VxMark />
+          <VxMark :size="48" style="color: var(--vx-accent-vods)" />
+          <VxMark :size="64" style="color: var(--vx-accent-dtp)" />
+          <VxMark :size="96" style="color: var(--vx-accent-status)" label="vexoul.net" />
+        </div>
       </StoryFrame>
     </Variant>
     <Variant title="Lockups">
