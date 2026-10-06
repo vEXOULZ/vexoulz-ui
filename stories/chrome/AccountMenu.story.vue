@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VxAccountMenu, VxChip, VxMenuItem, VxMenuLabel } from '../../src'
+import { VxAccountMenu, VxChip, VxTwitchGlyph, VxMenuItem, VxMenuLabel } from '../../src'
 import StoryFrame from '../StoryFrame.vue'
 </script>
 
@@ -23,6 +23,16 @@ import StoryFrame from '../StoryFrame.vue'
               <VxMenuItem @click="close">Channel admin<template #trail><VxChip tone="accent">broadcaster</VxChip></template></VxMenuItem>
             </template>
           </VxAccountMenu>
+        </div>
+      </StoryFrame>
+    </Variant>
+    <Variant title="Twitch glyph">
+      <!-- currentColor, one colour as Twitch's brand rules ask. -->
+      <StoryFrame>
+        <div class="story-row" style="align-items: end">
+          <VxTwitchGlyph />
+          <VxTwitchGlyph :size="24" style="color: #9146ff" />
+          <VxTwitchGlyph :size="48" label="Twitch" />
         </div>
       </StoryFrame>
     </Variant>

@@ -11,6 +11,7 @@ export { default as VxSiteFooter } from './components/chrome/VxSiteFooter.vue'
 export { default as VxSiteSwitcher } from './components/chrome/VxSiteSwitcher.vue'
 export { default as VxLockup } from './components/chrome/VxLockup.vue'
 export { default as VxMark } from './components/chrome/VxMark.vue'
+export { default as VxTwitchGlyph } from './components/chrome/VxTwitchGlyph.vue'
 export { default as VxAccountMenu } from './components/chrome/VxAccountMenu.vue'
 export { default as VxLink } from './components/chrome/VxLink.vue'
 
