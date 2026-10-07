@@ -27,6 +27,9 @@ export const SITES = [
   { id: 'status', host: 'status.vexoul.net', what: 'service health, uptime', href: 'https://status.vexoul.net', accent: '#b9a8ff', repo: 'vEXOULZ/vexoulz-status' },
   // Shop salmon: dtp's tan turned toward red, so the two read as kin without being mistaken for each other.
   { id: 'shop', host: 'shop.vexoul.net', what: 'merch', href: 'https://shop.vexoul.net', accent: '#cb8c7c', external: true },
+  // A friend's vods site (keeki_dechu), the same app as vods. Keeki pink: a hue none of the others are near, and
+  // lighter than the error red. Hidden until it is live.
+  { id: 'keekivods', host: 'keekivods.vexoul.net', what: "keeki_dechu's past broadcasts + chat replay", href: 'https://keekivods.vexoul.net', accent: '#ff8ad8', hidden: true, repo: 'vEXOULZ/keeki-vods' },
 ] as const satisfies readonly SiteInfo[]
 
 type Site = (typeof SITES)[number]
