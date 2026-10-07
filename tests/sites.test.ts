@@ -31,4 +31,10 @@ describe('the site list', () => {
   it('finds a site by id', () => {
     expect(siteInfo('vods').host).toBe('vods.vexoul.net')
   })
+
+  it('has keekivods as a site of its own, hidden until it is live', () => {
+    const keeki = siteInfo('keekivods')
+    expect(keeki).toMatchObject({ host: 'keekivods.vexoul.net', repo: 'vEXOULZ/keeki-vods', hidden: true })
+    expect(siteAccentCss()).toContain(`--vx-accent-keekivods: ${keeki.accent};`)
+  })
 })
