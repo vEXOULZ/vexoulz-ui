@@ -1,5 +1,11 @@
 # @vexoulz/ui
 
+## 0.18.0
+
+### Minor Changes
+
+- 7ca4f63: `keekivods` (keekivods.vexoul.net, keeki_dechu's VOD archive) joins `SITES` with its own accent, `--vx-accent-keekivods`. It is `hidden` (left out of the switchers) until the site is live.
+
 ## 0.17.0
 
 ### Minor Changes
