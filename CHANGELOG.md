@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.19.0
+
+### Minor Changes
+
+- 8766500: `keekivods` is an outside link now, like the shop (`external: true`, no `repo`): it has its own look and isn't built on this library, so it is no longer a `SiteId`. It keeps its accent for the link and stays `hidden` until the site is live.
+- 386b18a: `keekivods` is no longer `hidden`: keekivods.vexoul.net is live, so it shows in the site switcher.
+
 ## 0.18.0
 
 ### Minor Changes
