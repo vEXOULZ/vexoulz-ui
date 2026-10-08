@@ -28,8 +28,8 @@ export const SITES = [
   // Shop salmon: dtp's tan turned toward red, so the two read as kin without being mistaken for each other.
   { id: 'shop', host: 'shop.vexoul.net', what: 'merch', href: 'https://shop.vexoul.net', accent: '#cb8c7c', external: true },
   // keeki_dechu's VOD archive: a friend's site with its own look, not built on this library, so an outside link like
-  // the shop. Keeki blue, the same accent as the site itself. Hidden until it is live.
-  { id: 'keekivods', host: 'keekivods.vexoul.net', what: "keeki_dechu's past broadcasts", href: 'https://keekivods.vexoul.net', accent: '#539cc1', external: true, hidden: true },
+  // the shop. Keeki blue, the same accent as the site itself.
+  { id: 'keekivods', host: 'keekivods.vexoul.net', what: "keeki_dechu's past broadcasts", href: 'https://keekivods.vexoul.net', accent: '#539cc1', external: true },
 ] as const satisfies readonly SiteInfo[]
 
 type Site = (typeof SITES)[number]
