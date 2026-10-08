@@ -473,6 +473,23 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 }
 .vx-ph.is-round { border-radius: 50%; }
 
+/* ---------- No thumbnail (16:9 stand-in for a stream or VOD without one) ---------- */
+.vx-nothumb { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+.vx-nothumb > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.vx-nothumb > span {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  translate: -50% 0;
+  padding: 2px 8px;
+  border-radius: var(--vx-radius-sm);
+  background: rgb(0 0 0 / 0.75);
+  color: var(--vx-muted);
+  white-space: nowrap;
+  font-family: var(--vx-font-mono);
+  font-size: 11px;
+}
+
 /* ---------- Chrome: header, subnav, footer ---------- */
 /* One header height on every page, signed in or out, watch page included. It never wraps. */
 .vx-head {
@@ -561,6 +578,7 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 }
 .vx-switcher-trigger.is-brand { font-size: 15px; padding: 0 10px 0 6px; }
 .vx-switcher-trigger:hover, .vx-switcher-trigger[aria-expanded='true'] { border-color: var(--vx-line); background: var(--vx-hover); }
+.vx-switcher-mark { flex: none; color: var(--vx-accent); }
 .vx-switcher-trigger .vx-caret { color: var(--vx-muted); font-size: 10px; }
 /* Away from home: the name links home and the caret is its own button, joined into one control. */
 .vx-switcher-split { display: inline-flex; }

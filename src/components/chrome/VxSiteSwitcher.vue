@@ -6,12 +6,12 @@
 import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref } from 'vue'
 import { switcherSites } from '../../sites'
 import type { SiteId } from '../../types'
-import VxPlaceholder from '../media/VxPlaceholder.vue'
 import VxPopover from '../overlays/VxPopover.vue'
 import VxMenuItem from '../overlays/VxMenuItem.vue'
 import VxMenuLabel from '../overlays/VxMenuLabel.vue'
 import VxLink from './VxLink.vue'
 import VxLockup from './VxLockup.vue'
+import VxMark from './VxMark.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -45,7 +45,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
     <template #trigger="{ toggle, open }">
       <span v-if="linksHome" class="vx-switcher-split" :class="{ 'is-open': open }">
         <VxLink :to="home" class="vx-switcher-trigger is-brand vx-switcher-home" :aria-label="`${current === 'root' ? 'vexoul.net' : current + '.vexoul.net'} home`">
-          <slot name="mark"><VxPlaceholder label="mark" :w="22" :h="22" /></slot>
+          <slot name="mark"><VxMark class="vx-switcher-mark" :size="22" /></slot>
           <VxLockup :site="current" />
         </VxLink>
         <button
@@ -69,7 +69,7 @@ const linksHome = computed(() => props.brand && strip(path.value) !== strip(prop
         aria-label="vexoul.net sites"
         @click="toggle"
       >
-        <slot name="mark"><VxPlaceholder v-if="brand" label="mark" :w="22" :h="22" /></slot>
+        <slot name="mark"><VxMark v-if="brand" class="vx-switcher-mark" :size="22" /></slot>
         <VxLockup :site="current" />
         <span class="vx-caret" aria-hidden="true">{{ up ? '▴' : '▾' }}</span>
       </button>

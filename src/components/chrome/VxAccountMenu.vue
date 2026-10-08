@@ -6,6 +6,7 @@ import { computed } from 'vue'
 import type { AccountUser } from '../../types'
 import { twitchColor } from '../../utils/color'
 import VxPlaceholder from '../media/VxPlaceholder.vue'
+import VxTwitchGlyph from './VxTwitchGlyph.vue'
 import VxPopover from '../overlays/VxPopover.vue'
 import VxMenuItem from '../overlays/VxMenuItem.vue'
 import VxMenuSeparator from '../overlays/VxMenuSeparator.vue'
@@ -32,7 +33,7 @@ const nameColor = computed(() => (props.user ? twitchColor(props.user.name, prop
     :title="disabled ? 'Sign in isn\'t available here' : 'Sign in with Twitch'"
     @click="emit('signIn')"
   >
-    <slot name="signin-icon"><VxPlaceholder label="tw" :w="16" :h="16" /></slot>
+    <slot name="signin-icon"><VxTwitchGlyph /></slot>
     <span class="vx-signin-label">Sign in</span>
   </button>
   <VxPopover v-else align="right" width="270px">

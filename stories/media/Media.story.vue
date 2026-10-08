@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { VxChapterBar, VxPlaceholder, VxPosters, VxStarfield } from '../../src'
+import { VxChapterBar, VxNoThumbnail, VxPlaceholder, VxPosters, VxStarfield } from '../../src'
 import type { StarfieldOptions } from '../../src'
 import StoryFrame from '../StoryFrame.vue'
 
@@ -47,6 +47,14 @@ const sky = reactive({ seed: 'vexoul.net', options: { density: 3.2, meteors: tru
           <VxChapterBar :chapters="chapters" style="position: absolute; left: 0; right: 0; bottom: 0" />
         </div>
         <p class="story-note">Music was cut from YouTube (restricted): hatched</p>
+      </StoryFrame>
+    </Variant>
+    <Variant title="No thumbnail">
+      <StoryFrame site="vods">
+        <div class="story-row">
+          <div class="vx-ring" style="width: 320px; border-radius: var(--vx-radius); overflow: hidden"><VxNoThumbnail /></div>
+          <div class="vx-ring" style="width: 320px; border-radius: var(--vx-radius); overflow: hidden"><VxNoThumbnail label="no thumbnail yet" /></div>
+        </div>
       </StoryFrame>
     </Variant>
     <Variant title="Placeholder">
