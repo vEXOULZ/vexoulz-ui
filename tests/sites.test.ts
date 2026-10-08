@@ -32,9 +32,10 @@ describe('the site list', () => {
     expect(siteInfo('vods').host).toBe('vods.vexoul.net')
   })
 
-  it('has keekivods as a site of its own, hidden until it is live', () => {
+  it('has keekivods as an outside link, hidden until it is live', () => {
     const keeki = siteInfo('keekivods')
-    expect(keeki).toMatchObject({ host: 'keekivods.vexoul.net', repo: 'vEXOULZ/keeki-vods', hidden: true })
+    expect(keeki).toMatchObject({ host: 'keekivods.vexoul.net', external: true, hidden: true })
+    expect(keeki.repo).toBeUndefined()
     expect(siteAccentCss()).toContain(`--vx-accent-keekivods: ${keeki.accent};`)
   })
 })
