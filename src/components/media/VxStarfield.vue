@@ -130,8 +130,9 @@ function draw(now: number) {
   ctx.globalAlpha = 1
 }
 
+// Stops while scrolled out of view; onVisibility starts it again.
 function loop(now: number) {
-  raf = requestAnimationFrame(loop)
+  raf = visible ? requestAnimationFrame(loop) : 0
   if (!visible || now - last < 33) return
   last = now
   draw(now)
@@ -139,6 +140,7 @@ function loop(now: number) {
 
 function restart() {
   cancelAnimationFrame(raf)
+  raf = 0
   if (!w || !h) return
   build()
   if (animated()) raf = requestAnimationFrame(loop)
@@ -158,6 +160,12 @@ function resize() {
   restart()
 }
 
+function onVisibility([e]: IntersectionObserverEntry[]) {
+  const was = visible
+  visible = !!e?.isIntersecting
+  if (visible && !was && !raf && w && h && animated()) raf = requestAnimationFrame(loop)
+}
+
 function onMove(e: PointerEvent) {
   if (!host) return
   const r = host.getBoundingClientRect()
@@ -174,7 +182,7 @@ onMounted(() => {
   reduced.addEventListener('change', restart)
   ro = new ResizeObserver(resize)
   ro.observe(host)
-  io = new IntersectionObserver(([e]) => (visible = !!e?.isIntersecting))
+  io = new IntersectionObserver(onVisibility)
   io.observe(host)
   host.addEventListener('pointermove', onMove)
   resize()
