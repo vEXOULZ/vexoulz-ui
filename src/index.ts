@@ -66,6 +66,9 @@ export { useToast, type Toast, type ToastKind } from './composables/useToast'
 export { useSite, provideSite, SITE_KEY } from './composables/useSite'
 export { useBuild, VxBuild, BUILD_KEY, type BuildInfo } from './composables/useBuild'
 export { useDismiss } from './composables/useClickOutside'
+export { useResource, type Resource, type ResourceOptions } from './composables/useResource'
+export { usePoll } from './composables/usePoll'
+export { useNow } from './composables/useNow'
 
 // Utils
 export {
