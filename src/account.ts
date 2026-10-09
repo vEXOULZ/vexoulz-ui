@@ -1,16 +1,13 @@
 // `@vexoulz/ui/account`: the shared *.vexoul.net sign-in, from a site's side.
 //
 // vexoulz-auth holds one session for all the sites (a cookie on its own host, which the sites' credentialed
-// fetches carry). A site creates one Account with the service's base URL, installs it, and reads it anywhere
-// with useAccount(). Without a base URL (a friend's instance, a dev server with no auth) the account is
-// disabled: signed out, and VxAccountMenu shows its "Sign in" button greyed out.
+// fetches carry). A site creates one Account, installs it, and reads it anywhere with useAccount(). The service
+// is the production one unless the site's VITE_AUTH_BASE says otherwise; set empty (a friend's instance, a dev
+// server with no auth) the account is disabled: signed out, and VxAccountMenu shows "Sign in" greyed out.
 //
-//   const account = createAccount({ authBase: import.meta.env.VITE_AUTH_BASE })
-//   app.use(account)
+//   app.use(createAccount())
 //   ...
-//   const account = useAccount()
-//   <VxAccountMenu :user="account.menuUser.value" :disabled="!account.enabled"
-//                  @sign-in="account.signIn()" @sign-out="account.signOut({ everywhere: true })" />
+//   <VxAccount />   (VxAccountMenu wired to useAccount())
 import { computed, inject, readonly, ref, type App, type ComputedRef, type InjectionKey, type Ref } from 'vue'
 import type { AccountUser } from './types'
 
@@ -44,16 +41,36 @@ export interface Account {
   signOut(opts?: { everywhere?: boolean }): Promise<void>
   /** A credentialed request to the service, with the CSRF header on writes. */
   request(path: string, init?: RequestInit): Promise<Response>
+  /** Provides the account to the app and, when enabled, checks who is signed in and rechecks on tab return. */
   install(app: App): void
+  /** Removes the tab-return listener install() added. The app's unmount calls it. */
+  dispose(): void
 }
 
 export const CSRF_HEADER = 'X-Vexoulz-CSRF'
 export const ACCOUNT_KEY: InjectionKey<Account> = Symbol('vx-account')
 /** How stale the known user may be before a tab coming back into view asks again. */
 export const RECHECK_MS = 60_000
+/** The production vexoulz-auth, used when neither the options nor VITE_AUTH_BASE name one. */
+export const DEFAULT_AUTH_BASE = 'https://auth.vexoul.net'
+
+/**
+ * The site's VITE_AUTH_BASE. vite.config.ts keeps this expression as it is in the built library, so the site's own
+ * Vite build fills it in (a library build would otherwise bake in its own, empty, env).
+ */
+function envAuthBase(): string | undefined {
+  try {
+    return import.meta.env.VITE_AUTH_BASE
+  } catch {
+    return undefined // a bundler that doesn't provide import.meta.env
+  }
+}
 
 export interface AccountOptions {
-  /** vexoulz-auth's base URL; empty or missing disables sign-in. */
+  /**
+   * vexoulz-auth's base URL; empty or null disables sign-in. Left out, it is the site's VITE_AUTH_BASE if set
+   * (empty disables there too), else DEFAULT_AUTH_BASE.
+   */
   authBase?: string | null
   fetch?: typeof fetch
   /** Where signIn() sends the page (tests replace it). */
@@ -62,7 +79,8 @@ export interface AccountOptions {
 }
 
 export function createAccount(options: AccountOptions = {}): Account {
-  const base = (options.authBase ?? '').trim().replace(/\/+$/, '')
+  const configured = options.authBase !== undefined ? options.authBase : (envAuthBase() ?? DEFAULT_AUTH_BASE)
+  const base = (configured ?? '').trim().replace(/\/+$/, '')
   const enabled = base !== ''
   const doFetch = options.fetch ?? ((input, init) => fetch(input, init))
   const navigate = options.navigate ?? ((url: string) => window.location.assign(url))
@@ -73,6 +91,7 @@ export function createAccount(options: AccountOptions = {}): Account {
   let token: string | null = null
   let checkedAt = -Infinity
   let pending: Promise<AuthUser | null> | null = null
+  let onVisible: (() => void) | null = null
 
   function request(path: string, init: RequestInit = {}): Promise<Response> {
     const headers = new Headers(init.headers)
@@ -147,9 +166,17 @@ export function createAccount(options: AccountOptions = {}): Account {
       if (!enabled || typeof document === 'undefined') return
       void refresh()
       // Signing out everywhere on another site shows up here when the tab comes back into view.
-      document.addEventListener('visibilitychange', () => {
+      account.dispose()
+      const listener = () => {
         if (document.visibilityState === 'visible' && now() - checkedAt >= RECHECK_MS) void refresh()
-      })
+      }
+      document.addEventListener('visibilitychange', listener)
+      onVisible = listener
+      app.onUnmount(() => account.dispose())
+    },
+    dispose() {
+      if (onVisible) document.removeEventListener('visibilitychange', onVisible)
+      onVisible = null
     },
   }
   return account
@@ -159,5 +186,5 @@ let fallback: Account | null = null
 
 /** The Account the app installed, or a disabled one if it installed none. */
 export function useAccount(): Account {
-  return inject(ACCOUNT_KEY, null) ?? (fallback ??= createAccount())
+  return inject(ACCOUNT_KEY, null) ?? (fallback ??= createAccount({ authBase: null }))
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { VxAccountMenu, VxChip, VxTwitchGlyph, VxMenuItem, VxMenuLabel } from '../../src'
+import { VxAccount, VxAccountMenu, VxChip, VxTwitchGlyph, VxMenuItem, VxMenuLabel } from '../../src'
 import StoryFrame from '../StoryFrame.vue'
+import FakeAccount from './FakeAccount.vue'
 </script>
 
 <template>
@@ -23,6 +24,20 @@ import StoryFrame from '../StoryFrame.vue'
               <VxMenuItem @click="close">Channel admin<template #trail><VxChip tone="accent">broadcaster</VxChip></template></VxMenuItem>
             </template>
           </VxAccountMenu>
+        </div>
+      </StoryFrame>
+    </Variant>
+    <Variant title="Connected: VxAccount">
+      <!-- VxAccountMenu wired to useAccount(); here a fake vexoulz-auth answers. -->
+      <StoryFrame height="320px">
+        <div class="story-row" style="justify-content: space-between">
+          <FakeAccount off><VxAccount /></FakeAccount>
+          <FakeAccount><VxAccount /></FakeAccount>
+          <FakeAccount signed-in>
+            <VxAccount>
+              <template #default="{ close }"><VxMenuItem @click="close">Watch history</VxMenuItem></template>
+            </VxAccount>
+          </FakeAccount>
         </div>
       </StoryFrame>
     </Variant>

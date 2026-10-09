@@ -7,6 +7,8 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   server: { port: 5174 },
+  // Left for the site's own build to fill in: a library build would replace it with this repo's (empty) env.
+  define: { 'import.meta.env.VITE_AUTH_BASE': 'import.meta.env.VITE_AUTH_BASE' },
   resolve: {
     alias: { '@vexoulz/ui': fileURLToPath(new URL('./src/index.ts', import.meta.url)) },
   },
