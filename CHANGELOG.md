@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.20.1
+
+### Patch Changes
+
+- d5ba1c1: `VxStarfield` stops its animation frame loop while scrolled out of view instead of waking up every frame to skip
+  drawing, and picks it up again when it comes back.
+
 ## 0.20.0
 
 ### Minor Changes
