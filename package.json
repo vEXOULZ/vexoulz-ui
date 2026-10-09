@@ -1,6 +1,6 @@
 {
   "name": "@vexoulz/ui",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "private": true,
   "type": "module",
   "description": "Shared design for *.vexoul.net: tokens, Vue components and the design lab",
