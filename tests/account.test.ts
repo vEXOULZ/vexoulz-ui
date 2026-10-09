@@ -1,7 +1,10 @@
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { defineComponent, h } from 'vue'
-import { createAccount, CSRF_HEADER, RECHECK_MS, useAccount, type Account } from '../src/account'
+import { createAccount, CSRF_HEADER, DEFAULT_AUTH_BASE, RECHECK_MS, useAccount, type Account } from '../src/account'
+import VxAccount from '../src/components/chrome/VxAccount.vue'
+
+afterEach(() => vi.unstubAllEnvs())
 
 const ME = { id: '42', login: 'vex', displayName: 'Vex', avatar: 'https://img/a.png', color: '#ff0000', csrf: 't0k', expiresAt: 'x' }
 
@@ -19,6 +22,17 @@ function service(answer: () => Response | Promise<Response>) {
 }
 
 describe('createAccount', () => {
+  it('uses the production service by default, and VITE_AUTH_BASE over it', () => {
+    expect(createAccount().base).toBe(DEFAULT_AUTH_BASE)
+    vi.stubEnv('VITE_AUTH_BASE', 'http://127.0.0.1:8090/')
+    expect(createAccount().base).toBe('http://127.0.0.1:8090')
+    vi.stubEnv('VITE_AUTH_BASE', '')
+    expect(createAccount().enabled).toBe(false)
+    expect(createAccount({ authBase: 'https://auth.example' }).base).toBe('https://auth.example')
+    vi.unstubAllEnvs()
+    expect(createAccount({ authBase: null }).enabled).toBe(false)
+  })
+
   it('is disabled and signed out without a base URL', async () => {
     const navigate = vi.fn()
     const account = createAccount({ authBase: '  ', navigate })
@@ -93,6 +107,9 @@ describe('createAccount', () => {
 })
 
 describe('install and useAccount', () => {
+  const mounted: { unmount(): void }[] = []
+  afterEach(() => mounted.splice(0).forEach((w) => w.unmount()))
+
   function mountWith(account?: Account) {
     let seen: Account | null = null
     const Probe = defineComponent({
@@ -101,7 +118,7 @@ describe('install and useAccount', () => {
         return () => h('div')
       },
     })
-    mount(Probe, { global: { plugins: account ? [account] : [] } })
+    mounted.push(mount(Probe, { global: { plugins: account ? [account] : [] } }))
     return seen as unknown as Account
   }
 
@@ -127,5 +144,43 @@ describe('install and useAccount', () => {
     t += RECHECK_MS
     document.dispatchEvent(new Event('visibilitychange'))
     expect(calls).toHaveLength(2)
+  })
+
+  it('stops listening when the app unmounts', async () => {
+    let t = 0
+    const { fetch, calls } = service(() => json(200, ME))
+    const account = createAccount({ authBase: 'https://auth.example', fetch, now: () => t })
+    mountWith(account)
+    await account.refresh()
+    mounted.pop()!.unmount()
+    t += RECHECK_MS
+    document.dispatchEvent(new Event('visibilitychange'))
+    expect(calls).toHaveLength(1)
+  })
+})
+
+describe('VxAccount', () => {
+  it('shows the installed account and signs in through it', async () => {
+    const navigate = vi.fn()
+    const { fetch } = service(() => json(401))
+    const account = createAccount({ authBase: 'https://auth.example', fetch, navigate })
+    const w = mount(VxAccount, { global: { plugins: [account] } })
+    await account.refresh()
+    await w.find('button.vx-signin').trigger('click')
+    expect(navigate).toHaveBeenCalledWith(expect.stringMatching(/^https:\/\/auth\.example\/login\?return=/))
+    w.unmount()
+  })
+
+  it('is greyed out when sign-in is off, and shows the user once signed in', async () => {
+    const off = mount(VxAccount, { global: { plugins: [createAccount({ authBase: '' })] } })
+    expect(off.find('button.vx-signin').attributes('disabled')).toBeDefined()
+    off.unmount()
+
+    const account = createAccount({ authBase: 'https://auth.example', fetch: service(() => json(200, ME)).fetch })
+    const on = mount(VxAccount, { global: { plugins: [account] } })
+    await account.refresh()
+    await on.vm.$nextTick()
+    expect(on.find('.vx-account-trigger').attributes('aria-label')).toBe('Account: Vex')
+    on.unmount()
   })
 })

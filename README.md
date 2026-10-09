@@ -66,39 +66,38 @@ const { show } = useToast()
 ### Signing in (`@vexoulz/ui/account`)
 
 One sign-in covers every site: [vexoulz-auth](https://github.com/vEXOULZ/vexoulz-auth) keeps the session, and a
-site asks it who is signed in. Each site sets `VITE_AUTH_BASE` to the service's URL; left empty (a friend's
-instance, a dev server without it) the account is disabled and the menu's "Sign in" is greyed out.
+site asks it who is signed in. `createAccount()` uses the production service (`DEFAULT_AUTH_BASE`,
+`https://auth.vexoul.net`) unless the site's `VITE_AUTH_BASE` names another one (`http://127.0.0.1:8090` for a local
+`auth-dev`). Set empty (a friend's instance, a dev server without it) the account is disabled and "Sign in" is
+greyed out. An explicit `authBase` option wins over both.
 
 ```ts
 // main.ts
 import { createAccount } from '@vexoulz/ui/account'
-app.use(createAccount({ authBase: import.meta.env.VITE_AUTH_BASE }))
+app.use(createAccount())
 ```
 
 ```vue
-<script setup lang="ts">
+<!-- the header: VxAccountMenu wired to useAccount(); the default slot adds menu items -->
+<template #account><VxAccount /></template>
+```
+
+`VxAccount` is `VxAccountMenu` with the user, the disabled state, sign-in and "sign out everywhere" filled in from
+`useAccount()`. For anything else, read the account directly:
+
+```ts
 import { useAccount } from '@vexoulz/ui/account'
 const account = useAccount()
-</script>
-
-<template>
-  <VxAccountMenu
-    :user="account.menuUser.value"
-    :disabled="!account.enabled"
-    @sign-in="account.signIn()"
-    @sign-out="account.signOut({ everywhere: true })"
-  />
-</template>
 ```
 
 `user` is `{ id, login, displayName, avatar, color }` or `null`, `ready` turns true after the first check, and
 `request(path, init)` makes a credentialed call to the service with the CSRF header on writes (the VOD site's
 watch progress uses it). A tab that comes back into view after a minute checks again, so signing out everywhere
-on another site shows up.
+on another site shows up; the app's unmount (or `account.dispose()`) removes that listener.
 
 | group | components |
 |---|---|
-| chrome | `VxSiteShell` `VxSiteHeader` `VxSiteFooter` `VxSiteSwitcher` `VxLockup` `VxAccountMenu` `VxLink` |
+| chrome | `VxSiteShell` `VxSiteHeader` `VxSiteFooter` `VxSiteSwitcher` `VxLockup` `VxAccountMenu` `VxAccount` `VxLink` |
 | controls | `VxButton` `VxInput` `VxField` `VxSelect` `VxStepper` `VxSwitch` `VxCheckbox` `VxRadioGroup` `VxSlider` `VxDateRange` `VxTabs` `VxSegmented` `VxPagination` |
 | overlays | `VxPopover` `VxMenuItem` `VxMenuLabel` `VxMenuSeparator` `VxDialog` `VxToastHost` + `useToast()` `VxTooltip` |
 | feedback | `VxCallout` `VxProgress` `VxSpinner` `VxSkeleton` `VxEmptyState` |
