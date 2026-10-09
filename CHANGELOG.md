@@ -1,5 +1,14 @@
 # @vexoulz/ui
 
+## 0.21.0
+
+### Minor Changes
+
+- 08fa15a: `createAccount()` defaults to the production vexoulz-auth and reads the site's `VITE_AUTH_BASE` itself; new `<VxAccount>` (VxAccountMenu wired to `useAccount()`); the tab-return listener is removed when the app unmounts or on `account.dispose()`.
+- a3c1e5b: `VxInput` takes `width`, `grow` and `maxWidth`, and `VxPlaceholder` takes `flush` (no border or corners, fills its box), so sites stop sizing them through `:deep()` on private classes.
+- 8600dcd: `useResource`, `usePoll` and `useNow` in `@vexoulz/ui/utils` (and the main entry): loads that abort and outrun stale ones and keep the last good data, polling that pauses on a hidden tab, and a shared ticking clock.
+- 660a11c: New `@vexoulz/ui/utils` subpath: `clamp`, `place`, the game and Twitch colours, `learnGameColors`, `useDismiss` and the `useToast()` store, with no component or style attached.
+
 ## 0.20.1
 
 ### Patch Changes
