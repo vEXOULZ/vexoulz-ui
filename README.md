@@ -108,6 +108,17 @@ on another site shows up.
 Helpers are exported as well: `gameColor`, `twitchColor`, `pageRange`, `place` (popover placement), `stepValue`,
 `formatDuration`, and the seeded star generator.
 
+### Logic without the look (`@vexoulz/ui/utils`)
+
+A site with its own look (keeki-vods) can still share the logic: `@vexoulz/ui/utils` exports `clamp`, `place` /
+`clampX`, the game and Twitch colours (`gameColor`, `gamePalette`, `twitchColor`, ...), `learnGameColors`,
+`useDismiss` (close on an outside click or Escape) and the `useToast()` store. It reaches no component and no CSS
+(a test checks), and it is the same code the components use, so the store is shared with `VxToastHost`.
+
+```ts
+import { gameColor, place, useDismiss, useToast } from '@vexoulz/ui/utils'
+```
+
 ## Releasing
 
 1. Any PR that changes `src/` adds a changeset (`npm run changeset`).
