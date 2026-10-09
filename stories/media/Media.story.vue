@@ -66,5 +66,18 @@ const sky = reactive({ seed: 'vexoul.net', options: { density: 3.2, meteors: tru
         </div>
       </StoryFrame>
     </Variant>
+    <Variant title="Placeholder: flush">
+      <!-- No border or corners, fills its box: for a frame that draws its own edge (a card's thumbnail). -->
+      <StoryFrame>
+        <div class="story-row">
+          <div class="vx-ring" style="width: 240px; aspect-ratio: 16 / 9; border-radius: var(--vx-radius); overflow: hidden">
+            <VxPlaceholder label="thumbnail" flush />
+          </div>
+          <div class="vx-ring" style="width: 240px; aspect-ratio: 16 / 9; border-radius: var(--vx-radius); overflow: hidden">
+            <VxPlaceholder label="not flush" h="100%" />
+          </div>
+        </div>
+      </StoryFrame>
+    </Variant>
   </Story>
 </template>

@@ -63,6 +63,21 @@ const sorts = [
         </div>
       </StoryFrame>
     </Variant>
+    <Variant title="Input width">
+      <!-- `width` for a short value, `grow` to share a row with buttons (from `width`, capped by `max-width`). -->
+      <StoryFrame>
+        <div class="story-col">
+          <div class="story-row">
+            <span>Cooldown</span><VxInput v-model="f.delay" type="number" :width="96" mono /><span class="story-note">s</span>
+          </div>
+          <div class="story-row">
+            <VxInput v-model="f.search" grow width="14rem" max-width="20rem" placeholder="Add a command" clearable />
+            <VxButton variant="primary">Add</VxButton>
+            <VxButton>Import</VxButton>
+          </div>
+        </div>
+      </StoryFrame>
+    </Variant>
     <Variant title="Date range">
       <StoryFrame>
         <div class="story-col">

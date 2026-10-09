@@ -472,6 +472,7 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
   text-align: center;
 }
 .vx-ph.is-round { border-radius: 50%; }
+.vx-ph.is-flush { border: none; border-radius: 0; }
 
 /* ---------- No thumbnail (16:9 stand-in for a stream or VOD without one) ---------- */
 .vx-nothumb { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
