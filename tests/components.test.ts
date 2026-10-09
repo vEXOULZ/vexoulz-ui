@@ -4,6 +4,7 @@ import { nextTick } from 'vue'
 import VxButton from '../src/components/controls/VxButton.vue'
 import VxInput from '../src/components/controls/VxInput.vue'
 import VxPagination from '../src/components/controls/VxPagination.vue'
+import VxPlaceholder from '../src/components/media/VxPlaceholder.vue'
 import VxStepper from '../src/components/controls/VxStepper.vue'
 import VxTable from '../src/components/data/VxTable.vue'
 import VxUptimeBar from '../src/components/data/VxUptimeBar.vue'
@@ -41,6 +42,23 @@ describe('VxInput', () => {
     expect(w.attributes('aria-label')).toBeUndefined()
     await input.trigger('blur')
     expect(blurred).toBe(1)
+  })
+  it('takes a fixed width, or grows in a row from one up to a cap', () => {
+    const style = (props: object) => (mount(VxInput, { props }).element as HTMLElement).style
+    const fixed = style({ width: 96 })
+    expect([fixed.width, fixed.flexGrow, fixed.flexShrink]).toEqual(['96px', '0', '0'])
+    const grow = style({ grow: true, width: '14rem', maxWidth: '20rem' })
+    expect([grow.flexGrow, grow.flexBasis, grow.maxWidth, grow.width]).toEqual(['1', '14rem', '20rem', 'auto'])
+    expect(mount(VxInput).attributes('style')).toBeUndefined()
+  })
+})
+
+describe('VxPlaceholder', () => {
+  it('is flush: no border class of its own and fills its box', () => {
+    const w = mount(VxPlaceholder, { props: { flush: true } })
+    expect(w.classes()).toContain('is-flush')
+    expect(w.attributes('style')).toContain('height: 100%')
+    expect(mount(VxPlaceholder).attributes('style')).toContain('height: auto')
   })
 })
 
