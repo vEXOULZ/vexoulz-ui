@@ -15,6 +15,7 @@ export default defineConfig({
       entry: {
         index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
         account: fileURLToPath(new URL('./src/account.ts', import.meta.url)),
+        utils: fileURLToPath(new URL('./src/utils.ts', import.meta.url)),
       },
       formats: ['es'],
       fileName: (_format, name) => `${name}.js`,
