@@ -112,11 +112,19 @@ Helpers are exported as well: `gameColor`, `twitchColor`, `pageRange`, `place` (
 
 A site with its own look (keeki-vods) can still share the logic: `@vexoulz/ui/utils` exports `clamp`, `place` /
 `clampX`, the game and Twitch colours (`gameColor`, `gamePalette`, `twitchColor`, ...), `learnGameColors`,
-`useDismiss` (close on an outside click or Escape) and the `useToast()` store. It reaches no component and no CSS
+`useDismiss` (close on an outside click or Escape), the `useToast()` store, and three data composables:
+
+- `useResource(load, { source })` loads, and again when `source` changes. A newer load aborts the older one and
+  always wins; the last good `data` stays while reloading and when a reload fails (`error` holds what it threw).
+- `usePoll(load, every, { source })` is a `useResource` that also reloads every `every` ms while the tab is visible,
+  and right away on coming back to it if the data is older than that.
+- `useNow(every)` is a clock for "updated 12s ago"; everything on the same interval shares one timer.
+
+All three clean up (timers, listeners, the load in flight) when their component or `effectScope` goes away. It reaches no component and no CSS
 (a test checks), and it is the same code the components use, so the store is shared with `VxToastHost`.
 
 ```ts
-import { gameColor, place, useDismiss, useToast } from '@vexoulz/ui/utils'
+import { gameColor, place, useDismiss, usePoll, useToast } from '@vexoulz/ui/utils'
 ```
 
 ## Releasing
