@@ -4,6 +4,12 @@ import StoryFrame from '../StoryFrame.vue'
 
 const colours = ['bg', 'surface', 'surface-2', 'ink', 'muted', 'line', 'ok', 'warn', 'bad', 'info']
 const accents = SITES.filter((s) => 'accent' in s).map((s) => s.id)
+const hatches = [
+  ['--vx-hatch', 'light stripes: a restricted chapter, a cut', 'var(--vx-surface-2)'],
+  ['--vx-hatch-dark', 'dark stripes over a colour: time a part skips', 'var(--vx-accent)'],
+  ['--vx-hatch-bad', 'error stripes: time no part covers', 'var(--vx-accent)'],
+  ['--vx-hatch-faint', 'the placeholder fill', 'transparent'],
+]
 const sizes = [
   ['--vx-ctl-sm', '26 · small controls'],
   ['--vx-ctl', '32 · every control, avatar, icon button'],
@@ -27,6 +33,18 @@ const sizes = [
           <div v-for="a in accents" :key="a" style="width: 160px">
             <div :style="{ height: '44px', background: `var(--vx-accent-${a})`, borderRadius: 'var(--vx-radius-sm)' }"></div>
             <code class="story-note">[data-site={{ a }}]</code>
+          </div>
+        </div>
+      </StoryFrame>
+    </Variant>
+    <Variant title="Hatch">
+      <StoryFrame>
+        <div class="vx-eyebrow">Hatches (shown over the colour they usually sit on)</div>
+        <div class="story-row" style="margin-top: 10px; align-items: flex-start">
+          <div v-for="[h, label, under] in hatches" :key="h" style="width: 180px">
+            <div :style="{ height: '44px', background: `var(${h}), ${under}`, border: '1px solid var(--vx-line)', borderRadius: 'var(--vx-radius-sm)' }"></div>
+            <code class="story-note">{{ h }}</code>
+            <div class="story-note">{{ label }}</div>
           </div>
         </div>
       </StoryFrame>
