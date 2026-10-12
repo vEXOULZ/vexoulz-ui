@@ -33,6 +33,7 @@ npm install github:vEXOULZ/vexoulz-ui#v0.1.0
 // main.ts
 import '@vexoulz/ui/fonts.css' // self-hosted Geist, Geist Mono and Twemoji for emoji (your bundler emits the font files)
 import '@vexoulz/ui/style.css' // tokens, base shell, component styles
+import '@vexoulz/ui/platform.css' // only with @vexoulz/platform-web: its --vxp-* variables on Deep Field tokens
 ```
 
 ```vue
@@ -150,7 +151,7 @@ that used to live here is still served at the `v0.1.0` tag until every site has 
 ```
 src/
   index.ts                     public exports
-  styles/                      tokens.css, base.css, components.css → dist/style.css; fonts.css (separate)
+  styles/                      tokens.css, base.css, components.css → dist/style.css; fonts.css and platform.css (separate)
   components/{chrome,controls,overlays,feedback,data,media}/Vx*.vue
   composables/                 useToast, useSite, useDismiss
   utils/                       place, pagination, number, color, random, perlin, starfield, time

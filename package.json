@@ -11,6 +11,7 @@
   "files": [
     "dist",
     "src/styles/fonts.css",
+    "src/styles/platform.css",
     "src/fonts"
   ],
   "main": "./dist/index.js",
@@ -30,7 +31,8 @@
       "import": "./dist/utils.js"
     },
     "./style.css": "./dist/style.css",
-    "./fonts.css": "./src/styles/fonts.css"
+    "./fonts.css": "./src/styles/fonts.css",
+    "./platform.css": "./src/styles/platform.css"
   },
   "scripts": {
     "dev": "vite",
@@ -53,6 +55,7 @@
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
     "@histoire/plugin-vue": "^1.0.0-beta.1",
+    "@vexoulz/platform-web": "github:vEXOULZ/vex-platform-web#v0.5.0",
     "@vitejs/plugin-vue": "^6.0.9",
     "@vue/test-utils": "^2.5.1",
     "happy-dom": "^20.14.5",
