@@ -464,7 +464,7 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
   padding: 2px;
   border: 1px dashed color-mix(in srgb, var(--vx-ink) 30%, transparent);
   border-radius: var(--vx-radius-sm);
-  background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--vx-ink) 7%, transparent) 0 6px, transparent 6px 12px);
+  background: var(--vx-hatch-faint);
   color: var(--vx-muted);
   font-family: var(--vx-font-mono);
   font-size: 10px;
@@ -647,4 +647,4 @@ button.vx-chip:hover:not(.is-active) { color: var(--vx-ink); border-color: var(-
 /* ---------- Chapter bar (thin strip of game colours, e.g. along a thumbnail's bottom edge) ---------- */
 .vx-chapterbar { display: flex; gap: 2px; height: 3px; overflow: hidden; }
 .vx-chapterbar > span { flex-basis: 0; min-width: 1px; background: var(--vx-c); }
-.vx-chapterbar > span.is-restricted { background: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.35) 0 3px, transparent 3px 6px); }
+.vx-chapterbar > span.is-restricted { background: var(--vx-hatch); }

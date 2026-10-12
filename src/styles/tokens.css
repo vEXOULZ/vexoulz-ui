@@ -26,6 +26,14 @@
   --vx-pop: rgb(12 12 16 / 0.94);
   --vx-shadow: 0 16px 40px rgb(0 0 0 / 0.6);
 
+  /* Hatches: diagonal stripes for a backgroundless span. --vx-hatch is light stripes for something left out
+     (a restricted chapter, a cut); --vx-hatch-dark lays dark stripes over a colour (time a part skips);
+     --vx-hatch-bad flags an error (time no part covers); --vx-hatch-faint fills a placeholder. */
+  --vx-hatch: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--vx-ink) 35%, transparent) 0 3px, transparent 3px 6px);
+  --vx-hatch-dark: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--vx-bg) 55%, transparent) 0 2px, transparent 2px 5px);
+  --vx-hatch-bad: repeating-linear-gradient(45deg, color-mix(in srgb, var(--vx-bad) 55%, transparent) 0 2px, color-mix(in srgb, var(--vx-bg) 65%, transparent) 2px 6px);
+  --vx-hatch-faint: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--vx-ink) 7%, transparent) 0 6px, transparent 6px 12px);
+
   /* Type: mono for labels, handles, numbers and code; sans for names, titles and prose */
   --vx-font-sans: 'Geist Variable', 'Geist', 'Vx Twemoji', system-ui, sans-serif;
   --vx-font-mono: 'Geist Mono Variable', 'Geist Mono', 'Vx Twemoji', ui-monospace, Consolas, monospace;
