@@ -66,8 +66,6 @@ html[data-site], html[data-site] > body { margin: 0; background: var(--vx-bg); }
   background: var(--vx-glass);
   border: 1px solid var(--vx-glass-line);
   border-radius: var(--vx-radius);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 .vx-pop {
   background: var(--vx-pop);
@@ -93,12 +91,10 @@ html[data-site], html[data-site] > body { margin: 0; background: var(--vx-bg); }
   font-family: var(--vx-font-mono);
   font-size: 13px;
   line-height: 1.55;
-  /* Glass like .vx-panel, so the starfield shows through; the blur keeps the stars from cutting into the text. */
+  /* Clear glass like .vx-panel, so the starfield shows through. */
   background: var(--vx-glass);
   border: 1px solid var(--vx-glass-line);
   border-radius: var(--vx-radius-sm);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 .vx-tok-prefix, .vx-tok-cmd { color: var(--vx-accent); font-weight: 600; }
 .vx-tok-op { color: var(--vx-bad); font-weight: 600; }
