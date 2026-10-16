@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SITES } from '../../src/sites'
+import VxStarfield from '../../src/components/media/VxStarfield.vue'
 import StoryFrame from '../StoryFrame.vue'
 
 const colours = ['bg', 'surface', 'surface-2', 'ink', 'muted', 'line', 'ok', 'warn', 'bad', 'info']
@@ -71,12 +72,15 @@ const sizes = [
       </StoryFrame>
     </Variant>
     <Variant title="Surfaces">
-      <StoryFrame>
-        <div class="story-row" style="align-items: stretch">
+      <StoryFrame style="position: relative; overflow: hidden">
+        <VxStarfield seed="vexoul.net" />
+        <div class="story-row" style="position: relative; align-items: stretch">
           <div class="vx-panel" style="padding: 16px; width: 200px">.vx-panel (glass)</div>
           <div class="vx-pop" style="padding: 16px; width: 200px">.vx-pop (menus)</div>
           <div class="vx-panel vx-ring" tabindex="0" style="padding: 16px; width: 200px">.vx-ring: hover me</div>
         </div>
+        <pre class="vx-code" style="position: relative; margin-top: 16px">.vx-code is glass too: the stars show through
+<span class="vx-tok-prefix">!</span><span class="vx-tok-cmd">uptime</span> <span class="vx-tok-op">&gt;</span> <span class="vx-tok-str">"live for {uptime}"</span> <span class="vx-tok-ph">{channel}</span></pre>
       </StoryFrame>
     </Variant>
   </Story>

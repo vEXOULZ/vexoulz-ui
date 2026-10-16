@@ -5,7 +5,8 @@
  */
 :root {
   --vxp-bg: var(--vx-bg);
-  --vxp-surface: var(--vx-surface);
+  /* Panels are glass like .vx-panel (blurred below), so the starfield shows through them. */
+  --vxp-surface: var(--vx-glass);
   --vxp-ink: var(--vx-ink);
   --vxp-muted: var(--vx-muted);
   --vxp-line: var(--vx-line);
@@ -33,3 +34,8 @@
 /* A custom property resolves where it is declared, so the :root mapping holds the accent outside any site shell.
    Inside one (VxSiteShell's .vx-site[data-site]) it is resolved again, to that site's accent. */
 [data-site] { --vxp-accent: var(--vx-accent); }
+
+/* Glass needs the blur to stay readable over the stars. A dialog sits over the page, not the sky, so it stays the
+   near-opaque popup fill like VxDialog. */
+.vxp-panel { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+dialog.vxp-dialog { background: var(--vx-pop); }
