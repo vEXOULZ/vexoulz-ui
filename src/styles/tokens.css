@@ -22,6 +22,11 @@
   /* Glass panels and overlays */
   --vx-glass: rgb(16 16 24 / 0.5);
   --vx-glass-line: rgb(255 255 255 / 0.09);
+  /* Clear glass (windows, cards): no blur, a thin tint, a diagonal sheen and a lit top edge, so it reads as glass
+     while the stars stay sharp behind it. */
+  --vx-glass-clear: rgb(14 14 22 / 0.35);
+  --vx-glass-sheen: linear-gradient(155deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.02) 38%, rgb(255 255 255 / 0) 60%, rgb(255 255 255 / 0.03));
+  --vx-glass-edge: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 0 1px rgb(255 255 255 / 0.02);
   --vx-hover: rgb(255 255 255 / 0.06);
   --vx-pop: rgb(12 12 16 / 0.94);
   --vx-shadow: 0 16px 40px rgb(0 0 0 / 0.6);

@@ -5,8 +5,8 @@
  */
 :root {
   --vxp-bg: var(--vx-bg);
-  /* Panels are clear glass like .vx-panel, so the starfield shows through them. */
-  --vxp-surface: var(--vx-glass);
+  /* Clear glass like .vx-panel, so the starfield shows through panels and buttons. */
+  --vxp-surface: var(--vx-glass-clear);
   --vxp-ink: var(--vx-ink);
   --vxp-muted: var(--vx-muted);
   --vxp-line: var(--vx-line);
@@ -35,5 +35,7 @@
    Inside one (VxSiteShell's .vx-site[data-site]) it is resolved again, to that site's accent. */
 [data-site] { --vxp-accent: var(--vx-accent); }
 
-/* A dialog sits over the page, not the sky, so it keeps the near-opaque popup fill like VxDialog. */
+/* Panels get .vx-panel's sheen and lit edge. A dialog sits over the page, not the sky, so it keeps the near-opaque
+   popup fill like VxDialog. */
 dialog.vxp-dialog { background: var(--vx-pop); }
+.vxp-panel { background: var(--vx-glass-sheen), var(--vx-glass-clear); box-shadow: var(--vx-glass-edge); }
