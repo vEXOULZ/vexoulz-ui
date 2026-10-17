@@ -1,5 +1,5 @@
 <script setup>
-// "Which vexoulz site am I on / take me to another one" menu, used in the footer and optionally the header brand.
+// "Which vexouluna site am I on / take me to another one" menu, used in the footer and optionally the header brand.
 import { onMounted, onUnmounted, ref } from 'vue'
 import Ph from '../Ph.vue'
 import Lockup from './Lockup.vue'
@@ -9,7 +9,7 @@ const props = defineProps({
   up: { type: Boolean, default: false }, // open above the button (footer)
   brand: { type: Boolean, default: false }, // render as the header brand lockup
   sub: { type: String, default: '' },
-  // v3: 'dot' = vods.vexoulz, 'dotnet' = vods.vexoul.net, header and footer rendered the same way; unset = v2 look
+  // v3: 'dot' = vods.vexouluna, 'dotnet' = vods.vexoul.net, header and footer rendered the same way; unset = v2 look
   format: { type: String, default: null },
 })
 
@@ -39,7 +39,7 @@ const hostOf = (id) => sites.find((s) => s.id === id)?.host
     </button>
     <button v-else-if="brand" class="trigger brand-trigger df-brand" :aria-expanded="open" @click="open = !open">
       <Ph label="mark" :w="22" :h="22" />
-      <span>vexoulz</span>
+      <span>vexouluna</span>
       <template v-if="sub"><span class="slash">/</span><span class="sub">{{ sub }}</span></template>
       <span class="caret">▾</span>
     </button>
@@ -50,7 +50,7 @@ const hostOf = (id) => sites.find((s) => s.id === id)?.host
     </button>
 
     <div v-if="open" class="menu panel pop" role="menu">
-      <div class="eyebrow head">vexoulz network</div>
+      <div class="eyebrow head">vexouluna network</div>
       <a
         v-for="s in sites"
         :key="s.id"

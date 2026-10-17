@@ -135,7 +135,7 @@ onUnmounted(() => {
         <label>Chapter bar <Seg v-model="opts.chapterBar" :options="[[true, 'on'], [false, 'off']]" /></label>
         <label>Sky on watch page <Seg v-model="opts.watchSky" :options="['off', 'dim', 'full']" /></label>
         <label>Site switcher <Seg v-model="opts.switcher" :options="[['footer', 'footer'], ['header', 'header'], ['both', 'both']]" /></label>
-        <label><span>Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoulz'], ['dotnet', 'vods.vexoul.net']]" /></label>
+        <label><span>Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexouluna'], ['dotnet', 'vods.vexoul.net']]" /></label>
         <label><span>Watch timeline</span> <Seg v-model="opts.timeline" :options="[['color', 'all parts, coloured'], ['mono', 'all parts, plain'], ['off', 'YouTube only']]" /></label>
         <label><span>Player controls</span> <Seg v-model="opts.ytControls" :options="[['native', 'YouTube native'], ['custom', 'ours (YT hidden)']]" /></label>
         <label><span>Resume on cards</span> <Seg v-model="opts.resume" :options="[[true, 'on'], [false, 'off']]" /></label>
