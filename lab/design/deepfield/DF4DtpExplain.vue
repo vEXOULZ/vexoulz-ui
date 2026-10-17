@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import DFChrome from './DFChrome.vue'
 
 const expr = ref('!random 1-100 | echo {user} rolled {1} | set lastroll {1}')
-const ctx = [['channel', '#vexoulz'], ['as', 'mod_person'], ['role', 'moderator'], ['live', 'yes']]
+const ctx = [['channel', '#vexouluna'], ['as', 'mod_person'], ['role', 'moderator'], ['live', 'yes']]
 const ast = `pipe
 ├─ call random   args: "1-100"
 ├─ call echo     args: "{user} rolled {1}"

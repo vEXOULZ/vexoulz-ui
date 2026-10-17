@@ -4,7 +4,7 @@ import { VxButton, VxCheckbox, VxDateRange, VxField, VxInput, VxRadioGroup, VxSe
 import StoryFrame from '../StoryFrame.vue'
 
 const f = reactive({
-  name: 'vexoulz', search: '', delay: 1.5, sort: 'new', check: true, radio: 'all', sw: true, sw2: false, vol: 40,
+  name: 'vexouluna', search: '', delay: 1.5, sort: 'new', check: true, radio: 'all', sw: true, sw2: false, vol: 40,
   from: '2026-09-01', to: '2026-09-24',
 })
 const nameErr = computed(() => (f.name.length < 3 ? 'At least 3 characters.' : ''))

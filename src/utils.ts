@@ -1,8 +1,8 @@
-// `@vexoulz/ui/utils`: the logic behind the components, with no component or style attached, for sites that
+// `@vex/ui/utils`: the logic behind the components, with no component or style attached, for sites that
 // keep their own look (keeki-vods) but share how games are coloured, popovers placed, toasts queued and data polled.
 // The components import these same modules, so both entries share one implementation (and one toast store).
 //
-//   import { gameColor, place, useToast } from '@vexoulz/ui/utils'
+//   import { gameColor, place, useToast } from '@vex/ui/utils'
 export { clamp, decimalsOf, stepValue, type StepOptions } from './utils/number'
 export { clampX, place, type PlaceInput, type Placement, type Rect } from './utils/place'
 export {

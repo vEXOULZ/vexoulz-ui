@@ -1,9 +1,9 @@
 @.conventions/CLAUDE.md
 
-# vexoulz-ui
+# vex-ui
 
-The shared design for the vexoulz sites: tokens, Vue components and the design lab (`lab/`). The sites
-install a tag (`github:vEXOULZ/vexoulz-ui#vX.Y.Z`), so a change reaches them only when a release is
+The shared design for the vexoul.net sites: tokens, Vue components and the design lab (`lab/`). The sites
+install a tag (`github:vexouLuna/vex-ui#vX.Y.Z`), so a change reaches them only when a release is
 tagged on `main` and their pins move.
 
 - Follow README "Rules": one control height (`--vx-ctl` 32px, `--vx-ctl-sm` 26px), a 48px header,

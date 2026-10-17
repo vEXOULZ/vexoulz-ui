@@ -1,6 +1,6 @@
 <script setup>
 // The shared UI kit: every common control defined once, so a page that needs a "confirm dialog" or "date filter"
-// later doesn't invent its own. In the real setup this is the vexoulz-ui Histoire site.
+// later doesn't invent its own. In the real setup this is the vex-ui Histoire site.
 import { computed, reactive, ref } from 'vue'
 import DFChrome from './DFChrome.vue'
 import Ph from '../Ph.vue'
@@ -24,7 +24,7 @@ function say(m) {
 const modal = ref(false)
 
 const f = reactive({
-  name: 'vexoulz', search: '', num: 1.5, sort: 'Newest', check: true, check2: false, radio: 'all',
+  name: 'vexouluna', search: '', num: 1.5, sort: 'Newest', check: true, check2: false, radio: 'all',
   sw: true, sw2: false, slider: 40, text: '', seg: 'grid', from: '2026-09-01', to: '2026-09-24', tab: 'Overview', page: 3,
 })
 const sorts = ['Newest', 'Oldest', 'Longest', 'Most watched']
@@ -42,7 +42,7 @@ const rows = [
     <div class="kit" :style="accentStyle">
       <div class="kit-top">
         <div>
-          <div class="eyebrow">vexoulz-ui · 0.4.0</div>
+          <div class="eyebrow">vex-ui · 0.4.0</div>
           <h1 class="h-display">UI kit</h1>
         </div>
         <span class="spacer"></span>
@@ -197,7 +197,7 @@ const rows = [
             <div class="segctl">
               <button v-for="s in ['grid', 'list', 'compact']" :key="s" :class="{ on: f.seg === s }" @click="f.seg = s">{{ s }}</button>
             </div>
-            <nav class="crumbs mono"><a href="#">channels</a><span>/</span><a href="#">vexoulz</a><span>/</span><span class="here">admin</span></nav>
+            <nav class="crumbs mono"><a href="#">channels</a><span>/</span><a href="#">vexouluna</a><span>/</span><span class="here">admin</span></nav>
           </div>
           <div class="row">
             <span class="pager">

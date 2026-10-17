@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 // platform-web is a devDependency pinned to the release the sites use; bump it with them.
-const platformCss = readFileSync(createRequire(import.meta.url).resolve('@vexoulz/platform-web/style.css'), 'utf8')
+const platformCss = readFileSync(createRequire(import.meta.url).resolve('@vex/platform-web/style.css'), 'utf8')
 const mapping = readFileSync(resolve(ROOT, 'src/styles/platform.css'), 'utf8')
 const tokens = readFileSync(resolve(ROOT, 'src/styles/tokens.css'), 'utf8')
 

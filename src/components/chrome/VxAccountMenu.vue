@@ -14,7 +14,7 @@ import VxMenuSeparator from '../overlays/VxMenuSeparator.vue'
 const props = withDefaults(
   defineProps<{
     user?: AccountUser | null
-    /** Sign-in isn't set up on this site (no auth service configured): see `@vexoulz/ui/account`. */
+    /** Sign-in isn't set up on this site (no auth service configured): see `@vex/ui/account`. */
     disabled?: boolean
     note?: string
   }>(),

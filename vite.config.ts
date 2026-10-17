@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
   // Only there: under Histoire it rewrites Histoire's own bundled code and blanks every story.
   define: mode === 'lib' ? { 'import.meta.env.VITE_AUTH_BASE': 'import.meta.env.VITE_AUTH_BASE' } : {},
   resolve: {
-    alias: { '@vexoulz/ui': fileURLToPath(new URL('./src/index.ts', import.meta.url)) },
+    alias: { '@vex/ui': fileURLToPath(new URL('./src/index.ts', import.meta.url)) },
   },
   build: {
     lib: {

@@ -11,7 +11,7 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "types": ["vite/client"],
-    "paths": { "@vexoulz/ui": ["./src/index.ts"] }
+    "paths": { "@vex/ui": ["./src/index.ts"] }
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "stories/**/*.ts", "stories/**/*.vue", "tests/**/*.ts", "vite.config.ts", "histoire.config.ts"]
 }

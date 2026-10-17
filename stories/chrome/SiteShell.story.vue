@@ -4,7 +4,7 @@ import { VxAccountMenu, VxButton, VxMenuItem, VxMenuLabel, VxSiteShell, useToast
 import type { AccountUser, SiteId } from '../../src'
 
 const state = reactive({ site: 'vods' as SiteId, signedIn: false })
-const user: AccountUser = { name: 'vexoulz', color: '#9146FF' }
+const user: AccountUser = { name: 'vexouluna', color: '#9146FF' }
 const { show } = useToast()
 const nav = [
   { label: 'VODs', href: '#', current: true },

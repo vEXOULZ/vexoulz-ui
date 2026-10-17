@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 
-// Same paths as the copy in rootvexoulznet, so the labs' links between versions keep working.
+// Same paths as the copy in vex-root, so the labs' links between versions keep working.
 const routes = [
   { path: '/', redirect: '/design/deepfield/v4' },
   { path: '/design', component: () => import('./design/DesignLab.vue') },

@@ -67,7 +67,7 @@ const skyOpacity = computed(() => (props.sky === 'dim' ? 0.35 : 1))
         <a href="#" class="accent-dtp">dtp</a>
       </template>
       <span style="flex: 1"></span>
-      <span>made by vEXOULZ · 2026</span>
+      <span>made by vexouLuna · 2026</span>
     </footer>
   </div>
 </template>

@@ -23,7 +23,7 @@ function reach(file: string, seen = new Set<string>(), packages = new Set<string
   return { seen, packages }
 }
 
-describe('@vexoulz/ui/utils', () => {
+describe('@vex/ui/utils', () => {
   it('reaches no component and no style, only vue', () => {
     const { seen, packages } = reach(resolve(SRC, 'utils.ts'))
     expect([...seen].filter((f) => !f.endsWith('.ts'))).toEqual([])

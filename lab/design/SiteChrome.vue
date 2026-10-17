@@ -31,7 +31,7 @@ defineProps({
       <a href="#" class="accent-vods">vods</a>
       <a href="#" class="accent-dtp">dtp</a>
       <span class="spacer" style="flex: 1"></span>
-      <span>made by vEXOULZ · 2026</span>
+      <span>made by vexouLuna · 2026</span>
     </footer>
   </div>
 </template>

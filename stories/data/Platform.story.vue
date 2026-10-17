@@ -1,17 +1,17 @@
 <script setup lang="ts">
-// @vexoulz/platform-web's components with @vexoulz/ui/platform.css loaded: they should read as Deep Field (black,
+// @vex/platform-web's components with @vex/ui/platform.css loaded: they should read as Deep Field (black,
 // Geist, the StoryFrame site's accent: dtp gold, vods green), not platform-web's neutral defaults.
-import { EmoteSet, toChatLine, type LogMessage, type LogModeration } from '@vexoulz/platform-web/chat'
-import { ChatLine, JobsTable, StateChip } from '@vexoulz/platform-web/vue'
-import { JOB_STATES, type JobOut } from '@vexoulz/platform-web'
+import { EmoteSet, toChatLine, type LogMessage, type LogModeration } from '@vex/platform-web/chat'
+import { ChatLine, JobsTable, StateChip } from '@vex/platform-web/vue'
+import { JOB_STATES, type JobOut } from '@vex/platform-web'
 // The mapping first on purpose: plain :root still outranks platform-web's :where(:root) defaults loaded after it.
 import '../../src/styles/platform.css'
-import '@vexoulz/platform-web/style.css'
+import '@vex/platform-web/style.css'
 import StoryFrame from '../StoryFrame.vue'
 import UserCardDemo from './UserCardDemo.vue'
 
 const job = (id: number, state: JobOut['state'], kind: string, extra: Partial<JobOut> = {}): JobOut => ({
-  id, kind, subject: `vod:${2400 + id}`, scope: 'vexoulz', state, step: 'transcode', steps: ['fetch', 'transcode', 'publish'],
+  id, kind, subject: `vod:${2400 + id}`, scope: 'vexouluna', state, step: 'transcode', steps: ['fetch', 'transcode', 'publish'],
   payload: {}, attempts: 1, last_error: null, not_before: null, pause_before: null, pause_next: false,
   cancel_requested: false, actor: { kind: 'system', id: null, login: null } as JobOut['actor'],
   created_at: '2026-10-12T14:00:00Z', updated_at: '2026-10-12T14:05:00Z', started_at: '2026-10-12T14:00:10Z',

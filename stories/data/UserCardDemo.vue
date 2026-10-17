@@ -2,8 +2,8 @@
 // Chat with platform-web's user cards, as a site wires it. Its own component so the open card's anchor element stays
 // out of the story's state, which Histoire walks deeply. No lookup is set, so the card shows what the line knows.
 import { onMounted, shallowRef } from 'vue'
-import type { ChatLine as Line } from '@vexoulz/platform-web/chat'
-import { ChatLine, UserCard } from '@vexoulz/platform-web/vue'
+import type { ChatLine as Line } from '@vex/platform-web/chat'
+import { ChatLine, UserCard } from '@vex/platform-web/vue'
 
 const props = defineProps<{ lines: Line[] }>()
 const root = shallowRef<HTMLElement | null>(null)

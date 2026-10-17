@@ -1,6 +1,6 @@
-// `@vexoulz/ui/account`: the shared *.vexoul.net sign-in, from a site's side.
+// `@vex/ui/account`: the shared *.vexoul.net sign-in, from a site's side.
 //
-// vexoulz-auth holds one session for all the sites (a cookie on its own host, which the sites' credentialed
+// vex-auth holds one session for all the sites (a cookie on its own host, which the sites' credentialed
 // fetches carry). A site creates one Account, installs it, and reads it anywhere with useAccount(). The service
 // is the production one unless the site's VITE_AUTH_BASE says otherwise; set empty (a friend's instance, a dev
 // server with no auth) the account is disabled: signed out, and VxAccountMenu shows "Sign in" greyed out.
@@ -11,7 +11,7 @@
 import { computed, inject, readonly, ref, type App, type ComputedRef, type InjectionKey, type Ref } from 'vue'
 import type { AccountUser } from './types'
 
-/** The signed-in user, as vexoulz-auth's `/v1/me` answers. */
+/** The signed-in user, as vex-auth's `/v1/me` answers. */
 export interface AuthUser {
   id: string
   login: string
@@ -31,7 +31,7 @@ export interface Account {
   readonly menuUser: ComputedRef<AccountUser | null>
   /** True once the first `/v1/me` answered (or failed): until then a signed-out look may be wrong. */
   readonly ready: Readonly<Ref<boolean>>
-  /** The CSRF token writes to the service must send as `X-Vexoulz-CSRF`; null when signed out. */
+  /** The CSRF token writes to the service must send as `X-Vex-CSRF`; null when signed out. */
   csrf(): string | null
   /** Asks the service who is signed in. A failed request keeps what was known. */
   refresh(): Promise<AuthUser | null>
@@ -47,11 +47,11 @@ export interface Account {
   dispose(): void
 }
 
-export const CSRF_HEADER = 'X-Vexoulz-CSRF'
+export const CSRF_HEADER = 'X-Vex-CSRF'
 export const ACCOUNT_KEY: InjectionKey<Account> = Symbol('vx-account')
 /** How stale the known user may be before a tab coming back into view asks again. */
 export const RECHECK_MS = 60_000
-/** The production vexoulz-auth, used when neither the options nor VITE_AUTH_BASE name one. */
+/** The production vex-auth, used when neither the options nor VITE_AUTH_BASE name one. */
 export const DEFAULT_AUTH_BASE = 'https://auth.vexoul.net'
 
 /**
@@ -68,7 +68,7 @@ function envAuthBase(): string | undefined {
 
 export interface AccountOptions {
   /**
-   * vexoulz-auth's base URL; empty or null disables sign-in. Left out, it is the site's VITE_AUTH_BASE if set
+   * vex-auth's base URL; empty or null disables sign-in. Left out, it is the site's VITE_AUTH_BASE if set
    * (empty disables there too), else DEFAULT_AUTH_BASE.
    */
   authBase?: string | null

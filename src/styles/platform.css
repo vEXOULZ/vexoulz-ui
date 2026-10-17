@@ -1,5 +1,5 @@
 /*
- * @vexoulz/platform-web's components (jobs, audit, chat lines) on Deep Field: every --vxp-* variable it reads, mapped
+ * @vex/platform-web's components (jobs, audit, chat lines) on Deep Field: every --vxp-* variable it reads, mapped
  * onto the --vx-* tokens. Import it next to style.css on a site that uses platform-web. Plain :root is enough:
  * platform-web (v0.5.0+) keeps its own defaults under :where(:root), which this outranks whichever loads last.
  */

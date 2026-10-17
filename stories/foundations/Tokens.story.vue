@@ -53,7 +53,7 @@ const sizes = [
     <Variant title="Type">
       <StoryFrame>
         <div class="story-col">
-          <h1 class="vx-display" style="font-size: 40px">vexoulz</h1>
+          <h1 class="vx-display" style="font-size: 40px">vexouluna</h1>
           <div class="vx-eyebrow">eyebrow · mono label</div>
           <p style="margin: 0">Geist for names, titles and prose. The quick brown fox jumps over the lazy dog.</p>
           <p class="vx-mono" style="margin: 0">Geist Mono for labels, handles, numbers and code · 1:02:44</p>

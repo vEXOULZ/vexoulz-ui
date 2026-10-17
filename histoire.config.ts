@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [HstVue()],
   setupFile: 'stories/setup.ts',
   storyMatch: ['stories/**/*.story.vue'],
-  theme: { title: 'vexoulz-ui', defaultColorScheme: 'dark', hideColorSchemeSwitch: true },
+  theme: { title: 'vex-ui', defaultColorScheme: 'dark', hideColorSchemeSwitch: true },
   tree: { groups: [
     { id: 'foundations', title: 'Foundations' },
     { id: 'chrome', title: 'Site chrome' },

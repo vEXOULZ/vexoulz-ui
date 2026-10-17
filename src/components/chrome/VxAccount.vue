@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// VxAccountMenu wired to the installed Account (`@vexoulz/ui/account`): the signed-in user, greyed out when sign-in
-// is off, Sign in through vexoulz-auth and Sign out everywhere. The default slot adds menu items, as on VxAccountMenu.
+// VxAccountMenu wired to the installed Account (`@vex/ui/account`): the signed-in user, greyed out when sign-in
+// is off, Sign in through vex-auth and Sign out everywhere. The default slot adds menu items, as on VxAccountMenu.
 import { useAccount } from '../../account'
 import VxAccountMenu from './VxAccountMenu.vue'
 

@@ -24,7 +24,7 @@ const opts = inject('dfOpts')
       <div class="who">
         <Ph label="pfp" :w="36" :h="36" round />
         <div>
-          <div class="name" :style="{ color: twitchColor('vexoulz', 'readable') }">vexoulz</div>
+          <div class="name" :style="{ color: twitchColor('vexouluna', 'readable') }">vexouluna</div>
           <div class="muted small mono">signed in on all *.vexoul.net</div>
         </div>
       </div>
