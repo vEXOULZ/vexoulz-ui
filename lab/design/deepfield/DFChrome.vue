@@ -40,7 +40,7 @@ const skyOpacity = computed(() => (props.sky === 'dim' ? 0.35 : 1))
       <SiteSwitcher v-if="switchIn('header')" :current="site" :sub="sub" :format="opts.brand" brand />
       <a v-else class="df-brand" href="#">
         <Ph label="mark" :w="fill ? 22 : 26" :h="fill ? 22 : 26" />
-        <span>vexouluna</span>
+        <span>vexoul</span>
         <template v-if="sub"><span class="slash">/</span><span class="sub">{{ sub }}</span></template>
       </a>
       <nav class="df-nav">

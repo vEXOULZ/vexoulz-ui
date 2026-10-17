@@ -44,7 +44,7 @@ onUnmounted(() => {
 <template>
   <div class="lab">
     <header class="lab-bar">
-      <div class="lab-title">vexouluna design lab <span>local only</span> <a class="next" href="/design/deepfield">Deep Field lab →</a></div>
+      <div class="lab-title">vexoul design lab <span>local only</span> <a class="next" href="/design/deepfield">Deep Field lab →</a></div>
       <div class="seg">
         <button v-for="d in directions" :key="d.id" :class="{ on: d.id === dirId }" @click="dirId = d.id">{{ d.name }}</button>
       </div>
@@ -94,7 +94,7 @@ onUnmounted(() => {
     <section class="foundation">
       <h2>Shared across every direction</h2>
       <ul>
-        <li><b>One brand lockup</b>: <code>[mark] vexouluna / sub</code> in the header of every site, linking home. Only the sub-name takes the site accent.</li>
+        <li><b>One brand lockup</b>: <code>[mark] vexoul / sub</code> in the header of every site, linking home. Only the sub-name takes the site accent.</li>
         <li><b>Accent per subdomain</b>: root, vods and dtp each own one colour from the same palette; the footer shows all three as the "family" nav.</li>
         <li><b>Same tokens</b>: <code>bg · surface · surface-2 · line · muted · ink · accent · ok · bad</code>, one radius scale, one type stack. Swapping a direction here only swaps those values.</li>
         <li><b>Same components</b>: header, footer, panel, chip, button, input, code block. Everything in the mocks is built from those.</li>

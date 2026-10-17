@@ -14,7 +14,7 @@ defineProps({
     <header class="site-head">
       <a class="brand" href="#">
         <Ph label="mark" :w="26" :h="26" />
-        <span>vexouluna</span>
+        <span>vexoul</span>
         <template v-if="sub"><span class="slash">/</span><span class="sub">{{ sub }}</span></template>
       </a>
       <nav class="site-nav">
