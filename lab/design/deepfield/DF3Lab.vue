@@ -97,7 +97,7 @@ onUnmounted(() => {
     <section class="intro">
       <p>
         <b>Your picks</b><span v-if="dirty" class="dirty"> (modified)</span>. New in v3: sites named like their host
-        (<code>vods.vexoulz</code>) with the same switcher in header and footer; a watch page built around YouTube parts with a
+        (<code>vods.vexoul</code>) with the same switcher in header and footer; a watch page built around YouTube parts with a
         timeline across all of them, a part switcher, and chat settings (delay, timestamps, name colours, badges,
         emotes, size) inside the chat. Controls marked <span class="new">new</span> are v3 additions.
       </p>
@@ -119,7 +119,7 @@ onUnmounted(() => {
         <label>Chapter bar <Seg v-model="opts.chapterBar" :options="[[true, 'on'], [false, 'off']]" /></label>
         <label>Sky on watch page <Seg v-model="opts.watchSky" :options="['off', 'dim', 'full']" /></label>
         <label>Site switcher <Seg v-model="opts.switcher" :options="[['footer', 'footer'], ['header', 'header'], ['both', 'both']]" /></label>
-        <label><span><span class="new">new</span> Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoulz'], ['dotnet', 'vods.vexoul.net']]" /></label>
+        <label><span><span class="new">new</span> Site name</span> <Seg v-model="opts.brand" :options="[['dot', 'vods.vexoul'], ['dotnet', 'vods.vexoul.net']]" /></label>
         <label><span><span class="new">new</span> Watch timeline</span> <Seg v-model="opts.timeline" :options="[['color', 'all parts, coloured'], ['mono', 'all parts, plain'], ['off', 'YouTube only']]" /></label>
         <label><span><span class="new">new</span> Player controls</span> <Seg v-model="opts.ytControls" :options="[['native', 'YouTube native'], ['custom', 'ours (YT hidden)']]" /></label>
         <label><span><span class="new">new</span> Resume on cards</span> <Seg v-model="opts.resume" :options="[[true, 'on'], [false, 'off']]" /></label>

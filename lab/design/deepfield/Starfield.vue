@@ -5,7 +5,7 @@ import { onMounted, onUnmounted, ref, watch } from 'vue'
 import noisejs from 'noisejs/index.js'
 
 const props = defineProps({
-  seed: { type: String, default: 'vexoulz' },
+  seed: { type: String, default: 'vexoul' },
   opts: { type: Object, required: true },
 })
 
