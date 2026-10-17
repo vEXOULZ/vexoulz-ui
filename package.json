@@ -58,7 +58,7 @@
     "@vexoulz/platform-web": "github:vEXOULZ/vex-platform-web#v0.8.0",
     "@vitejs/plugin-vue": "^6.0.9",
     "@vue/test-utils": "^2.5.1",
-    "happy-dom": "^20.14.5",
+    "happy-dom": "^21.0.3",
     "histoire": "^1.0.0-beta.1",
     "noisejs": "^2.1.0",
     "typescript": "~5.9.3",
