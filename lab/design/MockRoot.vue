@@ -6,8 +6,8 @@ const groups = [
   { title: 'Stream', links: [
     { name: 'Twitch', handle: 'ttv/vexouluna' },
     { name: 'Vods', handle: 'vods.vexoul.net', site: 'vods' },
-    { name: 'TikTok', handle: 'tiktok/@vexoulz' },
-    { name: 'YouTube', handle: 'yt/@vexoulz' },
+    { name: 'TikTok', handle: 'tiktok/@vexouluna' },
+    { name: 'YouTube', handle: 'yt/@vexouluna' },
   ] },
   { title: 'Dev', links: [
     { name: 'GitHub', handle: 'github/vexouLuna' },
@@ -16,11 +16,11 @@ const groups = [
   { title: 'Socials', links: [
     { name: 'Bluesky', handle: '@luna.vexoul.net' },
     { name: 'Discord', handle: 'vEXcord server' },
-    { name: 'Steam', handle: 'steam/vexoulz' },
+    { name: 'Steam', handle: 'steam/vexouluna' },
   ] },
   { title: 'Money', links: [
     { name: 'Merch shop', handle: 'shop.vexoul.net' },
-    { name: 'Throne', handle: 'throne/vexoulz' },
+    { name: 'Throne', handle: 'throne/vexouluna' },
   ] },
 ]
 </script>
@@ -31,7 +31,7 @@ const groups = [
       <section class="intro">
         <Ph label="logo 213×75" :w="213" :h="75" />
         <h1 class="h-display">Did you nose?</h1>
-        <p class="muted">Vexoulz is not real. You are not real. No one is real.<br>The only thing that's real is my love for yo momma.</p>
+        <p class="muted">Bex is not real. You are not real. No one is real.<br>The only thing that's real is my love for yo momma.</p>
         <div class="live panel">
           <span class="dot"></span>
           <span><b>Offline</b> <span class="muted">· next stream Fri 20:00</span></span>
