@@ -8,13 +8,13 @@ const opts = inject('dfOpts')
 
 const groups = [
   { title: 'Stream', links: [
-    { name: 'Twitch', handle: 'ttv/vexoulz' },
+    { name: 'Twitch', handle: 'ttv/vexouluna' },
     { name: 'Vods', handle: 'vods.vexoul.net', site: 'vods' },
     { name: 'TikTok', handle: 'tiktok/@vexoulz' },
     { name: 'YouTube', handle: 'yt/@vexoulz' },
   ] },
   { title: 'Dev', links: [
-    { name: 'GitHub', handle: 'github/vEXOULZ' },
+    { name: 'GitHub', handle: 'github/vexouLuna' },
     { name: 'DTP bot', handle: 'dtp.vexoul.net', site: 'dtp' },
   ] },
   { title: 'Socials', links: [

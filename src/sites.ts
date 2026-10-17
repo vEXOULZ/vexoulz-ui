@@ -1,4 +1,4 @@
-// The vexoulz network: every site, in one list. The site switchers (header and footer), the page frame's sky seed
+// The vex network: every site, in one list. The site switchers (header and footer), the page frame's sky seed
 // and each site's accent colour all come from here, so adding a site is one entry below; removing one is deleting
 // its entry (the type checker then points at anything still naming it).
 
@@ -19,12 +19,12 @@ export interface SiteInfo {
 }
 
 export const SITES = [
-  { id: 'root', host: 'vexoul.net', what: 'links, socials, stream status', href: 'https://vexoul.net', accent: '#d5e0ff', repo: 'vEXOULZ/rootvexoulznet' },
+  { id: 'root', host: 'vexoul.net', what: 'links, socials, stream status', href: 'https://vexoul.net', accent: '#d5e0ff', repo: 'vexouLuna/vex-root' },
   // Vods green is kept apart from --vx-ok by being brighter and more saturated.
-  { id: 'vods', host: 'vods.vexoul.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoul.net', accent: '#51ffa8', repo: 'vEXOULZ/vexoulz-vods' },
-  { id: 'dtp', host: 'dtp.vexoul.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoul.net', accent: '#c9b27c', repo: 'vEXOULZ/doomtp-web' },
+  { id: 'vods', host: 'vods.vexoul.net', what: 'past broadcasts + chat replay', href: 'https://vods.vexoul.net', accent: '#51ffa8', repo: 'vexouLuna/vex-vods' },
+  { id: 'dtp', host: 'dtp.vexoul.net', what: 'chat bot, commands, docs', href: 'https://dtp.vexoul.net', accent: '#c9b27c', repo: 'vexouLuna/doomtp-web' },
   // Status lavender: clear of the green, yellow and red its pages are full of.
-  { id: 'status', host: 'status.vexoul.net', what: 'service health, uptime', href: 'https://status.vexoul.net', accent: '#b9a8ff', repo: 'vEXOULZ/vexoulz-status' },
+  { id: 'status', host: 'status.vexoul.net', what: 'service health, uptime', href: 'https://status.vexoul.net', accent: '#b9a8ff', repo: 'vexouLuna/vex-status' },
   // Shop salmon: dtp's tan turned toward red, so the two read as kin without being mistaken for each other.
   { id: 'shop', host: 'shop.vexoul.net', what: 'merch', href: 'https://shop.vexoul.net', accent: '#cb8c7c', external: true },
   // keeki_dechu's VOD archive: a friend's site with its own look, not built on this library, so an outside link like

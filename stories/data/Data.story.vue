@@ -90,9 +90,9 @@ const toggle = (g: string) => (filters.value = filters.value.includes(g) ? filte
     <Variant title="Avatar">
       <StoryFrame>
         <div class="story-row" style="gap: 20px; padding-bottom: 10px">
-          <VxAvatar name="vexoulz" />
-          <VxAvatar name="vexoulz" :size="48" />
-          <VxAvatar name="vexoulz" :size="64" live />
+          <VxAvatar name="vexouluna" />
+          <VxAvatar name="vexouluna" :size="48" />
+          <VxAvatar name="vexouluna" :size="64" live />
         </div>
       </StoryFrame>
     </Variant>

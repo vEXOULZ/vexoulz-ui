@@ -9,7 +9,7 @@ const commands = [
   { name: 'uptime', role: 'everyone', cd: '10s', summary: 'How long the stream has been live.' },
 ]
 const channels = [
-  { login: 'vexoulz', sign: '!', tier: 'owner', on: true },
+  { login: 'vexouluna', sign: '!', tier: 'owner', on: true },
   { login: 'somefriend', sign: '?', tier: 'trusted', on: true },
   { login: 'oldchannel', sign: '!', tier: 'basic', on: false },
 ]

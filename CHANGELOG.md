@@ -1,4 +1,4 @@
-# @vexoulz/ui
+# @vex/ui
 
 ## 0.24.1
 
@@ -153,7 +153,7 @@
 
 - 1aff2f6: For status.vexoulz.net:
   
-  - `status` in `SITES` (lavender accent, hidden until the site is live, repo `vEXOULZ/vexoulz-status`).
+  - `status` in `SITES` (lavender accent, hidden until the site is live, repo `vexouLuna/vex-status`).
   - `VxStatusDot` takes `status="down"`: plain red, where `live` is red with a halo. Its statuses other than `live`
     are the new `Health` type (`ok | warn | down | off`).
   - `VxUptimeBar`: a row of ticks, one per check, hour or day, coloured by `Health`, with each tick's label shown on

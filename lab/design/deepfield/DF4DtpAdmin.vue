@@ -21,7 +21,7 @@ const modules = reactive([
 ])
 const published = reactive([
   { name: 'hi', by: 'mod_person', ver: 3, on: true },
-  { name: 'deaths', by: 'vexoulz', ver: 12, on: true },
+  { name: 'deaths', by: 'vexouluna', ver: 12, on: true },
   { name: 'lurk', by: 'starchart', ver: 1, on: false },
   { name: 'so', by: 'mod_person', ver: 5, on: true },
 ])
@@ -36,9 +36,9 @@ const banned = ref(true)
 
 <template>
   <DFChrome site="dtp" sub="dtp" :nav="['Features', 'Commands', 'Language', 'API']">
-    <nav class="crumbs mono"><a href="#">channels</a><span>/</span><a href="#">vexoulz</a><span>/</span><span class="here">admin</span></nav>
+    <nav class="crumbs mono"><a href="#">channels</a><span>/</span><a href="#">vexouluna</a><span>/</span><span class="here">admin</span></nav>
     <div class="top">
-      <h1 class="h-display">#vexoulz</h1>
+      <h1 class="h-display">#vexouluna</h1>
       <span class="spacer"></span>
       <button class="btn">View public page ↗</button>
       <DPop align="right" width="220px">

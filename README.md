@@ -1,8 +1,8 @@
-# vexoulz-ui
+# vex-ui
 
 Shared design for every `*.vexoul.net` site ("Deep Field"). The repo holds two things:
 
-- **`@vexoulz/ui`** (`src/`): the library the sites use. Tokens, base styles and Vue 3 + TypeScript components,
+- **`@vex/ui`** (`src/`): the library the sites use. Tokens, base styles and Vue 3 + TypeScript components,
   documented in Histoire.
 - **The design lab** (`lab/`): the Vue app where the look was worked out. It's still the place to try out and
   compare ideas before they go into the library.
@@ -26,19 +26,19 @@ Sites install a tagged version straight from git. The `prepare` script builds th
 is never committed.
 
 ```bash
-npm install github:vEXOULZ/vexoulz-ui#v0.1.0
+npm install github:vexouLuna/vex-ui#v0.1.0
 ```
 
 ```ts
 // main.ts
-import '@vexoulz/ui/fonts.css' // self-hosted Geist, Geist Mono and Twemoji for emoji (your bundler emits the font files)
-import '@vexoulz/ui/style.css' // tokens, base shell, component styles
-import '@vexoulz/ui/platform.css' // only with @vexoulz/platform-web: its --vxp-* variables on Deep Field tokens
+import '@vex/ui/fonts.css' // self-hosted Geist, Geist Mono and Twemoji for emoji (your bundler emits the font files)
+import '@vex/ui/style.css' // tokens, base shell, component styles
+import '@vex/ui/platform.css' // only with @vex/platform-web: its --vxp-* variables on Deep Field tokens
 ```
 
 ```vue
 <script setup lang="ts">
-import { VxAccountMenu, VxButton, VxSiteShell, useToast } from '@vexoulz/ui'
+import { VxAccountMenu, VxButton, VxSiteShell, useToast } from '@vex/ui'
 const { show } = useToast()
 </script>
 
@@ -64,9 +64,9 @@ const { show } = useToast()
   vue-router.
 - Every class and token is prefixed `vx-` / `--vx-`, so site CSS won't collide with it.
 
-### Signing in (`@vexoulz/ui/account`)
+### Signing in (`@vex/ui/account`)
 
-One sign-in covers every site: [vexoulz-auth](https://github.com/vEXOULZ/vexoulz-auth) keeps the session, and a
+One sign-in covers every site: [vex-auth](https://github.com/vexouLuna/vex-auth) keeps the session, and a
 site asks it who is signed in. `createAccount()` uses the production service (`DEFAULT_AUTH_BASE`,
 `https://auth.vexoul.net`) unless the site's `VITE_AUTH_BASE` names another one (`http://127.0.0.1:8090` for a local
 `auth-dev`). Set empty (a friend's instance, a dev server without it) the account is disabled and "Sign in" is
@@ -74,7 +74,7 @@ greyed out. An explicit `authBase` option wins over both.
 
 ```ts
 // main.ts
-import { createAccount } from '@vexoulz/ui/account'
+import { createAccount } from '@vex/ui/account'
 app.use(createAccount())
 ```
 
@@ -87,7 +87,7 @@ app.use(createAccount())
 `useAccount()`. For anything else, read the account directly:
 
 ```ts
-import { useAccount } from '@vexoulz/ui/account'
+import { useAccount } from '@vex/ui/account'
 const account = useAccount()
 ```
 
@@ -108,9 +108,9 @@ on another site shows up; the app's unmount (or `account.dispose()`) removes tha
 Helpers are exported as well: `gameColor`, `twitchColor`, `pageRange`, `place` (popover placement), `stepValue`,
 `formatDuration`, and the seeded star generator.
 
-### Logic without the look (`@vexoulz/ui/utils`)
+### Logic without the look (`@vex/ui/utils`)
 
-A site with its own look (keeki-vods) can still share the logic: `@vexoulz/ui/utils` exports `clamp`, `place` /
+A site with its own look (keeki-vods) can still share the logic: `@vex/ui/utils` exports `clamp`, `place` /
 `clampX`, the game and Twitch colours (`gameColor`, `gamePalette`, `twitchColor`, ...), `learnGameColors`,
 `useDismiss` (close on an outside click or Escape), the `useToast()` store, and three data composables:
 
@@ -124,7 +124,7 @@ All three clean up (timers, listeners, the load in flight) when their component 
 (a test checks), and it is the same code the components use, so the store is shared with `VxToastHost`.
 
 ```ts
-import { gameColor, place, useDismiss, usePoll, useToast } from '@vexoulz/ui/utils'
+import { gameColor, place, useDismiss, usePoll, useToast } from '@vex/ui/utils'
 ```
 
 ## Releasing
@@ -132,9 +132,9 @@ import { gameColor, place, useDismiss, usePoll, useToast } from '@vexoulz/ui/uti
 1. Any PR that changes `src/` adds a changeset (`npm run changeset`).
 2. On a `release/x-y-z` branch, `npm run release` bumps the version and writes `CHANGELOG.md`. Merge it.
 3. Tag the merge on `main` and push: `git tag vX.Y.Z && git push --tags`.
-4. Sites bump `github:vEXOULZ/vexoulz-ui#vX.Y.Z` (Renovate opens those PRs).
+4. Sites bump `github:vexouLuna/vex-ui#vX.Y.Z` (Renovate opens those PRs).
 
-The sites publish with `publish-site.yml` from [vEXOULZ/conventions](https://github.com/vEXOULZ/conventions). The copy
+The sites publish with `publish-site.yml` from [vexouLuna/conventions](https://github.com/vexouLuna/conventions). The copy
 that used to live here is still served at the `v0.1.0` tag until every site has switched.
 
 ## Rules

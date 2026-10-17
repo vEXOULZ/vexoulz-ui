@@ -18,7 +18,7 @@ const pages = [
   { id: 'vods', host: 'vods.vexoul.net', comp: DF4Vods },
   { id: 'watch', host: 'vods.vexoul.net/vods/2211', comp: DF4Watch, fill: true },
   { id: 'dtp', host: 'dtp.vexoul.net', comp: DFDtp },
-  { id: 'admin', host: 'dtp.vexoul.net/c/vexoulz/admin', comp: DF4DtpAdmin },
+  { id: 'admin', host: 'dtp.vexoul.net/c/vexouluna/admin', comp: DF4DtpAdmin },
   { id: 'explain', host: 'dtp.vexoul.net/explain', comp: DF4DtpExplain },
   { id: 'kit', host: 'ui.vexoul.net (Histoire, dev only)', comp: DF4Kit },
 ]

@@ -10,14 +10,14 @@ describe('VxSiteFooter', () => {
     const sha = '0123456789abcdef0123456789abcdef01234567'
     const w = mount(VxSiteFooter, { props: { site: 'vods' }, global: { plugins: [[VxBuild, { commit: sha, version: '0.0.0' }]] } })
     expect(links(w)).toEqual([
-      ['0123456', `https://github.com/vEXOULZ/vexoulz-vods/commit/${sha}`],
-      ['🛑 report an issue', 'https://github.com/vEXOULZ/vexoulz-vods/issues'],
+      ['0123456', `https://github.com/vexouLuna/vex-vods/commit/${sha}`],
+      ['🛑 report an issue', 'https://github.com/vexouLuna/vex-vods/issues'],
     ])
   })
 
   it('shows a release version next to the commit, and nothing without build info', () => {
     const w = mount(VxSiteFooter, { props: { site: 'root' }, global: { plugins: [[VxBuild, { commit: 'abcdef123', version: '1.2.0' }]] } })
     expect(links(w)[0]?.[0]).toBe('v1.2.0 · abcdef1')
-    expect(links(mount(VxSiteFooter, { props: { site: 'root' } }))).toEqual([['🛑 report an issue', 'https://github.com/vEXOULZ/rootvexoulznet/issues']])
+    expect(links(mount(VxSiteFooter, { props: { site: 'root' } }))).toEqual([['🛑 report an issue', 'https://github.com/vexouLuna/vex-root/issues']])
   })
 })
