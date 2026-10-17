@@ -8,6 +8,7 @@ import { JOB_STATES, type JobOut } from '@vexoulz/platform-web'
 import '../../src/styles/platform.css'
 import '@vexoulz/platform-web/style.css'
 import StoryFrame from '../StoryFrame.vue'
+import UserCardDemo from './UserCardDemo.vue'
 
 const job = (id: number, state: JobOut['state'], kind: string, extra: Partial<JobOut> = {}): JobOut => ({
   id, kind, subject: `vod:${2400 + id}`, scope: 'vexoulz', state, step: 'transcode', steps: ['fetch', 'transcode', 'publish'],
@@ -42,6 +43,10 @@ const lines = [
   msg('c', 'this was removed', { deleted_at: '2026-10-12T18:01:00Z' }),
   timeout,
 ].map((raw) => toChatLine(raw, emotes))
+// A busy chat for the user card to float over.
+const busy = Array.from({ length: 14 }, (_, i) =>
+  msg(`u${i}`, 'so much chat scrolling behind the card, it should blur away and stay readable', { user: { id: String(10 + i), login: `chatter${i}`, display_name: `Chatter${i}` } }),
+).map((raw) => toChatLine(raw, emotes))
 </script>
 
 <template>
@@ -72,6 +77,11 @@ const lines = [
             <template #before><span class="vxp-mono vxp-muted" style="margin-right: 0.5ch">18:00</span></template>
           </ChatLine>
         </div>
+      </StoryFrame>
+    </Variant>
+    <Variant title="User card">
+      <StoryFrame site="vods">
+        <div class="vxp vxp-panel story-chat"><UserCardDemo :lines="busy" /></div>
       </StoryFrame>
     </Variant>
   </Story>

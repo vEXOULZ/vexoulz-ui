@@ -39,3 +39,14 @@
    popup fill like VxDialog. */
 dialog.vxp-dialog { background: var(--vx-pop); }
 .vxp-panel { background: var(--vx-glass-sheen), var(--vx-glass-clear); box-shadow: var(--vx-glass-edge); }
+
+/* The chat user card floats over chat, not the sky: the popup fill, frosted like the buttons so what's behind it blurs
+   away. The card's own background is scoped (a class plus an attribute), so this rule needs the extra `:root body`
+   to outrank it whichever stylesheet loads last; the card is teleported to body, so it always matches. */
+:root body .vxp-user-card {
+  background: var(--vx-glass-sheen), var(--vx-pop);
+  border-color: var(--vx-glass-line);
+  box-shadow: var(--vx-glass-edge), 0 10px 30px rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
