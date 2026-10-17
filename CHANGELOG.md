@@ -1,5 +1,12 @@
 # @vexoulz/ui
 
+## 0.24.1
+
+### Patch Changes
+
+- f6d2a77: `platform.css` gives platform-web's chat user card the popup fill with a frosted blur, so it reads clearly over chat
+  instead of showing the lines behind it.
+
 ## 0.24.0
 
 ### Minor Changes
